@@ -132,7 +132,7 @@ def scrape_daraz_products():
                         "name": name,
                         "price": price,
                         "url": link,
-                        "threshold": "Rs. "
+                        "threshold": "Rs. 400000"
                     }
                     
                     products_list.append(product)
@@ -169,3 +169,6 @@ if __name__ == "__main__":
             print(f"{i+1}. {product['name']} - {product['price']}")
     else:
         print("❌ No products were scraped. Check the debug output above.")
+
+
+        
