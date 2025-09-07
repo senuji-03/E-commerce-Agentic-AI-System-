@@ -1,9 +1,8 @@
-# alert_agent.py
-
 import json
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from typing import List, Dict
 
 # -------------------------------
 # CONFIGURATION
@@ -15,19 +14,9 @@ RECIPIENT_EMAIL = "staygoldheaven@gmail.com" # Who will receive alerts
 ALERT_FILE = "price_alerts.json"
 
 # -------------------------------
-# LOAD ALERTS
-# -------------------------------
-try:
-    with open(ALERT_FILE, "r", encoding="utf-8") as f:
-        alerts = json.load(f)
-except FileNotFoundError:
-    print(f"No alert file found at {ALERT_FILE}.")
-    alerts = []
-
-# -------------------------------
 # SEND EMAIL FUNCTION
 # -------------------------------
-def send_email(subject, body):
+def send_email(subject: str, body: str) -> bool:
     msg = MIMEMultipart()
     msg["From"] = EMAIL_ADDRESS
     msg["To"] = RECIPIENT_EMAIL
@@ -41,21 +30,44 @@ def send_email(subject, body):
             server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
             server.send_message(msg)
         print("✅ Email sent successfully!")
+        return True
     except Exception as e:
         print(f"❌ Failed to send email: {e}")
+        return False
 
-# -------------------------------
-# CREATE ALERT MESSAGE
-# -------------------------------
-if alerts:
+
+def build_alert_email_body(alerts: List[Dict]) -> str:
+    if not alerts:
+        return "No price alerts found."
     body = "🛒 Price Drop Alerts!\n\n"
     total_savings = 0
     for alert in alerts:
-        body += f"- {alert['name']}\n  Current Price: {alert['current_price']}\n  Threshold: {alert['threshold']}\n  Savings: Rs. {alert['savings']:,}\n  Link: {alert['url']}\n\n"
-        total_savings += alert["savings"]
-
+        body += (
+            f"- {alert['name']}\n"
+            f"  Current Price: {alert['current_price']}\n"
+            f"  Threshold: {alert['threshold']}\n"
+            f"  Savings: Rs. {alert['savings']:,}\n"
+            f"  Link: {alert['url']}\n\n"
+        )
+        total_savings += alert.get("savings", 0)
     body += f"Total potential savings: Rs. {total_savings:,}"
+    return body
 
-    send_email("Daraz Price Drop Alerts!", body)
-else:
-    print("No price alerts found. No email sent.")
+
+def send_alerts_from_file(alert_file_path: str = ALERT_FILE) -> bool:
+    try:
+        with open(alert_file_path, "r", encoding="utf-8") as f:
+            alerts = json.load(f)
+    except FileNotFoundError:
+        print(f"No alert file found at {alert_file_path}.")
+        return False
+    if not alerts:
+        print("No price alerts found. No email sent.")
+        return False
+    body = build_alert_email_body(alerts)
+    return send_email("Daraz Price Drop Alerts!", body)
+
+
+if __name__ == "__main__":
+    # Keep CLI behavior for manual testing
+    send_alerts_from_file(ALERT_FILE)

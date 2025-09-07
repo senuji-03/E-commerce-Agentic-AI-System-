@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>E-commerce Price Tracking AI</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; }
+      form, .actions { margin-top: 16px; }
+      .flash { padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; }
+      .flash.success { background: #e6ffed; border: 1px solid #b7eb8f; }
+      .flash.error { background: #fff2f0; border: 1px solid #ffa39e; }
+      button { padding: 8px 12px; }
+    </style>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <h2>Brand Selection & Scraping</h2>
+    <form method="post" action="{{ url_for('scrape') }}">
+      <label>Brand:</label>
+      <select name="brand">
+        {% for b in brands %}
+          <option value="{{ b }}">{{ b }}</option>
+        {% endfor %}
+      </select>
+      <label>Threshold (e.g., 150000 or Rs. 150000):</label>
+      <input type="text" name="threshold" placeholder="Rs. 400000" />
+      <button type="submit">Update Product Prices</button>
+    </form>
+
+    <div class="actions">
+      <a href="{{ url_for('tracker') }}"><button>Price Tracker</button></a>
+      <a href="{{ url_for('recommendations') }}"><button>Recommendation Agent</button></a>
+    </div>
+  </body>
+  </html>
+
+

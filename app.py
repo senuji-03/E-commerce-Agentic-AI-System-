@@ -1,0 +1,112 @@
+from flask import Flask, render_template, request, redirect, url_for, flash
+import os
+import json
+from typing import List, Dict
+
+from scrape_daraz import scrape_daraz_products, save_products_to_json
+from price_tracker import load_products_from_json, check_prices, llm_summary_alerts
+from recommendation_agent import recommend_products, load_products_from_json as load_products_for_reco
+from alert_agent import send_alerts_from_file
+
+
+app = Flask(__name__)
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-secret-key")
+
+
+BRANDS = [
+    "Samsung", "Xiaomi", "Apple", "Google", "Nokia", "Vivo", "Redmi", "Huawei"
+]
+
+
+def parse_price_numeric(price_str: str) -> int | None:
+    # Lazy import from price_tracker to avoid duplication
+    from price_tracker import parse_price
+    return parse_price(price_str)
+
+
+@app.route("/")
+def index():
+    return render_template("index.html", brands=BRANDS)
+
+
+@app.route("/scrape", methods=["POST"])
+def scrape():
+    brand = request.form.get("brand") or "Samsung"
+    threshold_input = request.form.get("threshold") or "Rs. 400000"
+    # Normalize threshold to include Rs. prefix if numeric provided
+    if threshold_input.isdigit():
+        threshold_input = f"Rs. {int(threshold_input):,}".replace(",", "")
+
+    products = scrape_daraz_products(brand, threshold_input)
+    if not products:
+        flash("No products scraped. Try another brand or try again.", "error")
+        return redirect(url_for("index"))
+
+    save_products_to_json(products, os.path.join(os.path.dirname(__file__), "daraz_products.json"))
+    flash(f"Scraped {len(products)} products for {brand}.", "success")
+    return redirect(url_for("tracker"))
+
+
+@app.route("/tracker")
+def tracker():
+    products = load_products_from_json(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
+    alerts = check_prices(products) if products else []
+    alerts_by_url = {a["url"]: a for a in alerts}
+
+    # Annotate products with below-threshold flag
+    annotated: List[Dict] = []
+    for p in products:
+        url = p.get("url", "#")
+        alert = alerts_by_url.get(url)
+        annotated.append({
+            **p,
+            "below_threshold": bool(alert),
+        })
+
+    return render_template("tracker.html", products=annotated)
+
+
+@app.route("/recommendations", methods=["GET", "POST"])
+def recommendations():
+    products = load_products_for_reco(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
+    recs: List[Dict] = []
+    query_name = ""
+    max_price = None
+
+    if request.method == "POST":
+        query_name = request.form.get("query") or ""
+        max_price_raw = request.form.get("max_price") or ""
+        try:
+            max_price = int(max_price_raw) if max_price_raw else None
+        except ValueError:
+            max_price = None
+
+        if not query_name and products:
+            query_name = products[0].get("name", "")
+        if query_name:
+            recs = recommend_products(query_name, products, top_n=5, max_price=max_price)
+
+    return render_template("recommendations.html", products=products, recs=recs, query=query_name)
+
+
+@app.route("/send-alerts", methods=["POST"]) 
+def send_alerts():
+    # Ensure latest alerts based on current data
+    products = load_products_from_json(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
+    alerts = check_prices(products) if products else []
+    if alerts:
+        with open(os.path.join(os.path.dirname(__file__), "price_alerts.json"), "w", encoding="utf-8") as f:
+            json.dump(alerts, f, ensure_ascii=False, indent=4)
+    sent = send_alerts_from_file(os.path.join(os.path.dirname(__file__), "price_alerts.json"))
+    if sent:
+        flash("Alerts sent successfully!", "success")
+    else:
+        flash("No alerts to send or sending failed.", "error")
+    return redirect(url_for("tracker"))
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
+
+

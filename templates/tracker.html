@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Price Tracker</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; }
+      a { text-decoration: none; color: #1677ff; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #eee; padding: 8px; text-align: left; }
+      tr.highlight { background: #e6fffb; }
+      .actions { margin-bottom: 16px; }
+      .flash { padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; }
+      .flash.success { background: #e6ffed; border: 1px solid #b7eb8f; }
+      .flash.error { background: #fff2f0; border: 1px solid #ffa39e; }
+    </style>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <div class="actions">
+      <a href="{{ url_for('index') }}">Back</a>
+      <form method="post" action="{{ url_for('send_alerts') }}" style="display:inline;margin-left:12px;">
+        <button type="submit">Send Alerts</button>
+      </form>
+    </div>
+
+    <h2>Tracked Products</h2>
+    {% if not products %}
+      <p>No products available. Go back and scrape first.</p>
+    {% else %}
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Current Price</th>
+            <th>Threshold</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in products %}
+            <tr class="{% if p.below_threshold %}highlight{% endif %}">
+              <td>{{ p.name }}</td>
+              <td>{{ p.price }}</td>
+              <td>{{ p.threshold }}</td>
+              <td><a href="{{ p.url }}" target="_blank">View</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </body>
+  </html>
+
+

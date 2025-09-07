@@ -2,12 +2,16 @@ import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import re
+from typing import List, Dict
 
-# -------------------------------
-# Load Products
-# -------------------------------
-with open("daraz_products.json", "r", encoding="utf-8") as f:
-    products = json.load(f)
+def load_products_from_json(path: str = "daraz_products.json") -> List[Dict]:
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+    except json.JSONDecodeError:
+        return []
 
 # -------------------------------
 # Helper function to parse price
@@ -27,7 +31,7 @@ def parse_price(price_str):
 # -------------------------------
 # Recommendation Agent
 # -------------------------------
-def recommend_products(product_name, products, top_n=5, max_price=None):
+def recommend_products(product_name: str, products: List[Dict], top_n: int = 5, max_price: int | None = None):
     """
     Recommend products similar to the given product_name.
     Optionally, filter by max_price.
@@ -83,6 +87,7 @@ if __name__ == "__main__":
     # Example: Recommend products similar to "Samsung Galaxy S24 Ultra"
     query_product = "Samsung Galaxy S24 Ultra"
     max_price_limit = 300000  # Optional: only recommend products under Rs. 300,000
+    products = load_products_from_json("daraz_products.json")
     recommended = recommend_products(query_product, products, top_n=5, max_price=max_price_limit)
 
     if recommended:

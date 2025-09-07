@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Recommendation Agent</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; }
+      a { text-decoration: none; color: #1677ff; }
+      .grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 12px; }
+      .card { border: 1px solid #eee; padding: 12px; border-radius: 8px; }
+      .muted { color: #888; }
+      form { margin-bottom: 16px; }
+    </style>
+  </head>
+  <body>
+    <a href="{{ url_for('index') }}">Back</a>
+    <h2>Recommendation Agent</h2>
+    <form method="post" action="{{ url_for('recommendations') }}">
+      <label>Query product name:</label>
+      <input type="text" name="query" value="{{ query }}" placeholder="e.g., Samsung Galaxy S24 Ultra" style="width: 360px;" />
+      <label>Max price (optional):</label>
+      <input type="number" name="max_price" />
+      <button type="submit">Get Recommendations</button>
+    </form>
+
+    {% if recs %}
+      <div class="grid">
+        {% for r in recs %}
+          <div class="card">
+            <div><strong>{{ r.name }}</strong></div>
+            <div>{{ r.price }}</div>
+            <div class="muted">Similarity: {{ r.similarity_score }}</div>
+            <div><a href="{{ r.url }}" target="_blank">Open</a></div>
+          </div>
+        {% endfor %}
+      </div>
+    {% elif query %}
+      <p>No recommendations found for query.</p>
+    {% else %}
+      <p class="muted">Enter a query to see recommendations.</p>
+    {% endif %}
+  </body>
+  </html>
+
+
