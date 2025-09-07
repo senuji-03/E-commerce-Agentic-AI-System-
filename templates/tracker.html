@@ -1,62 +1,53 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Price Tracker</title>
-    <style>
-      body { font-family: Arial, sans-serif; margin: 24px; }
-      a { text-decoration: none; color: #1677ff; }
-      table { border-collapse: collapse; width: 100%; }
-      th, td { border: 1px solid #eee; padding: 8px; text-align: left; }
-      tr.highlight { background: #e6fffb; }
-      .actions { margin-bottom: 16px; }
-      .flash { padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; }
-      .flash.success { background: #e6ffed; border: 1px solid #b7eb8f; }
-      .flash.error { background: #fff2f0; border: 1px solid #ffa39e; }
-    </style>
-  </head>
-  <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="flash {{ category }}">{{ message }}</div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-
-    <div class="actions">
-      <a href="{{ url_for('index') }}">Back</a>
-      <form method="post" action="{{ url_for('send_alerts') }}" style="display:inline;margin-left:12px;">
-        <button type="submit">Send Alerts</button>
-      </form>
+{% extends "base.html" %}
+{% block title %}Price Tracker • Daraz Agentic AI{% endblock %}
+{% block content %}
+  <div class="grid">
+    <div class="card" style="grid-column: span 12;">
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <h2>AI Summary</h2>
+        <form method="post" action="{{ url_for('send_alerts') }}">
+          <button class="btn" type="submit">Send Alerts</button>
+        </form>
+      </div>
+      <div style="white-space: pre-wrap; color: #0f172a;">{{ summary }}</div>
     </div>
 
-    <h2>Tracked Products</h2>
-    {% if not products %}
-      <p>No products available. Go back and scrape first.</p>
-    {% else %}
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Current Price</th>
-            <th>Threshold</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for p in products %}
-            <tr class="{% if p.below_threshold %}highlight{% endif %}">
-              <td>{{ p.name }}</td>
-              <td>{{ p.price }}</td>
-              <td>{{ p.threshold }}</td>
-              <td><a href="{{ p.url }}" target="_blank">View</a></td>
+    <div class="card" style="grid-column: span 12;">
+      <h2>Tracked Products</h2>
+      {% if not products %}
+        <p class="tag">No products available. Go back and scrape first.</p>
+      {% else %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Current Price</th>
+              <th>Threshold</th>
+              <th>Status</th>
+              <th>Link</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    {% endif %}
-  </body>
-  </html>
+          </thead>
+          <tbody>
+            {% for p in products %}
+              <tr>
+                <td>{{ p.name }}</td>
+                <td>{{ p.price }}</td>
+                <td>{{ p.threshold }}</td>
+                <td>
+                  {% if p.below_threshold %}
+                    <span class="tag warn">Below threshold</span>
+                  {% else %}
+                    <span class="tag ok">Above threshold</span>
+                  {% endif %}
+                </td>
+                <td><a href="{{ p.url }}" target="_blank">View</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
 
 

@@ -26,7 +26,24 @@ def parse_price_numeric(price_str: str) -> int | None:
 
 @app.route("/")
 def index():
-    return render_template("index.html", brands=BRANDS)
+    products = load_products_from_json(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
+    total_products = len(products) if products else 0
+    below_count = len(check_prices(products)) if products else 0
+    last_brand = products[0].get("brand") if products else None
+    # brand counts for simple chart
+    brand_counts = {}
+    for p in products or []:
+        b = p.get("brand") or "Unknown"
+        brand_counts[b] = brand_counts.get(b, 0) + 1
+    return render_template(
+        "index.html",
+        brands=BRANDS,
+        total_products=total_products,
+        below_count=below_count,
+        last_brand=last_brand,
+        brand_counts=brand_counts,
+        products=products,
+    )
 
 
 @app.route("/scrape", methods=["POST"])
@@ -51,6 +68,7 @@ def scrape():
 def tracker():
     products = load_products_from_json(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
     alerts = check_prices(products) if products else []
+    summary = llm_summary_alerts(alerts) if products else ""
     alerts_by_url = {a["url"]: a for a in alerts}
 
     # Annotate products with below-threshold flag
@@ -63,7 +81,7 @@ def tracker():
             "below_threshold": bool(alert),
         })
 
-    return render_template("tracker.html", products=annotated)
+    return render_template("tracker.html", products=annotated, summary=summary)
 
 
 @app.route("/recommendations", methods=["GET", "POST"])
