@@ -3,12 +3,7 @@
 {% block content %}
   <div class="grid">
     <div class="card" style="grid-column: span 12;">
-      <div style="display:flex; align-items:center; justify-content:space-between;">
-        <h2>AI Summary</h2>
-        <form method="post" action="{{ url_for('send_alerts') }}">
-          <button class="btn" type="submit">Send Alerts</button>
-        </form>
-      </div>
+      <h2>AI Summary</h2>
       <div style="white-space: pre-wrap; color: #0f172a;">{{ summary }}</div>
     </div>
 

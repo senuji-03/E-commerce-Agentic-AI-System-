@@ -6,7 +6,7 @@ from typing import List, Dict
 from scrape_daraz import scrape_daraz_products, save_products_to_json
 from price_tracker import load_products_from_json, check_prices, llm_summary_alerts
 from recommendation_agent import recommend_products, load_products_from_json as load_products_for_reco
-from alert_agent import send_alerts_from_file
+from review_agent import analyze_product_reviews
 
 
 app = Flask(__name__)
@@ -107,20 +107,30 @@ def recommendations():
     return render_template("recommendations.html", products=products, recs=recs, query=query_name)
 
 
-@app.route("/send-alerts", methods=["POST"]) 
-def send_alerts():
-    # Ensure latest alerts based on current data
-    products = load_products_from_json(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
-    alerts = check_prices(products) if products else []
-    if alerts:
-        with open(os.path.join(os.path.dirname(__file__), "price_alerts.json"), "w", encoding="utf-8") as f:
-            json.dump(alerts, f, ensure_ascii=False, indent=4)
-    sent = send_alerts_from_file(os.path.join(os.path.dirname(__file__), "price_alerts.json"))
-    if sent:
-        flash("Alerts sent successfully!", "success")
-    else:
-        flash("No alerts to send or sending failed.", "error")
-    return redirect(url_for("tracker"))
+@app.route("/reviews", methods=["GET", "POST"])
+def reviews():
+    products = load_products_for_reco(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
+    product_query = ""
+    chosen = None
+    reviews_list: List[Dict] = []
+    summary = ""
+
+    if request.method == "POST":
+        product_query = request.form.get("query") or ""
+        if not product_query and products:
+            product_query = products[0].get("name", "")
+        if product_query:
+            # pick the first matching product to get url if available
+            for p in products or []:
+                if product_query.lower() in (p.get("name", "").lower()):
+                    chosen = p
+                    break
+            reviews_list, summary = analyze_product_reviews(product_query, (chosen or {}).get("url"))
+
+    return render_template("reviews.html", products=products, query=product_query, chosen=chosen, reviews=reviews_list, summary=summary)
+
+
+## Alerts feature removed
 
 
 if __name__ == "__main__":

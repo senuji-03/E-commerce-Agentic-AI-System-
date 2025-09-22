@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Reviews • Daraz Agentic AI{% endblock %}
+{% block content %}
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">📝 Review Summarizer</h1>
+      <p class="hero-subtitle">Summarize product reviews into actionable pros, cons, and buying advice</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="grid-column: span 12;">
+      <div class="card-header">
+        <h2>🔎 Analyze Reviews</h2>
+        <div class="card-subtitle">Choose a product name to generate a concise review summary</div>
+      </div>
+      <form method="post" action="{{ url_for('reviews') }}" class="scraping-form">
+        <div class="grid">
+          <div style="grid-column: span 8;">
+            <div class="form-group">
+              <label class="form-label"><span class="label-icon">🛍️</span>Product Name</label>
+              <input class="input" type="text" name="query" value="{{ query }}" placeholder="Start typing product name..." list="productNames" />
+              <datalist id="productNames">
+                {% for p in products %}
+                <option value="{{ p.name }}">{{ p.name }}</option>
+                {% endfor %}
+              </datalist>
+            </div>
+          </div>
+          <div style="grid-column: span 4; display:flex; align-items:end;">
+            <button class="btn scrape-btn" type="submit"><span class="btn-icon">🚀</span>Summarize Reviews</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% if summary %}
+    <div class="card" style="grid-column: span 12; white-space: pre-wrap;">
+      <h2>🤖 AI Summary</h2>
+      <div style="color:#0f172a;">{{ summary }}</div>
+    </div>
+    {% endif %}
+
+    {% if reviews %}
+      <div class="card" style="grid-column: span 12;">
+        <h2>Recent Reviews</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Rating</th>
+              <th>Text</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in reviews %}
+            <tr>
+              <td>{{ r.rating }}★</td>
+              <td>{{ r.text }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% elif query %}
+      <div class="card empty-state" style="grid-column: span 12;">
+        <div class="empty-state-content">
+          <div class="empty-state-icon">🕵️</div>
+          <h3>No Reviews Found</h3>
+          <p>We couldn't fetch reviews for "{{ query }}". Try a different product name.</p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+
