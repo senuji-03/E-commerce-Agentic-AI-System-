@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% block title %}Home • Daraz Agentic AI{% endblock %}
+{% block content %}
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Welcome to Daraz Agentic AI</h1>
+      <p class="hero-subtitle">Intelligent e-commerce price tracking and product recommendations powered by AI</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <!-- Dashboard Section -->
+    <div class="card dashboard-card" style="grid-column: span 12;">
+      <div class="card-header">
+        <h2>📊 Dashboard Overview</h2>
+        <div class="card-subtitle">Real-time insights into your product data</div>
+      </div>
+      <div class="grid stats-grid">
+        <div class="stat-card" style="grid-column: span 3;">
+          <div class="stat-icon">📦</div>
+          <div class="stat-content">
+            <div class="stat-label">Total Products</div>
+            <div class="stat-value">{{ total_products }}</div>
+            <div class="stat-description">Products tracked</div>
+          </div>
+        </div>
+        <div class="stat-card" style="grid-column: span 3;">
+          <div class="stat-icon">⚠️</div>
+          <div class="stat-content">
+            <div class="stat-label">Below Threshold</div>
+            <div class="stat-value">{{ below_count }}</div>
+            <div class="stat-description">Need attention</div>
+          </div>
+        </div>
+        <div class="stat-card" style="grid-column: span 3;">
+          <div class="stat-icon">🏷️</div>
+          <div class="stat-content">
+            <div class="stat-label">Last Brand</div>
+            <div class="stat-value">{{ last_brand or '—' }}</div>
+            <div class="stat-description">Recently added</div>
+          </div>
+        </div>
+        <div class="stat-card" style="grid-column: span 3;">
+          <div class="stat-icon">🔗</div>
+          <div class="stat-content">
+            <div class="stat-label">Quick Actions</div>
+            <div class="quick-actions">
+              <a class="btn secondary" href="{{ url_for('tracker') }}">
+                <span class="btn-icon">📈</span>
+                Price Tracker
+              </a>
+              <a class="btn secondary" href="{{ url_for('recommendations') }}">
+                <span class="btn-icon">💡</span>
+                Recommendations
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brand Selection & Scraping Section -->
+    <div class="card scraping-card" style="grid-column: span 8;">
+      <div class="card-header">
+        <h2>🔍 Brand Selection & Scraping</h2>
+        <div class="card-subtitle">Update product prices and discover new items</div>
+      </div>
+      <form method="post" action="{{ url_for('scrape') }}" class="scraping-form">
+        <div class="form-group" style="grid-column: span 4;">
+          <label class="form-label">
+            <span class="label-icon">🏢</span>
+            Brand
+          </label>
+          <select class="input brand-select" name="brand">
+            {% for b in brands %}
+              <option value="{{ b }}">{{ b }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group" style="grid-column: span 4;">
+          <label class="form-label">
+            <span class="label-icon">💰</span>
+            Price Threshold
+          </label>
+          <input class="input threshold-input" type="text" name="threshold" placeholder="Rs. 400000" />
+        </div>
+        <div class="form-group" style="grid-column: span 4; display:flex; align-items:end; gap:10px;">
+          <button class="btn scrape-btn" type="submit">
+            <span class="btn-icon">🚀</span>
+            Update Product Prices
+          </button>
+        </div>
+      </form>
+      <div class="brand-tags">
+        <div class="tags-label">Quick Brand Selection:</div>
+        <div class="tags-container">
+          {% for b in brands %}
+            <a class="brand-tag" href="#" onclick="quickBrand('{{ b }}'); return false;">
+              {{ b }}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="card chart-card" style="grid-column: span 4;">
+      <div class="card-header">
+        <h2>📊 Products by Brand</h2>
+        <div class="card-subtitle">Distribution overview</div>
+      </div>
+      <div class="chart-container">
+        <canvas id="brandChart" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features-section">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI-Powered</h3>
+        <p>Advanced machine learning algorithms for intelligent product recommendations and price analysis</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Real-time Updates</h3>
+        <p>Live price tracking and instant notifications when products drop below your threshold</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Smart Recommendations</h3>
+        <p>Personalized product suggestions based on your preferences and browsing history</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    function quickBrand(b) {
+      const sel = document.querySelector('select[name="brand"]');
+      if (sel) sel.value = b;
+    }
+    
+    (function renderBrandChart(){
+      var ctx = document.getElementById('brandChart');
+      if (!ctx) return;
+      var data = {{ brand_counts | tojson }};
+      var labels = Object.keys(data);
+      var values = Object.values(data);
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: values,
+            backgroundColor: [
+              '#ff7a00', '#0ea5e9', '#16a34a', '#f59e0b', 
+              '#8b5cf6', '#ef4444', '#06b6d4', '#84cc16'
+            ],
+            borderWidth: 0,
+            hoverOffset: 4
+          }]
+        },
+        options: { 
+          plugins: { 
+            legend: { 
+              position: 'bottom',
+              labels: {
+                padding: 20,
+                usePointStyle: true
+              }
+            } 
+          },
+          cutout: '60%'
+        }
+      });
+    })();
+  </script>
+{% endblock %}
+
+

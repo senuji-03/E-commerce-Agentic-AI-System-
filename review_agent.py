@@ -74,10 +74,37 @@ def scrape_daraz_reviews(product_url: str, max_reviews: int = 20) -> List[Dict]:
                 except Exception:
                     pass
 
-            # Scroll to load reviews
-            for _ in range(6):
+            # Keep scrolling and try to click any "load more"/pagination until no new content is loaded
+            last_height = 0
+            stagnant_rounds = 0
+            while True:
                 page.evaluate("window.scrollBy(0, document.body.scrollHeight)")
                 page.wait_for_timeout(1200)
+                # Try clicking any load more buttons commonly used
+                for sel in [
+                    "button:has-text('Load More')",
+                    "button:has-text('See More')",
+                    "a:has-text('Load More')",
+                    "a:has-text('See More')",
+                    "button.load-more",
+                    "button[data-qa-locator='view-more']",
+                ]:
+                    try:
+                        btn = page.query_selector(sel)
+                        if btn:
+                            btn.click()
+                            page.wait_for_timeout(1500)
+                    except Exception:
+                        pass
+                new_height = page.evaluate("document.body.scrollHeight")
+                if new_height == last_height:
+                    stagnant_rounds += 1
+                else:
+                    stagnant_rounds = 0
+                last_height = new_height
+                # break when we've had multiple stagnant rounds (no new content)
+                if stagnant_rounds >= 3:
+                    break
 
             candidate_blocks = []
             review_block_selectors = [
@@ -149,7 +176,8 @@ def scrape_daraz_reviews(product_url: str, max_reviews: int = 20) -> List[Dict]:
             context.close()
             browser.close()
 
-    return reviews[:max_reviews]
+    # If max_reviews is very large, this effectively returns all collected
+    return reviews[:max_reviews] if max_reviews else reviews
 
 
 def summarize_reviews_llm(product_name: str, reviews: List[Dict]) -> str:

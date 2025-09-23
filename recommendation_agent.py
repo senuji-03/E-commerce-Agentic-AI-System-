@@ -31,7 +31,7 @@ def parse_price(price_str):
 # -------------------------------
 # Recommendation Agent
 # -------------------------------
-def recommend_products(product_name: str, products: List[Dict], top_n: int = 5, max_price: int | None = None):
+def recommend_products(product_name: str, products: List[Dict], top_n: int = 5):
     """
     Recommend products similar to the given product_name.
     Optionally, filter by max_price.
@@ -40,15 +40,11 @@ def recommend_products(product_name: str, products: List[Dict], top_n: int = 5, 
         print("No products available for recommendations.")
         return []
 
-    # Filter by max_price if specified
-    filtered_products = []
-    for p in products:
-        price_val = parse_price(p['price'])
-        if max_price is None or (price_val is not None and price_val <= max_price):
-            filtered_products.append(p)
+    # Use all products (max price filter removed)
+    filtered_products = list(products)
 
     if not filtered_products:
-        print("No products within the specified price range.")
+        print("No products available.")
         return []
 
     # Create a list of product names

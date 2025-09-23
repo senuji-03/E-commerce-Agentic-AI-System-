@@ -1,539 +1,282 @@
 [
     {
-<<<<<<< HEAD
-        "name": "Oppo A3s (6GB RAM + 128GB ROM ) 6.22 inch 13MP Dual Camera 4G LTE) Smartphone Pack Cover & Super D Temperd Free with charger cable & Warranty",
-        "price": "Rs. 11,999",
-        "url": "https://www.daraz.lk/products/oppo-a3s-6gb-ram-128gb-rom-622-inch-13mp-dual-camera-4g-lte-smartphone-pack-cover-super-d-temperd-free-with-charger-cable-warranty-i541462501.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-=======
         "name": "Apple Iphone 16 pro max",
         "price": "Rs. 390,000",
         "url": "https://www.daraz.lk/products/apple-iphone-16-pro-max-free-case-screen-protector-bundle-i275664604.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
->>>>>>> 9296d15a24768674ef0e919cfd24f0009ba7f618
-    },
-    {
-        "name": "Samsung Galaxy A06 4GB 64GB & 128GB (Brand New , Sealed pack}",
-        "price": "Rs. 29,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a06-4gb-64gb-128gb-brand-new-sealed-pack-i200373761.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-<<<<<<< HEAD
-        "name": "Samsung Galaxy Tab A9 4G 4GB RAM 64GB - 1 Year Software Warranty",
-        "price": "Rs. 40,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-tab-a9-4g-4gb-ram-64gb-1-year-software-warranty-i196162923.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A06 4GB 64GB & 128GB (Fingerprint, Brand New , Sealed Pack , 6.7\" Bigg Display)",
-        "price": "Rs. 29,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a06-4gb-64gb-128gb-fingerprint-brand-new-sealed-pack-67-bigg-display-i261563254.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy F05 4GB 64GB (50MP Camera , Brand New , Sealed Pack)",
-        "price": "Rs. 28,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-f05-4gb-64gb-50mp-camera-brand-new-sealed-pack-i280436386.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A16 8GB RAM - 256GB ROM (1 YEAR WARRANTY)",
-        "price": "Rs. 60,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a16-8gb-ram-256gb-rom-1-year-warranty-i304992212.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A06 4GB 64GB & 128GB (Brand New , Sealed Pack )",
-        "price": "Rs. 29,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a06-4gb-64gb-128gb-brand-new-sealed-pack-i215272268.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung A13 4GB Ram 128GB Rom Smart Phone ( Pink )",
-        "price": "Rs. 21,990",
-        "url": "https://www.daraz.lk/products/samsung-a13-4gb-ram-128gb-rom-smart-phone-i573974703.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A16 6GB RAM - 128GB ROM (1 YEAR WARRANTY)",
-        "price": "Rs. 51,400",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a16-6gb-ram-128gb-rom-1-year-warranty-i304999320.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A06 4GB 64GB & 128GB (Brand New , Sealed pack}",
-        "price": "Rs. 22,000",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a06-4gb-64gb-128gb-brand-new-sealed-pack-i594587916.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A16 5G 8GB RAM - 256GB ROM (1 YEAR WARRANTY)",
-        "price": "Rs. 66,490",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a16-5g-8gb-ram-256gb-rom-1-year-warranty-i313193974.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung A13 4GB Ram 128GB Rom Smart Phone ( Pink )",
-        "price": "Rs. 24,990",
-        "url": "https://www.daraz.lk/products/samsung-a13-4gb-ram-128gb-rom-smart-phone-pink-i513578789.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung galaxy S24 (5G) | 8GB 256GB",
-        "price": "Rs. 183,400",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-5g-8gb-256gb-i202000056.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A16 5G 8GB 128GB & 256GB (Brand New ,Sealed pack , Super AMOLED Display)",
-        "price": "Rs. 59,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a16-5g-8gb-128gb-256gb-brand-new-sealed-pack-super-amoled-display-i202938833.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy M16 5G 6GB 128GB (AMOLED Display, 25W Fast Charging,Brand New)",
-        "price": "Rs. 49,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-m16-5g-6gb-128gb-amoled-display-25w-fast-chargingbrand-new-i284316160.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy M05 4GB 64GB (Brand New, Sealed Pack,6.7\" Bigg Display,50MP Camera)",
-        "price": "Rs. 28,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-m05-4gb-64gb-brand-new-sealed-pack67-bigg-display50mp-camera-i275439454.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A06 4GB 64GB/128GB ROM (TRCSL APPROVED - COMPANY WARRANTY) free display drop damage replacement?",
-        "price": "Rs. 33,490",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a06-4gb-64gb128gb-rom-trcsl-approved-company-warranty-free-display-drop-damage-replacement-i275481965.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy M16 5G 6GB 128GB (Brand New, Sealed Pack, Super AMOLED Display)",
-        "price": "Rs. 49,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-m16-5g-6gb-128gb-brand-new-sealed-pack-super-amoled-display-i375109369.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-=======
-        "name": "Apple iPhone 15",
-        "price": "Rs. 209,000",
-        "url": "https://www.daraz.lk/products/apple-iphone-15-free-case-screen-protector-bundle-i194296584.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
->>>>>>> 9296d15a24768674ef0e919cfd24f0009ba7f618
-    },
-    {
-        "name": "INFINIX SMART 10 PLUS 4 GB RAM, 128 MEMORY TRCSL APPROVED 1 YEAR COMPANY WARRNATY",
-        "price": "Rs. 29,999",
-        "url": "https://www.daraz.lk/products/infinix-smart-10-plus-4-gb-ram-128-memory-trcsl-approved-1-year-company-warrnaty-i560893480.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-<<<<<<< HEAD
-        "name": "Samsung Galaxy A16 6GB 128GB (Brand New, Sealed Pack, SUPER AMOLED Display)",
-        "price": "Rs. 48,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a16-6gb-128gb-brand-new-sealed-pack-super-amoled-display-i297761206.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-=======
-        "name": "iphone 8 64GB Phone With Software warranty",
-        "price": "Rs. 41,000",
-        "url": "https://www.daraz.lk/products/iphone-8-100-conditions-64gb-phone-i179782687.html",
-        "threshold": "Rs. 200000",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
-        "name": "Apple Iphone 16 pro (Free Case & Screen Protector Bundle)",
-        "price": "Rs. 332,000",
-        "url": "https://www.daraz.lk/products/apple-iphone-16-pro-free-case-screen-protector-bundle-i275665521.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
->>>>>>> 9296d15a24768674ef0e919cfd24f0009ba7f618
-    },
-    {
-        "name": "Samsung Galaxy A06 6GB 128GB (Finger Print, Brand New, Sealed Pack)",
-        "price": "Rs. 36,880",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a06-6gb-128gb-finger-print-brand-new-sealed-pack-i305387204.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-<<<<<<< HEAD
-        "name": "Samsung Galaxy A9+ 5G | 8GB 128GB | Wi-Fi + Cellular",
-        "price": "Rs. 65,300",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a9-5g-8gb-128gb-wi-fi-cellular-i196014191.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A06 4GB RAM 64GB -TRCSL-Samsung warranty 1 Year",
-        "price": "Rs. 29,999",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a06-4gb-ram-64gb-trcsl-samsung-warranty-1-year-i523390482.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy Z Fold 7 12GB RAM 1TB ROM",
-        "price": "Rs. 499,400",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-z-fold-7-12gb-ram-1tb-rom-i614820984.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A16 8GB 128GB & 256GB (Brand New, Sealed Pack, SUPER AMOLED Display)",
-        "price": "Rs. 53,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a16-8gb-128gb-256gb-brand-new-sealed-pack-super-amoled-display-i297784088.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A06 4GB & 64GB / 128GB (Brand New, Sealed Pack, Fingerprint)",
-        "price": "Rs. 29,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a06-4gb-64gb-128gb-brand-new-sealed-pack-fingerprint-i314487305.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A07 6GB 128GB 1Year Warranty TRCSL",
-        "price": "Rs. 34,250",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a07-6gb-128gb-1year-warranty-trcsl-i603748327.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy S25 Ultra 5G Smartphone, 256GB/512 GB Storage, 12GB RAM, Silver Blue / Black / Grey, 6.8\" QHD+ AMOLED Display, Android, Pro Camera, S Pen, Long Battery Life (Free Case & Screen Protector Bundle)",
-        "price": "Rs. 317,000",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-ultra-5g-smartphone-256gb512-gb-storage-12gb-ram-silver-blue-black-grey-68-qhd-amoled-display-android-pro-camera-s-pen-long-battery-life-free-case-screen-protector-bundle-i514076792.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A06 6GB 128GB 1Year Warranty",
-        "price": "Rs. 32,940",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a06-6gb-128gb-1year-warranty-i268614391.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A26 5G 8GB 256GB (Super AMOLED Display, Brand new)",
-        "price": "Rs. 75,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a26-5g-8gb-256gb-super-amoled-display-brand-new-i480177818.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy Z Fold 7 12GB RAM 1TB ROM",
-        "price": "Rs. 750,500",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-z-fold-7-12gb-ram-1tb-rom-i606442359.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy Tab A9 Plus 5G 8GB RAM 128GB - 1 Year Software Warranty",
-        "price": "Rs. 69,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-tab-a9-plus-5g-8gb-ram-128gb-1-year-software-warranty-i216180586.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A16 5G 6GB 128GB ( Brand New,sealed pack)",
-        "price": "Rs. 55,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a16-5g-6gb-128gb-brand-newsealed-pack-i396645895.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A05s 4/64GB ( Free Tempered and Back Cover )",
-        "price": "Rs. 39,999",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a05s-464gb-free-tempered-and-back-cover-i224500118.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A07 4G - 6GB RAM 128GB ROM - 50MP Camera - 6.7” Brand New Sealed - 1 Year Warranty",
-        "price": "Rs. 33,900",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a07-4g-6gb-ram-128gb-rom-50mp-camera-67-brand-new-sealed-1-year-warranty-i610608206.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy A06 4GB 64GB/128GB ROM (ONE YEAR SOFTWARE AND HARDWARE SELLER WARRANTY)",
-        "price": "Rs. 30,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-a06-4gb-64gb128gb-rom-one-year-software-and-hardware-seller-warranty-i422211871.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy Tab A9 (4G, SM-X115) | 4GB 64GB",
-        "price": "Rs. 41,000",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-tab-a9-4g-sm-x115-4gb-64gb-i199318465.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-=======
-        "name": "iphone X(256GB) [USED]",
-        "price": "Rs. 74,999",
-        "url": "https://www.daraz.lk/products/iphone-x-256gb-used-i185036439.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "iPhone X 256gb Used Full Set",
-        "price": "Rs. 65,000",
-        "url": "https://www.daraz.lk/products/iphone-x-256gb-used-full-set-i600699113.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Apple iPhone 13",
-        "price": "Rs. 156,500",
-        "url": "https://www.daraz.lk/products/apple-iphone-13-free-case-screen-protector-bundle-i276904175.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Apple Iphone 16",
-        "price": "Rs. 242,000",
-        "url": "https://www.daraz.lk/products/apple-iphone-16-free-case-screen-protector-bundle-i275600635.html",
-        "threshold": "Rs. 200000",
+        "name": "iPhone 11 128GB With Warranty",
+        "price": "Rs. 88,999",
+        "url": "https://www.daraz.lk/products/iphone-11-128gb-with-warranty-i370419087.html",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
         "name": "Iphone 12 Pro 128GB & 256GB With Warranty",
         "price": "Rs. 130,000",
         "url": "https://www.daraz.lk/products/iphone-12-pro-128gb-256gb-with-warranty-i481073922.html",
-        "threshold": "Rs. 200000",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
-        "name": "Apple iPhone 14",
-        "price": "Rs. 187,500",
-        "url": "https://www.daraz.lk/products/apple-iphone-14-free-case-screen-protector-bundle-i170819957.html",
-        "threshold": "Rs. 200000",
+        "name": "Apple iPhone 15",
+        "price": "Rs. 209,000",
+        "url": "https://www.daraz.lk/products/apple-iphone-15-free-case-screen-protector-bundle-i194296584.html",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
-        "name": "Genuine Iphone SE 2 128GB Full set with warranty)",
-        "price": "Rs. 59,900",
-        "url": "https://www.daraz.lk/products/iphone-se-2-128gb-free-orginal-charger-and-box-i223862362.html",
-        "threshold": "Rs. 200000",
+        "name": "iphone 8 64GB Phone With Software warranty",
+        "price": "Rs. 41,000",
+        "url": "https://www.daraz.lk/products/iphone-8-100-conditions-64gb-phone-i179782687.html",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
-        "name": "Apple iPhone X 64GB Smartphone phone only",
-        "price": "Rs. 57,000",
-        "url": "https://www.daraz.lk/products/apple-iphone-x-64gb-smartphone-phone-only-i480291123.html",
-        "threshold": "Rs. 200000",
+        "name": "Iphone 12 128GB & 256GB With Warranty",
+        "price": "Rs. 110,000",
+        "url": "https://www.daraz.lk/products/iphone-12-128gb-256gb-with-warranty-i481114335.html",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
-        "name": "Genuine iphone 11 - 128GB with One year Warranty",
-        "price": "Rs. 94,900",
-        "url": "https://www.daraz.lk/products/iphone-11-128gb-free-orginal-charger-and-box-i192961169.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Genuine iphone 13 pro 256GB/128GB With warranty",
-        "price": "Rs. 163,900",
-        "url": "https://www.daraz.lk/products/iphone-13-pro-256gb-free-orginal-charger-and-box-i324462806.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Apple iPhone 13 128GB - one year apple care warranty",
-        "price": "Rs. 159,990",
-        "url": "https://www.daraz.lk/products/apple-iphone-13-128gb-one-year-apple-care-warranty-i139551278.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Genuine iphone X 256GB with Warranty(Free orginal Charger and Box)",
+        "name": "Genuine iphone X 256GB With Warranty",
         "price": "Rs. 68,900",
-        "url": "https://www.daraz.lk/products/iphone-x-256gb-free-orginal-charger-and-box-i202058188.html",
-        "threshold": "Rs. 200000",
+        "url": "https://www.daraz.lk/products/iphone-x-256gb-free-orginal-charger-and-box-i223842161.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Apple Iphone 16 pro (Free Case & Screen Protector Bundle)",
+        "price": "Rs. 332,000",
+        "url": "https://www.daraz.lk/products/apple-iphone-16-pro-free-case-screen-protector-bundle-i275665521.html",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
         "name": "Genuine iphone XS 256GB With Warranty",
         "price": "Rs. 77,900",
         "url": "https://www.daraz.lk/products/iphone-xs-256gb-free-orginal-charger-and-box-i188397048.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
->>>>>>> 9296d15a24768674ef0e919cfd24f0009ba7f618
-    },
-    {
-        "name": "Samsung Galaxy S24 Ultra (12GB/256GB)",
-        "price": "Rs. 275,000",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-ultra-12gb256gb-i220408332.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-<<<<<<< HEAD
-        "name": "Samsung Tab S9 FE — 8GB 256GB (Wi-Fi, SM-X510B)",
-        "price": "Rs. 130,900",
-        "url": "https://www.daraz.lk/products/samsung-tab-fe-8gb-256gb-wi-fi-sm-x510b-i261507989.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-    },
-    {
-        "name": "Samsung Galaxy S25 Ultra 5G Smartphone, 12GB RAM, 512GB Storage, 6.9-Inch AMOLED Display, 200MP Camera, Android 15, Titanium Build, S Pen Support",
-        "price": "Rs. 339,990",
-        "url": "https://www.daraz.lk/products/samsung-galaxy-ultra-5g-smartphone-12gb-ram-512gb-storage-69-inch-amoled-display-200mp-camera-android-15-titanium-build-s-pen-support-i572642714.html",
-        "threshold": "Rs. 70000",
-        "brand": "Samsung"
-=======
-        "name": "Genuine iphone 11 Pro 256GB with Warranty",
-        "price": "Rs. 118,000",
-        "url": "https://www.daraz.lk/products/iphone-11-pro-256gb-free-orginal-charger-and-box-i189799400.html",
-        "threshold": "Rs. 200000",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
-        "name": "iphone Se2 Full set with Box 😍 Free 20W Dock and Cable 🥳",
-        "price": "Rs. 48,999",
-        "url": "https://www.daraz.lk/products/iphone-se2-full-set-with-box-free-20w-dock-and-cable-i610516962.html",
-        "threshold": "Rs. 200000",
+        "name": "iphone X(256GB) [USED]",
+        "price": "Rs. 74,999",
+        "url": "https://www.daraz.lk/products/iphone-x-256gb-used-i185036439.html",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
-        "name": "I phone for parts",
-        "price": "Rs. 20,000",
-        "url": "https://www.daraz.lk/products/i-phone-for-sale-i512033692.html",
-        "threshold": "Rs. 200000",
+        "name": "iPhone X 256gb Used Full Set",
+        "price": "Rs. 65,000",
+        "url": "https://www.daraz.lk/products/iphone-x-256gb-used-full-set-i600699113.html",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
         "name": "Orginal Iphone 7 32GB/128GB with warranty",
         "price": "Rs. 42,000",
         "url": "https://www.daraz.lk/products/orginal-iphone-7-32gb128gb-with-warranty-i189697041.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Orginal Iphone 11 128GB with One year Warranty",
-        "price": "Rs. 94,900",
-        "url": "https://www.daraz.lk/products/iphone-11-128gb-free-orginal-charger-and-box-i223874223.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Genuine iphone X 256GB With Warranty",
-        "price": "Rs. 69,900",
-        "url": "https://www.daraz.lk/products/iphone-x-256gb-free-orginal-charger-and-box-i188385886.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Orginal Iphone 7 Plus 128GB With Warranty",
-        "price": "Rs. 42,900",
-        "url": "https://www.daraz.lk/products/orginal-iphone-7-plus-128gb-with-warranty-i192628374.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Genuine iphone 8 64GB with Warranty",
-        "price": "Rs. 41,000",
-        "url": "https://www.daraz.lk/products/iphone-8-64gb-i180135439.html",
-        "threshold": "Rs. 200000",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
         "name": "Genuine iphone XS 256GB with Warranty (Free orginal Charger and Box)",
         "price": "Rs. 77,900",
         "url": "https://www.daraz.lk/products/iphone-xs-256gb-free-orginal-charger-and-box-i202048941.html",
-        "threshold": "Rs. 200000",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
-        "name": "Apple iPhone 15",
-        "price": "Rs. 201,600",
-        "url": "https://www.daraz.lk/products/apple-iphone-15-i593516827.html",
-        "threshold": "Rs. 200000",
+        "name": "Genuine iphone 8 64GB phones with warranty",
+        "price": "Rs. 41,000",
+        "url": "https://www.daraz.lk/products/iphone-8-64-genuine-phones-i184577476.html",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
-        "name": "Apple iPhone 15 128Gb (ONE YEAR APPLE CARE WARRANTY)",
-        "price": "Rs. 216,490",
-        "url": "https://www.daraz.lk/products/apple-iphone-15-128gb-one-year-apple-care-warranty-i195556635.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Apple iPhone 14 - One Year Software and Hardware Apple Care Warranty",
-        "price": "Rs. 186,990",
-        "url": "https://www.daraz.lk/products/apple-iphone-14-apple-care-i173793436.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Apple Iphone 15 pro Max",
-        "price": "Rs. 661,250",
-        "url": "https://www.daraz.lk/products/apple-iphone-15-pro-max-i195246324.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Genuine iphone 15 Pro 256GB With one Year Warranty",
-        "price": "Rs. 279,000",
-        "url": "https://www.daraz.lk/products/iphone-15-pro-256gb-free-orginal-charger-and-box-i522068622.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Genuine iphone 7 plus 128 GB With Warranty",
-        "price": "Rs. 42,900",
-        "url": "https://www.daraz.lk/products/genuine-iphone-7-plus-128-gb-with-warranty-i202035960.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Apple iPhone 17 Pro Max 256GB/512GB/1TB/2TB – Latest Model | 5G | International Warranty | Ships from Qatar to Sri Lanka",
-        "price": "Rs. 499,999",
-        "url": "https://www.daraz.lk/products/apple-iphone-17-pro-max-256gb512gb1tb2tb-latest-model-5g-international-warranty-ships-from-qatar-to-sri-lanka-i614801466.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Iphone 8 (used)",
-        "price": "Rs. 23,999",
-        "url": "https://www.daraz.lk/products/iphone-8-i514151435.html",
-        "threshold": "Rs. 200000",
-        "brand": "Apple"
-    },
-    {
-        "name": "Genuine iphone 12 pro 256GB with Warranty",
-        "price": "Rs. 154,900",
-        "url": "https://www.daraz.lk/products/a-grade-iphone-12-pro-256gb-with-charger-with-box-i371772046.html",
-        "threshold": "Rs. 200000",
+        "name": "Apple Iphone 16",
+        "price": "Rs. 242,000",
+        "url": "https://www.daraz.lk/products/apple-iphone-16-free-case-screen-protector-bundle-i275600635.html",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
     },
     {
         "name": "Genuine Iphone XS 256GB Full set with software warranty warranty)",
         "price": "Rs. 78,900",
         "url": "https://www.daraz.lk/products/genuine-iphone-xs-256gb-full-set-with-warranty-free-orginal-charger-and-box-i223839674.html",
-        "threshold": "Rs. 200000",
+        "threshold": "Rs. 300000",
         "brand": "Apple"
->>>>>>> 9296d15a24768674ef0e919cfd24f0009ba7f618
+    },
+    {
+        "name": "Genuine Iphone SE 2 128GB Full set with warranty)",
+        "price": "Rs. 59,900",
+        "url": "https://www.daraz.lk/products/iphone-se-2-128gb-free-orginal-charger-and-box-i223862362.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Orginal Iphone XS 256GB with Warranty",
+        "price": "Rs. 76,900",
+        "url": "https://www.daraz.lk/products/iphone-xs-256gb-free-orginal-charger-and-box-i190465127.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Apple iPhone 13",
+        "price": "Rs. 156,500",
+        "url": "https://www.daraz.lk/products/apple-iphone-13-free-case-screen-protector-bundle-i276904175.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Apple iPhone 14",
+        "price": "Rs. 187,500",
+        "url": "https://www.daraz.lk/products/apple-iphone-14-free-case-screen-protector-bundle-i170819957.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Genuine iphone X 256GB with Warranty(Free orginal Charger and Box)",
+        "price": "Rs. 68,900",
+        "url": "https://www.daraz.lk/products/iphone-x-256gb-free-orginal-charger-and-box-i202058188.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Genuine iphone 13 pro 256GB/128GB With warranty",
+        "price": "Rs. 163,900",
+        "url": "https://www.daraz.lk/products/iphone-13-pro-256gb-free-orginal-charger-and-box-i324462806.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "iphone Se2 Full set with Box 😍 Free 20W Dock and Cable 🥳",
+        "price": "Rs. 48,999",
+        "url": "https://www.daraz.lk/products/iphone-se2-full-set-with-box-free-20w-dock-and-cable-i610516962.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Apple iPhone X 64GB Smartphone phone only",
+        "price": "Rs. 57,000",
+        "url": "https://www.daraz.lk/products/apple-iphone-x-64gb-smartphone-phone-only-i480291123.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Apple iPhone 13 128GB - one year apple care warranty",
+        "price": "Rs. 159,990",
+        "url": "https://www.daraz.lk/products/apple-iphone-13-128gb-one-year-apple-care-warranty-i139551278.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Genuine iphone 12 pro 256GB with Warranty",
+        "price": "Rs. 149,900",
+        "url": "https://www.daraz.lk/products/iphone-12-pro-256gb-free-orginal-charger-and-box-i270011176.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Genuine iphone 11 Pro 256GB with Warranty",
+        "price": "Rs. 118,000",
+        "url": "https://www.daraz.lk/products/iphone-11-pro-256gb-free-orginal-charger-and-box-i189799400.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Genuine iphone 8 64GB with Warranty",
+        "price": "Rs. 41,000",
+        "url": "https://www.daraz.lk/products/iphone-8-64gb-i180135439.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Genuine iphone X 256GB With Warranty",
+        "price": "Rs. 69,900",
+        "url": "https://www.daraz.lk/products/iphone-x-256gb-free-orginal-charger-and-box-i188385886.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Orginal Iphone 7 Plus 128GB With Warranty",
+        "price": "Rs. 42,900",
+        "url": "https://www.daraz.lk/products/orginal-iphone-7-plus-128gb-with-warranty-i192628374.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Orginal Iphone 11 128GB with One year Warranty",
+        "price": "Rs. 94,900",
+        "url": "https://www.daraz.lk/products/iphone-11-128gb-free-orginal-charger-and-box-i223874223.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Apple iPhone 17 Pro Max 256GB/512GB/1TB/2TB – Latest Model | 5G | International Warranty | Ships from Qatar to Sri Lanka",
+        "price": "Rs. 499,999",
+        "url": "https://www.daraz.lk/products/apple-iphone-17-pro-max-256gb512gb1tb2tb-latest-model-5g-international-warranty-ships-from-qatar-to-sri-lanka-i614801466.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Apple iPhone 15 128Gb (ONE YEAR APPLE CARE WARRANTY)",
+        "price": "Rs. 216,490",
+        "url": "https://www.daraz.lk/products/apple-iphone-15-128gb-one-year-apple-care-warranty-i195556635.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Apple iPhone 14 - One Year Software and Hardware Apple Care Warranty",
+        "price": "Rs. 186,990",
+        "url": "https://www.daraz.lk/products/apple-iphone-14-apple-care-i173793436.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Apple Iphone 15 pro Max",
+        "price": "Rs. 661,250",
+        "url": "https://www.daraz.lk/products/apple-iphone-15-pro-max-i195246324.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Genuine Iphone SE 2 128GB Full set with warranty)",
+        "price": "Rs. 59,900",
+        "url": "https://www.daraz.lk/products/genuine-iphone-se-2-128gb-full-set-with-warranty-i223870257.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Iphone 8 (used)",
+        "price": "Rs. 23,999",
+        "url": "https://www.daraz.lk/products/iphone-8-i514151435.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Genuine iphone 7 plus 128 GB With Warranty",
+        "price": "Rs. 42,900",
+        "url": "https://www.daraz.lk/products/genuine-iphone-7-plus-128-gb-with-warranty-i202035960.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Orginal Iphone 11 128GB with Warranty",
+        "price": "Rs. 94,900",
+        "url": "https://www.daraz.lk/products/iphone-11-128gb-free-orginal-charger-and-box-i192952980.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
+    },
+    {
+        "name": "Genuine Iphone XS 256GB With warranty (Free orginal Charger and Box)",
+        "price": "Rs. 78,900",
+        "url": "https://www.daraz.lk/products/iphone-xs-256gb-free-orginal-charger-and-box-i189972319.html",
+        "threshold": "Rs. 300000",
+        "brand": "Apple"
     }
 ]

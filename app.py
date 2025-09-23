@@ -89,20 +89,14 @@ def recommendations():
     products = load_products_for_reco(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
     recs: List[Dict] = []
     query_name = ""
-    max_price = None
 
     if request.method == "POST":
         query_name = request.form.get("query") or ""
-        max_price_raw = request.form.get("max_price") or ""
-        try:
-            max_price = int(max_price_raw) if max_price_raw else None
-        except ValueError:
-            max_price = None
 
         if not query_name and products:
             query_name = products[0].get("name", "")
         if query_name:
-            recs = recommend_products(query_name, products, top_n=5, max_price=max_price)
+            recs = recommend_products(query_name, products, top_n=5)
 
     return render_template("recommendations.html", products=products, recs=recs, query=query_name)
 
@@ -125,7 +119,8 @@ def reviews():
                 if product_query.lower() in (p.get("name", "").lower()):
                     chosen = p
                     break
-            reviews_list, summary = analyze_product_reviews(product_query, (chosen or {}).get("url"))
+            # Request all available reviews by passing a large max_reviews
+            reviews_list, summary = analyze_product_reviews(product_query, (chosen or {}).get("url"), max_reviews=10000)
 
     return render_template("reviews.html", products=products, query=product_query, chosen=chosen, reviews=reviews_list, summary=summary)
 
