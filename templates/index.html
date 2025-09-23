@@ -46,12 +46,12 @@
           <div class="stat-content">
             <div class="stat-label">Quick Actions</div>
             <div class="quick-actions">
-              <a class="btn secondary" href="{{ url_for('tracker') }}">
-                <span class="btn-icon">📈</span>
+              <a class="btn secondary" href="{{ url_for('tracker') }}" style="padding:6px 7px; font-size:0.85rem;" >
+                <span class="btn-icon" style="font-size:0.4rem;" >📈</span>
                 Price Tracker
               </a>
-              <a class="btn secondary" href="{{ url_for('recommendations') }}">
-                <span class="btn-icon">💡</span>
+              <a class="btn secondary" href="{{ url_for('recommendations') }}" style="padding:6px 10px; font-size:0.85rem;" >
+                <span class="btn-icon" style="font-size:0.4rem;">💡</span>
                 Recommendations
               </a>
             </div>
@@ -61,7 +61,7 @@
     </div>
 
     <!-- Brand Selection & Scraping Section -->
-    <div class="card scraping-card" style="grid-column: span 8;">
+    <div class="card scraping-card" style="grid-column: span 7;">
       <div class="card-header">
         <h2>🔍 Brand Selection & Scraping</h2>
         <div class="card-subtitle">Update product prices and discover new items</div>
@@ -86,6 +86,7 @@
           <input class="input threshold-input" type="text" name="threshold" placeholder="Rs. 400000" />
         </div>
         <div class="form-group" style="grid-column: span 4; display:flex; align-items:end; gap:10px;">
+          <br/>
           <button class="btn scrape-btn" type="submit">
             <span class="btn-icon">🚀</span>
             Update Product Prices
@@ -104,14 +105,45 @@
       </div>
     </div>
 
-    <!-- Chart Section -->
-    <div class="card chart-card" style="grid-column: span 4;">
+    <!-- Quick Start & Tips (replaces Products by Brand) -->
+    <div class="card" style="grid-column: span 5;">
       <div class="card-header">
-        <h2>📊 Products by Brand</h2>
-        <div class="card-subtitle">Distribution overview</div>
+        <h2>🧭 Quick Start & Tips</h2>
+        <div class="card-subtitle">Make the most of Daraz Agentic AI</div>
       </div>
-      <div class="chart-container">
-        <canvas id="brandChart" height="200"></canvas>
+      <div class="grid" style="row-gap:12px;">
+        <div style="grid-column: span 12;">
+          <div class="feature-item">
+            <span class="feature-icon">🚀</span>
+            <div>
+              <div><strong>1. Scrape latest products</strong></div>
+              <div style="color:#475569;">Pick a brand and click "Update Product Prices" to refresh data.</div>
+            </div>
+          </div>
+        </div>
+        <div style="grid-column: span 12;">
+          <div class="feature-item">
+            <span class="feature-icon">💡</span>
+            <div>
+              <div><strong>2. Get recommendations</strong></div>
+              <div style="color:#475569;">Search the product name to discover similar items you might like.</div>
+            </div>
+          </div>
+        </div>
+        <div style="grid-column: span 12;">
+          <div class="feature-item">
+            <span class="feature-icon">📝</span>
+            <div>
+              <div><strong>3. Read summarized reviews</strong></div>
+              <div style="color:#475569;">Open a product’s reviews to see pros, cons, and buying advice.</div>
+            </div>
+          </div>
+        </div>
+        <div style="grid-column: span 12; display:flex; gap:8px; margin-top:8px;">
+          <a class="btn secondary" href="{{ url_for('tracker') }}"><span class="btn-icon">📈</span>Tracker</a>
+          <a class="btn secondary" href="{{ url_for('recommendations') }}"><span class="btn-icon">🎯</span>Recommendations</a>
+          <a class="btn secondary" href="{{ url_for('reviews') }}"><span class="btn-icon">📝</span>Reviews</a>
+        </div>
       </div>
     </div>
   </div>
@@ -137,47 +169,11 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script>
     function quickBrand(b) {
       const sel = document.querySelector('select[name="brand"]');
       if (sel) sel.value = b;
     }
-    
-    (function renderBrandChart(){
-      var ctx = document.getElementById('brandChart');
-      if (!ctx) return;
-      var data = {{ brand_counts | tojson }};
-      var labels = Object.keys(data);
-      var values = Object.values(data);
-      new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: labels,
-          datasets: [{
-            data: values,
-            backgroundColor: [
-              '#ff7a00', '#0ea5e9', '#16a34a', '#f59e0b', 
-              '#8b5cf6', '#ef4444', '#06b6d4', '#84cc16'
-            ],
-            borderWidth: 0,
-            hoverOffset: 4
-          }]
-        },
-        options: { 
-          plugins: { 
-            legend: { 
-              position: 'bottom',
-              labels: {
-                padding: 20,
-                usePointStyle: true
-              }
-            } 
-          },
-          cutout: '60%'
-        }
-      });
-    })();
   </script>
 {% endblock %}
 
