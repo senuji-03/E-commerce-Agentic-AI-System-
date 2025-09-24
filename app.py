@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 import json
 from typing import List, Dict
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 from scrape_daraz import scrape_daraz_products, save_products_to_json
 from price_tracker import load_products_from_json, check_prices, llm_summary_alerts

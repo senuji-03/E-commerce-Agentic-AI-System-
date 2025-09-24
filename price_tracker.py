@@ -1,14 +1,19 @@
 import json
 import re
+import os
 from typing import List, Dict
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # -------------------------------
 # Try importing Gemini SDK
 # -------------------------------
 try:
     import google.generativeai as genai
-    # ✅ Setup Gemini API key (replace with env var for security)
-    genai.configure(api_key="AIzaSyCjZUS1DVr0tmGnf3uAt-YVejrGCJ6UDS0")
+    # ✅ Setup Gemini API key from environment variable
+    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 except Exception:
     genai = None
 
