@@ -27,7 +27,13 @@
               <input class="input" type="text" name="query" value="{{ query }}" placeholder="e.g., Samsung Galaxy S24 Ultra, iPhone 15 Pro, MacBook Air" />
             </div>
           </div>
-          <div style="grid-column: span 4; display:flex; align-items:end; justify-content:flex-end;">
+          <div style="grid-column: span 2;">
+            <div class="form-group">
+             
+              
+            </div>
+          </div>
+          <div style="grid-column: span 2; display:flex; align-items:end;">
             <button class="btn scrape-btn" type="submit">
               <span class="btn-icon">🚀</span>
               Get Recommendations
@@ -44,6 +50,17 @@
           {% endfor %}
         </div>
       </div>
+
+      {% if quick_picks %}
+      <div class="brand-tags">
+        <div class="tags-label">🎯 From Price Tracker (Below Threshold):</div>
+        <div class="tags-container">
+          {% for name in quick_picks %}
+            <a class="brand-tag" href="#" onclick="quickPick('{{ name }}'); return false;">{{ name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
     </div>
 
     {% if recs %}
@@ -80,6 +97,7 @@
               </button>
             </form>
           </div>
+          
         </div>
       {% endfor %}
     {% elif query %}

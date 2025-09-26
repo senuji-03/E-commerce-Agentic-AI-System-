@@ -1,11 +1,22 @@
 import re
 import json
 from typing import List, Dict, Tuple
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # loads .env file
+
 
 # Try Gemini for summaries; fall back to rule-based summary
 try:
     import google.generativeai as genai
-    genai.configure(api_key="AIzaSyCjZUS1DVr0tmGnf3uAt-YVejrGCJ6UDS0")
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+    if GEMINI_API_KEY:
+        genai.configure(api_key=GEMINI_API_KEY)
+    else:
+        print("⚠️ GEMINI_API_KEY not found in environment variables")
+
 except Exception:
     genai = None
 
