@@ -9,7 +9,7 @@ load_dotenv()
 
 from scrape_daraz import scrape_daraz_products, save_products_to_json
 from price_tracker import load_products_from_json, check_prices, llm_summary_alerts
-from recommendation_agent import recommend_products, load_products_from_json as load_products_for_reco
+from recommendation_agent import recommend_products, load_products_from_json as load_products_for_reco, filter_below_threshold_products
 from review_agent import analyze_product_reviews
 
 
@@ -72,7 +72,7 @@ def scrape():
 def tracker():
     products = load_products_from_json(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
     alerts = check_prices(products) if products else []
-    summary = llm_summary_alerts(alerts) if products else ""
+    summary = llm_summary_alerts(alerts) if products else "🔍 No products tracked yet. Use the home page to scrape a brand first."
     alerts_by_url = {a["url"]: a for a in alerts}
 
     # Annotate products with below-threshold flag
@@ -90,19 +90,30 @@ def tracker():
 
 @app.route("/recommendations", methods=["GET", "POST"])
 def recommendations():
-    products = load_products_for_reco(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
+    all_products = load_products_for_reco(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
+    products = filter_below_threshold_products(all_products)
     recs: List[Dict] = []
     query_name = ""
+    max_price = None
+    quick_picks: List[str] = []
 
     if request.method == "POST":
         query_name = request.form.get("query") or ""
+        max_price_raw = request.form.get("max_price") or ""
+        below_names_raw = request.form.get("below_names") or ""
+        if below_names_raw:
+            quick_picks = [n for n in below_names_raw.split("||") if n]
+        try:
+            max_price = int(max_price_raw) if max_price_raw else None
+        except ValueError:
+            max_price = None
 
         if not query_name and products:
             query_name = products[0].get("name", "")
         if query_name:
-            recs = recommend_products(query_name, products, top_n=5)
+            recs = recommend_products(query_name, products, top_n=5, max_price=max_price)
 
-    return render_template("recommendations.html", products=products, recs=recs, query=query_name)
+    return render_template("recommendations.html", products=products, recs=recs, query=query_name, quick_picks=quick_picks)
 
 
 @app.route("/reviews", methods=["GET", "POST"])

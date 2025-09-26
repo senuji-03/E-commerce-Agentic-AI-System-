@@ -12,6 +12,15 @@ def load_products_from_json(path: str = "daraz_products.json") -> List[Dict]:
         return []
     except json.JSONDecodeError:
         return []
+def filter_below_threshold_products(products: List[Dict]) -> List[Dict]:
+    filtered: List[Dict] = []
+    for p in products or []:
+        price_val = parse_price(p.get('price'))
+        threshold_val = parse_price(p.get('threshold'))
+        if price_val is not None and threshold_val is not None and price_val < threshold_val:
+            filtered.append(p)
+    return filtered
+
 
 # -------------------------------
 # Helper function to parse price
@@ -31,20 +40,26 @@ def parse_price(price_str):
 # -------------------------------
 # Recommendation Agent
 # -------------------------------
-def recommend_products(product_name: str, products: List[Dict], top_n: int = 5):
+def recommend_products(product_name: str, products: List[Dict], top_n: int = 5, max_price: int | None = None):
     """
-    Recommend products similar to the given product_name.
-    Optionally, filter by max_price.
+    Recommend products using a composite score:
+    - name similarity (TF-IDF cosine)
+    - brand match bonus
+    - price proximity bonus (if max_price provided)
     """
     if not products:
         print("No products available for recommendations.")
         return []
 
-    # Use all products (max price filter removed)
-    filtered_products = list(products)
+    # Filter by max_price if specified
+    filtered_products = []
+    for p in products:
+        price_val = parse_price(p['price'])
+        if max_price is None or (price_val is not None and price_val <= max_price):
+            filtered_products.append(p)
 
     if not filtered_products:
-        print("No products available.")
+        print("No products within the specified price range." if max_price is not None else "No products available.")
         return []
 
     # Create a list of product names
@@ -58,17 +73,39 @@ def recommend_products(product_name: str, products: List[Dict], top_n: int = 5):
     vectors = vectorizer.toarray()
 
     # Compute cosine similarity between query and all products
-    similarity = cosine_similarity([vectors[0]], vectors[1:])[0]
+    name_similarity = cosine_similarity([vectors[0]], vectors[1:])[0]
 
-    # Get top N similar products
-    top_indices = similarity.argsort()[::-1][:top_n]
+    # Extract brand from names heuristically (first token or within known brands)
+    known_brands = {"samsung","xiaomi","apple","google","nokia","vivo","redmi","huawei","oneplus","realme","oppo","infinix"}
+    q_lower = product_name.lower()
+    q_brand = next((b for b in known_brands if b in q_lower), (q_lower.split()[0] if q_lower else ""))
+
+    scores: List[float] = []
+    for idx, p in enumerate(filtered_products):
+        base = float(name_similarity[idx])
+        # brand bonus
+        p_name_lower = (p.get("name") or "").lower()
+        p_brand = next((b for b in known_brands if b in p_name_lower), (p_name_lower.split()[0] if p_name_lower else ""))
+        brand_bonus = 0.1 if q_brand and p_brand and q_brand == p_brand else 0.0
+        # price proximity bonus (closer to max_price without exceeding)
+        price_bonus = 0.0
+        if max_price is not None:
+            p_price = parse_price(p.get("price"))
+            if p_price is not None and p_price <= max_price:
+                # normalize proximity: closer to max_price gets slight boost
+                proximity = 1.0 - (max(0, max_price - p_price) / max(max_price, 1))
+                price_bonus = 0.1 * proximity
+        scores.append(base + brand_bonus + price_bonus)
+
+    top_indices = sorted(range(len(filtered_products)), key=lambda i: scores[i], reverse=True)[:top_n]
     recommendations = []
     for idx in top_indices:
         recommendations.append({
             "name": filtered_products[idx]["name"],
             "price": filtered_products[idx]["price"],
             "url": filtered_products[idx]["url"],
-            "similarity_score": round(float(similarity[idx]), 2)
+            "similarity_score": round(float(name_similarity[idx]), 2),
+            "composite_score": round(float(scores[idx]), 2)
         })
 
     return recommendations

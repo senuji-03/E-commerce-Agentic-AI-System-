@@ -42,6 +42,30 @@
         </table>
       {% endif %}
     </div>
+    {% set below = products | selectattr('below_threshold') | list %}
+    {% if below and below|length > 0 %}
+    <div class="card" style="grid-column: span 12;">
+      <div class="card-header">
+        <h3>🎯 Recommend Alternatives for Below-Threshold Items</h3>
+        <div class="card-subtitle">Jump straight to recommendations for these deals</div>
+      </div>
+      <div class="grid" style="row-gap:10px;">
+        {% for p in below %}
+        <div style="grid-column: span 4; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+          <div style="min-width:0;">
+            <div style="font-weight:600; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ p.name }}</div>
+            <div style="font-size:0.9rem; color:#475569;">{{ p.price }}</div>
+          </div>
+          <form method="post" action="{{ url_for('recommendations') }}" style="margin:0;">
+            <input type="hidden" name="query" value="{{ p.name }}" />
+            <button class="btn secondary" type="submit"><span class="btn-icon">💡</span>Recommend</button>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    {% endif %}
   </div>
 {% endblock %}
 
