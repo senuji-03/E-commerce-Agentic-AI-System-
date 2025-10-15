@@ -35,6 +35,11 @@ def parse_price_numeric(price_str: str) -> int | None:
 
 @app.route("/")
 def index():
+    return render_template("launch.html")
+
+
+@app.route("/dashboard")
+def dashboard():
     category = (request.args.get("category") or "phones").lower()
     if category == "laptops":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
@@ -82,7 +87,7 @@ def scrape():
         save_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
     if not products:
         flash("No products scraped. Try another brand or try again.", "error")
-        return redirect(url_for("index"))
+        return redirect(url_for("dashboard"))
 
     save_products_to_json(products, save_path)
     if category == "laptops":
@@ -197,6 +202,15 @@ def compare():
         comparison = compare_selected_phones(selected, priorities, category=category)
 
     return render_template("compare.html", products=products, selected=selected, comparison=comparison, priorities=priorities_raw, category=category)
+
+
+@app.route("/category/<category>")
+def category_hub(category: str):
+    cat = (category or "phones").lower()
+    if cat not in ("phones", "laptops"):
+        cat = "phones"
+    brands = LAPTOP_BRANDS if cat == "laptops" else BRANDS
+    return render_template("category_hub.html", category=cat, brands=brands)
 
 
 ## Alerts feature removed

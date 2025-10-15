@@ -6,6 +6,10 @@
     <div class="hero-content">
       <h1 class="hero-title">Welcome to Daraz Agentic AI</h1>
       <p class="hero-subtitle">Intelligent e-commerce price tracking and product recommendations powered by AI</p>
+      <div style="margin-top:16px;">
+        <a class="btn" href="{{ url_for('index') }}">Launch</a>
+        <a class="btn secondary" href="{{ url_for('dashboard', category=category) }}">Go to Dashboard</a>
+      </div>
     </div>
   </div>
 
