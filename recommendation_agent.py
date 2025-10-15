@@ -104,6 +104,7 @@ def recommend_products(product_name: str, products: List[Dict], top_n: int = 5, 
             "name": filtered_products[idx]["name"],
             "price": filtered_products[idx]["price"],
             "url": filtered_products[idx]["url"],
+            "source": filtered_products[idx].get("source", ""),
             "similarity_score": round(float(name_similarity[idx]), 2),
             "composite_score": round(float(scores[idx]), 2)
         })

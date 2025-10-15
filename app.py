@@ -7,10 +7,11 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-from scrape_daraz import scrape_daraz_products, save_products_to_json
+from multi_scraper import scrape_all_sites, save_products_to_json
 from price_tracker import load_products_from_json, check_prices, llm_summary_alerts
 from recommendation_agent import recommend_products, load_products_from_json as load_products_for_reco, filter_below_threshold_products
 from review_agent import analyze_product_reviews
+from compare_agent import compare_selected_phones
 
 
 app = Flask(__name__)
@@ -58,13 +59,14 @@ def scrape():
     if threshold_input.isdigit():
         threshold_input = f"Rs. {int(threshold_input):,}".replace(",", "")
 
-    products = scrape_daraz_products(brand, threshold_input)
+    # Scrape across multiple Sri Lankan retailers
+    products = scrape_all_sites(brand, threshold_input)
     if not products:
         flash("No products scraped. Try another brand or try again.", "error")
         return redirect(url_for("index"))
 
     save_products_to_json(products, os.path.join(os.path.dirname(__file__), "daraz_products.json"))
-    flash(f"Scraped {len(products)} products for {brand}.", "success")
+    flash(f"Scraped {len(products)} products for {brand} across multiple sites.", "success")
     return redirect(url_for("tracker"))
 
 
@@ -85,7 +87,13 @@ def tracker():
             "below_threshold": bool(alert),
         })
 
-    return render_template("tracker.html", products=annotated, summary=summary)
+    # Group by source website for the UI
+    groups: Dict[str, List[Dict]] = {}
+    for p in annotated:
+        src = p.get("source") or "Daraz"
+        groups.setdefault(src, []).append(p)
+
+    return render_template("tracker.html", products=annotated, groups=groups, summary=summary)
 
 
 @app.route("/recommendations", methods=["GET", "POST"])
@@ -138,6 +146,26 @@ def reviews():
             reviews_list, summary = analyze_product_reviews(product_query, (chosen or {}).get("url"), max_reviews=10000)
 
     return render_template("reviews.html", products=products, query=product_query, chosen=chosen, reviews=reviews_list, summary=summary)
+
+
+@app.route("/compare", methods=["GET", "POST"])
+def compare():
+    products = load_products_for_reco(os.path.join(os.path.dirname(__file__), "daraz_products.json"))
+    selected_urls: List[str] = []
+    selected: List[Dict] = []
+    priorities_raw = ""
+    comparison = {"features": [], "summary": "", "highlights": []}
+
+    if request.method == "POST":
+        selected_urls = request.form.getlist("selected")
+        priorities_raw = request.form.get("priorities") or ""
+        priorities = [p.strip().lower() for p in priorities_raw.split(",") if p.strip()]
+        # Map URLs to product dicts if present
+        url_to_product = {p.get("url"): p for p in (products or [])}
+        selected = [url_to_product.get(u, {"url": u, "name": u}) for u in selected_urls]
+        comparison = compare_selected_phones(selected, priorities)
+
+    return render_template("compare.html", products=products, selected=selected, comparison=comparison, priorities=priorities_raw)
 
 
 ## Alerts feature removed

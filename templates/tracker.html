@@ -8,22 +8,24 @@
     </div>
 
     <div class="card" style="grid-column: span 12;">
-      <h2>Tracked Products</h2>
+      <h2>Tracked Products (Grouped by Website)</h2>
       {% if not products %}
         <p class="tag">No products available. Go back and scrape first.</p>
       {% else %}
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Current Price</th>
-              <th>Threshold</th>
-              <th>Status</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for p in products %}
+        {% for src, items in groups.items() %}
+          <h3 style="margin-top:20px;">{{ src }}</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Current Price</th>
+                <th>Threshold</th>
+                <th>Status</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in items %}
               <tr>
                 <td>{{ p.name }}</td>
                 <td>{{ p.price }}</td>
@@ -37,9 +39,10 @@
                 </td>
                 <td><a href="{{ p.url }}" target="_blank">View</a></td>
               </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endfor %}
       {% endif %}
     </div>
     {% set below = products | selectattr('below_threshold') | list %}

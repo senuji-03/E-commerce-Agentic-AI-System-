@@ -24,7 +24,7 @@
                 <span class="label-icon">🔍</span>
                 Product Name
               </label>
-              <input class="input" type="text" name="query" value="{{ query }}" placeholder="e.g., Samsung Galaxy S24 Ultra, iPhone 15 Pro, MacBook Air" />
+              <input class="input" type="text" name="query" value="{{ query }}" placeholder="e.g., Samsung Galaxy S24 Ultra, iPhone 15 Pro" />
             </div>
           </div>
           <div style="grid-column: span 2;">
@@ -87,7 +87,7 @@
           <div class="recommendation-actions">
             <a class="btn secondary" href="{{ r.url }}" target="_blank">
               <span class="btn-icon">🔗</span>
-              View on Daraz
+              View on {{ r.source or 'Site' }}
             </a>
             <form method="post" action="{{ url_for('reviews') }}" style="display:inline-block; margin-left:8px;">
               <input type="hidden" name="query" value="{{ r.name }}" />
