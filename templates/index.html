@@ -54,6 +54,10 @@
                 <span class="btn-icon" style="font-size:0.4rem;">💡</span>
                 Recommendations
               </a>
+          <a class="btn secondary" href="{{ url_for('compare', category=category) }}" style="padding:6px 10px; font-size:0.85rem;" >
+            <span class="btn-icon" style="font-size:0.4rem;">⚖️</span>
+            Compare
+          </a>
             </div>
           </div>
         </div>
@@ -69,10 +73,20 @@
       <form method="post" action="{{ url_for('scrape') }}" class="scraping-form">
         <div class="form-group" style="grid-column: span 4;">
           <label class="form-label">
+            <span class="label-icon">📂</span>
+            Category
+          </label>
+          <select class="input" name="category" id="category-select" onchange="onCategoryChange(this.value)">
+            <option value="phones" {% if category != 'laptops' %}selected{% endif %}>Phones</option>
+            <option value="laptops" {% if category == 'laptops' %}selected{% endif %}>Laptops</option>
+          </select>
+        </div>
+        <div class="form-group" style="grid-column: span 4;">
+          <label class="form-label">
             <span class="label-icon">🏢</span>
             Brand
           </label>
-          <select class="input brand-select" name="brand">
+          <select class="input brand-select" name="brand" id="brand-select">
             {% for b in brands %}
               <option value="{{ b }}">{{ b }}</option>
             {% endfor %}
@@ -173,6 +187,11 @@
     function quickBrand(b) {
       const sel = document.querySelector('select[name="brand"]');
       if (sel) sel.value = b;
+    }
+    function onCategoryChange(cat) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('category', cat);
+      window.location.href = url.toString();
     }
   </script>
 {% endblock %}

@@ -35,7 +35,7 @@ def extract_basic_specs(name: str) -> Dict[str, str]:
     return specs
 
 
-def compare_selected_phones(products: List[Dict], user_priorities: List[str]) -> Dict[str, object]:
+def compare_selected_phones(products: List[Dict], user_priorities: List[str], category: str | None = None) -> Dict[str, object]:
     """Return a comparison table-like structure and an LLM summary when available."""
     # Normalize inputs
     normalized_priorities = [p.strip().lower() for p in (user_priorities or []) if p.strip()]
@@ -99,25 +99,116 @@ def compare_selected_phones(products: List[Dict], user_priorities: List[str]) ->
 
     # LLM summary if available
     summary = ""
+    best_overall = ""
     if genai and rows:
         try:
             bullets = []
             for r in rows:
                 bullets.append(f"- {r['name']} | Price {r['price']} | RAM {r.get('ram','?')} | Storage {r.get('storage','?')} | Camera {r.get('camera','?')} | Battery {r.get('battery','?')} | Source {r.get('source','?')}")
+            domain = (category or "phones").lower()
             prompt = f"""
-You are a helpful phone comparison assistant. Compare these phones and produce:
-1) A short verdict about which phone fits which user priorities ({', '.join(normalized_priorities) or 'none specified'}).
-2) Key trade-offs in one-liners.
+You are a helpful {domain} comparison assistant. Compare these items and produce:
+1) A short verdict aligned to user priorities: {', '.join(normalized_priorities) or 'none specified'}.
+2) 3-6 key trade-offs (one line each).
 3) A final recommendation per price/performance.
+4) Provide a concise rationale that explicitly references the features and why the winner is better (tie your reasoning to the listed specs/priorities).
+5) On the last two lines, print exactly:
+Best overall: <PRODUCT_NAME>
+Why: <ONE_OR_TWO_SENTENCES_WITH_FEATURE-BASED_REASON>
 
-Phones:\n{chr(10).join(bullets)}
+Items:\n{chr(10).join(bullets)}
 """
             model = genai.GenerativeModel("gemini-1.5-flash")
             resp = model.generate_content(prompt)
             summary = resp.text.strip()
+            # Try to extract explicit best pick from last line
+            try:
+                for line in summary.splitlines()[::-1]:
+                    m = re.search(r"Best overall:\s*(.+)", line, re.IGNORECASE)
+                    if m:
+                        best_overall = m.group(1).strip()
+                        break
+            except Exception:
+                best_overall = ""
+            # Try to extract reason line
+            try:
+                best_reason = ""
+                for line in summary.splitlines()[::-1]:
+                    rm = re.search(r"Why:\s*(.+)", line, re.IGNORECASE)
+                    if rm:
+                        best_reason = rm.group(1).strip()
+                        break
+            except Exception:
+                best_reason = ""
         except Exception:
             summary = ""
 
-    return {"features": features, "summary": summary, "highlights": highlights, "headers": headers}
+    # Fallback heuristic best if model didn't provide one
+    if not best_overall and rows:
+        try:
+            # Prefer best price if price in priorities, otherwise first item
+            if "price" in normalized_priorities:
+                values = []
+                for idx, r in enumerate(rows):
+                    m = re.findall(r"[\d,]+", r.get("price", ""))
+                    v = int(m[0].replace(",", "")) if m else 10**12
+                    values.append((v, idx))
+                if values:
+                    best_overall = rows[sorted(values)[0][1]]["name"]
+            if not best_overall:
+                best_overall = rows[0]["name"]
+        except Exception:
+            best_overall = rows[0]["name"]
+
+    # Simple fallback reason if none extracted
+    if 'best_reason' not in locals() or not best_reason:
+        # Build a heuristic insight referencing concrete features
+        try:
+            best_idx = None
+            for i, r in enumerate(rows):
+                if r.get('name') == best_overall:
+                    best_idx = i
+                    break
+            reason_bits: List[str] = []
+            if best_idx is not None:
+                best = rows[best_idx]
+                # Price advantage (lower is better)
+                def parse_price(text: str) -> int:
+                    m = re.findall(r"[\d,]+", text or "")
+                    return int(m[0].replace(",", "")) if m else 10**12
+                best_price = parse_price(best.get('price', ''))
+                others = [r for j, r in enumerate(rows) if j != best_idx]
+                if others:
+                    if all(best_price <= parse_price(o.get('price', '')) for o in others):
+                        reason_bits.append("lowest price")
+                # RAM/Storage advantage (higher is better)
+                def parse_number(text: str) -> int:
+                    m = re.findall(r"\d+", text or "")
+                    return int(m[0]) if m else -1
+                best_ram = parse_number(best.get('ram', ''))
+                best_storage = parse_number(best.get('storage', ''))
+                best_battery = parse_number(best.get('battery', ''))
+                best_camera = parse_number(best.get('camera', ''))
+                if others:
+                    if best_ram >= 0 and all(best_ram >= parse_number(o.get('ram', '')) for o in others):
+                        reason_bits.append("more RAM")
+                    if best_storage >= 0 and all(best_storage >= parse_number(o.get('storage', '')) for o in others):
+                        reason_bits.append("more storage")
+                    if best_battery >= 0 and all(best_battery >= parse_number(o.get('battery', '')) for o in others):
+                        reason_bits.append("bigger battery")
+                    if best_camera >= 0 and all(best_camera >= parse_number(o.get('camera', '')) for o in others):
+                        reason_bits.append("higher MP camera")
+            # Assemble reason
+            if reason_bits:
+                if normalized_priorities:
+                    best_reason = f"Best for {', '.join(normalized_priorities)} due to {', '.join(reason_bits)}."
+                else:
+                    best_reason = f"Best overall due to {', '.join(reason_bits)}."
+            else:
+                best_reason = f"Best matches priorities: {', '.join(normalized_priorities)}" if normalized_priorities else "Best balance of features and price."
+        except Exception:
+            best_reason = f"Best matches priorities: {', '.join(normalized_priorities)}" if normalized_priorities else "Best balance of features and price."
+
+    return {"features": features, "summary": summary, "highlights": highlights, "headers": headers, "best": best_overall, "best_reason": best_reason}
 
 

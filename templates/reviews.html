@@ -14,12 +14,13 @@
         <h2>🔎 Analyze Reviews</h2>
         <div class="card-subtitle">Choose a product name to generate a concise review summary</div>
       </div>
-      <form method="post" action="{{ url_for('reviews') }}" class="scraping-form">
+      <form method="post" action="{{ url_for('reviews', category=category) }}" class="scraping-form">
         <div class="grid">
           <div style="grid-column: span 8;">
             <div class="form-group">
               <label class="form-label"><span class="label-icon">🛍️</span>Product Name</label>
               <input class="input" type="text" name="query" value="{{ query }}" placeholder="Start typing product name..." list="productNames" />
+              <input type="hidden" name="category" value="{{ category or 'phones' }}" />
               <datalist id="productNames">
                 {% for p in products %}
                 <option value="{{ p.name }}">{{ p.name }}</option>

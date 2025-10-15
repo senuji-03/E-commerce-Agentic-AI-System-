@@ -45,6 +45,13 @@
         {% endfor %}
       {% endif %}
     </div>
+    <div class="card" style="grid-column: span 12;">
+      <div class="card-header">
+        <h3>⚖️ Compare Selected</h3>
+        <div class="card-subtitle">Open the comparison tool for the current category</div>
+      </div>
+      <a class="btn secondary" href="{{ url_for('compare', category=category) }}"><span class="btn-icon">⚖️</span>Open Compare</a>
+    </div>
     {% set below = products | selectattr('below_threshold') | list %}
     {% if below and below|length > 0 %}
     <div class="card" style="grid-column: span 12;">
@@ -59,8 +66,9 @@
             <div style="font-weight:600; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ p.name }}</div>
             <div style="font-size:0.9rem; color:#475569;">{{ p.price }}</div>
           </div>
-          <form method="post" action="{{ url_for('recommendations') }}" style="margin:0;">
+          <form method="post" action="{{ url_for('recommendations', category=category) }}" style="margin:0;">
             <input type="hidden" name="query" value="{{ p.name }}" />
+            <input type="hidden" name="category" value="{{ category or 'phones' }}" />
             <button class="btn secondary" type="submit"><span class="btn-icon">💡</span>Recommend</button>
           </form>
         </div>
