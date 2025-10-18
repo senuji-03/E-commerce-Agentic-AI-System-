@@ -1,0 +1,49 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.dist-info/
+.eggs/
+.idea/
+.vscode/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.cache/
+
+# --- Virtual envs ---
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+
+# --- Build & dist ---
+build/
+dist/
+
+# --- OS cruft ---
+.DS_Store
+Thumbs.db
+
+# --- Project data & logs ---
+daraz_products.json
+price_alerts.json
+*.log
+debug_page.html
+
+# --- Secrets / config ---
+.env
+.env.*
+*.pem
+*.key
+
+# --- Playwright / test artifacts (if any) ---
+playwright-report/
+test-results/
+.playwright/
+ms-playwright/
