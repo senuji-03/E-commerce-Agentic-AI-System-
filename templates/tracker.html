@@ -45,13 +45,6 @@
         {% endfor %}
       {% endif %}
     </div>
-    <div class="card" style="grid-column: span 12;">
-      <div class="card-header">
-        <h3>⚖️ Compare Selected</h3>
-        <div class="card-subtitle">Open the comparison tool for the current category</div>
-      </div>
-      <a class="btn secondary" href="{{ url_for('compare', category=category) }}"><span class="btn-icon">⚖️</span>Open Compare</a>
-    </div>
     {% set below = products | selectattr('below_threshold') | list %}
     {% if below and below|length > 0 %}
     <div class="card" style="grid-column: span 12;">
@@ -77,6 +70,14 @@
     </div>
     
     {% endif %}
+    
+    <div class="card" style="grid-column: span 12;">
+      <div class="card-header">
+        <h3>⚖️ Compare Selected</h3>
+        <div class="card-subtitle">Open the comparison tool for the current category</div>
+      </div>
+      <a class="btn secondary" href="{{ url_for('compare', category=category) }}"><span class="btn-icon">⚖️</span>Open Compare</a>
+    </div>
   </div>
 {% endblock %}
 

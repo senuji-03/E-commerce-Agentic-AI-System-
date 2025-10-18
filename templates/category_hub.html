@@ -9,7 +9,7 @@
   </div>
 
   <div class="grid">
-    <div class="card" style="grid-column: span 7;">
+    <div class="card" style="grid-column: span 15;">
       <div class="card-header">
         <h2>🔍 Brand Selection & Scraping</h2>
         <div class="card-subtitle">Update product prices and discover new items</div>
@@ -36,22 +36,22 @@
       </form>
     </div>
 
-    <a class="card" style="grid-column: span 5; display:block; text-decoration:none;" href="{{ url_for('tracker', category=category) }}">
+    <a class="card" style="grid-column: span 6; display:block; text-decoration:none;" href="{{ url_for('tracker', category=category) }}">
       <div class="card-header"><h2>📈 Price Tracker</h2><div class="card-subtitle">View last scraped items and alerts</div></div>
       <div class="feature-item"><span class="feature-icon">⚡</span><span>Latest scraped data</span></div>
     </a>
 
-    <a class="card" style="grid-column: span 5; display:block; text-decoration:none;" href="{{ url_for('recommendations', category=category) }}">
+    <a class="card" style="grid-column: span 6; display:block; text-decoration:none;" href="{{ url_for('recommendations', category=category) }}">
       <div class="card-header"><h2>🎯 Recommendations</h2><div class="card-subtitle">AI-powered similar products</div></div>
       <div class="feature-item"><span class="feature-icon">🤖</span><span>Smart similarity</span></div>
     </a>
 
-    <a class="card" style="grid-column: span 5; display:block; text-decoration:none;" href="{{ url_for('reviews', category=category) }}">
+    <a class="card" style="grid-column: span 6; display:block; text-decoration:none;" href="{{ url_for('reviews', category=category) }}">
       <div class="card-header"><h2>📝 Reviews</h2><div class="card-subtitle">Summarized pros and cons</div></div>
       <div class="feature-item"><span class="feature-icon">🧠</span><span>Concise insights</span></div>
     </a>
 
-    <a class="card" style="grid-column: span 5; display:block; text-decoration:none;" href="{{ url_for('compare', category=category) }}">
+    <a class="card" style="grid-column: span 6; display:block; text-decoration:none;" href="{{ url_for('compare', category=category) }}">
       <div class="card-header"><h2>⚖️ Compare</h2><div class="card-subtitle">Side-by-side feature view</div></div>
       <div class="feature-item"><span class="feature-icon">📊</span><span>Feature matrix</span></div>
     </a>
