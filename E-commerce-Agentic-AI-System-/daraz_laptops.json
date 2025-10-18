@@ -1,186 +1,146 @@
 [
     {
-        "name": "[REFURBISHED] HP EliteBook 840 G1 i5 4th Gen Slim Business model Laptop",
-        "price": "Rs. 58,500",
-        "url": "https://www.daraz.lk/products/hp-elitebook-840-g1-i5-4th-gen-slim-business-model-laptop-i165191539.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
+        "name": "REFURBISHED Dell Latitude E7440 Slim Business model Laptop , Core i5 8GB Ram , 500GB Hard Drive",
+        "price": "Rs. 56,500",
+        "url": "https://www.daraz.lk/products/refurbished-dell-latitude-e7440-slim-business-model-laptop-core-i5-8gb-ram-500gb-hard-drive-i136803259.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
         "source": "Daraz"
     },
     {
-        "name": "[REFURBISHED] HP EliteBook 840 G5 i5/i7 8th Gen Slim Business model full HD Ips 14inch Laptop,",
-        "price": "Rs. 79,500",
-        "url": "https://www.daraz.lk/products/hp-elitebook-840-g5-i5i7-8th-gen-slim-business-model-full-hd-ips-14-laptop-i176751967.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
+        "name": "Dell Latitude 5490 i7 8th Gen 16GB DDR4 512GB SSD 14inch touch screen Laptop",
+        "price": "Rs. 73,500",
+        "url": "https://www.daraz.lk/products/dell-latitude-5490-i7-8th-gen-16gb-ddr4-512gb-ssd-14inch-touch-screen-laptop-i260472404.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
         "source": "Daraz"
     },
     {
-        "name": "Hp Elitebook 840 G7 i7 10th Gen 32GB DDR4 512GB SSD 14inch Laptop",
-        "price": "Rs. 132,500",
-        "url": "https://www.daraz.lk/products/hp-elitebook-840-g7-i7-10th-gen-32gb-ddr4-512gb-ssd-14inch-laptop-i266859800.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
+        "name": "Dell Latitude 5580 i5 7th Gen 16GB Ram 512GB NVME SSD 15.6inch Laptop",
+        "price": "Rs. 75,500",
+        "url": "https://www.daraz.lk/products/dell-latitude-5580-i5-7th-gen-16gb-ram-512gb-nvme-ssd-156inch-laptop-i260479326.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
         "source": "Daraz"
     },
     {
-        "name": "[REFURBISHED] HP ProBook 440 G7 i5 10th Gen Slim Business model Laptop, 16GB Ram, 512GB SSD and 500GB HDD",
-        "price": "Rs. 88,500",
-        "url": "https://www.daraz.lk/products/refurbished-hp-probook-440-g7-i5-10th-gen-slim-business-model-laptop-16gb-ram-512gb-ssd-and-500gb-hdd-i169125051.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
+        "name": "[REFURBISHED] Dell Latitude 5400 Core i5 8th Gen 16GB 512GB SSD laptop for School and online work",
+        "price": "Rs. 72,900",
+        "url": "https://www.daraz.lk/products/dell-latitude-5400-core-i5-8th-gen-16gb-512gb-ssd-laptop-i178695816.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
         "source": "Daraz"
     },
     {
-        "name": "[REFURBISHED] Hp Elitebook 840 G3 , Core i7 6th Gen 16GB Ram , 256GB SSD 14inch Laptop",
-        "price": "Rs. 64,500",
-        "url": "https://www.daraz.lk/products/refurbished-hp-elitebook-840-g3-core-i7-6th-gen-16gb-ram-256gb-ssd-14inch-laptop-i167136069.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "[REFURBISHED] Hp Elitebook 840 G7 , i7 10th Gen Laptop, 16GB Ram 512GB SSD 14inch Laptop",
-        "price": "Rs. 119,500",
-        "url": "https://www.daraz.lk/products/hp-elitebook-840-g7-i7-10th-gen-laptop-16gb-ram-512gb-ssd-14-i180829463.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "HP ProBook 640 G2 i5 6th Gen Laptop",
-        "price": "Rs. 65,000",
-        "url": "https://www.daraz.lk/products/hp-probook-640-g2-i5-6th-gen-laptop-i150379848.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "[REFURBISHED] HP EliteBook 840 G2 i5 5th Gen Slim Business model Laptop , Win 11,",
-        "price": "Rs. 59,500",
-        "url": "https://www.daraz.lk/products/refurbished-hp-elitebook-840-g2-i5-5th-gen-slim-business-model-laptop-win-11-i168705371.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "HP ELITEBOOK 840 G5 | Core i5 8th Gen | 16GB DDR4 RAM | 512GB NVME SSD | Touch Screen | High Quality Laptop",
-        "price": "Rs. 135,000",
-        "url": "https://www.daraz.lk/products/hp-elitebook-840-g5-core-i5-8th-gen-16gb-ddr4-ram-512gb-nvme-ssd-touch-screen-high-quality-laptop-i214587976.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "HP Probook 640 G4 i5 8th Generation Laptop",
-        "price": "Rs. 89,500",
-        "url": "https://www.daraz.lk/products/hp-probook-640-g4-i5-8th-generation-i137579305.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "HP ProBook 640 G2 Core i5 6th gen 8GB-RAM / 256GB-SSD Premium Laptop",
-        "price": "Rs. 64,000",
-        "url": "https://www.daraz.lk/products/hp-probook-640-g2-core-i5-6th-gen-8gb-ram-256gb-ssd-premium-laptop-i314124659.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "Hp Elitebook 840 G8 , i7 11th Gen , 16GB Ram 512GB SSD 14inch Laptop",
-        "price": "Rs. 143,750",
-        "url": "https://www.daraz.lk/products/hp-elitebook-840-g8-i7-11th-gen-16gb-ram-512gb-ssd-14inch-laptop-i482795328.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "LAPTOP HP-735 G6 RYZEN 5 PRO",
-        "price": "Rs. 89,500",
-        "url": "https://www.daraz.lk/products/hp-laptop-2022-ryzen-5-pro-i594540248.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "Victus by HP Gaming Laptop 15-fa201dx intel Core i5 13420h | 512SSD | 16GB DDR4 RAM | 15.6 IPS FHD | RTX 3050",
-        "price": "Rs. 259,900",
-        "url": "https://www.daraz.lk/products/victus-by-hp-gaming-laptop-15-fa201dx-intel-core-i5-13420h-512ssd-16gb-ddr4-ram-156-ips-fhd-rtx-3050-i620471372.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "Hp Elitebook 840 G8 , i7 11th Gen , 16GB Ram 512GB SSD 14inch Laptop",
-        "price": "Rs. 150,000",
-        "url": "https://www.daraz.lk/products/hp-elitebook-840-g8-i7-11th-gen-16gb-ram-512gb-ssd-14inch-laptop-i482847535.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "HP PROBOOK 640 G2 CORE i5 6TH GEN 8GB RAM / 256GB SSD 14'6 INCH LAPTOP",
-        "price": "Rs. 62,500",
-        "url": "https://www.daraz.lk/products/hp-probook-640-g2-core-i5-6th-gen-8gb-ram-256gb-ssd-146-inch-laptop-i194137951.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "Hp Elitebook 840 G7 i7 10th Gen 32GB DDR4 512GB SSD 14inch Laptop",
-        "price": "Rs. 130,000",
-        "url": "https://www.daraz.lk/products/hp-elitebook-840-g7-i7-10th-gen-32gb-ddr4-512gb-ssd-14inch-laptop-i375014177.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "HP Laptop 15-fc0266AU AMD Ryzen™ 3 7320U",
-        "price": "Rs. 141,249",
-        "url": "https://www.daraz.lk/products/hp-laptop-15-fc0266au-amd-ryzen-3-7320u-i259666282.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
-        "source": "Daraz"
-    },
-    {
-        "name": "HP PROBOOK 640 G2 I5 6TH GEN LAPTOP (USED)",
+        "name": "DELL LATITUDE 7480 CORE I5 7TH GEN 8GB RAM 256GB SSD 14 INCH HIGH QUALITY LAPTOP",
         "price": "Rs. 69,500",
-        "url": "https://www.daraz.lk/products/hp-probook-640-g2-i5-6th-gen-laptop-used-i215391120.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
+        "url": "https://www.daraz.lk/products/dell-latitude-7480-core-i5-7th-gen-8gb-ram-256gb-ssd-14-inch-high-quality-laptop-i194137933.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
         "source": "Daraz"
     },
     {
-        "name": "HP ProBook 450 G8 Intel i5 11th Gen | 8GB Ram | 512GB NVMe SSD | 15.6 Inch IPS Display Laptop | Silver [Refurbished]",
-        "price": "Rs. 135,500",
-        "url": "https://www.daraz.lk/products/hp-probook-450-g8-intel-i5-11th-gen-8gb-ram-512gb-nvme-ssd-156-inch-ips-display-laptop-silver-refurbished-i603039141.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
+        "name": "Dell Latitude 5410 i5 10th Generation 16GB DDR4 512GB NVME SSD 14inch Laptop",
+        "price": "Rs. 83,500",
+        "url": "https://www.daraz.lk/products/dell-latitude-5410-i5-10th-generation-16gb-ddr4-512gb-nvme-ssd-14inch-i183939028.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
         "source": "Daraz"
     },
     {
-        "name": "[REFURBISHED] HP EliteBook 850 G5 , i5 8th Gen 15 inch Laptop",
-        "price": "Rs. 121,500",
-        "url": "https://www.daraz.lk/products/refurbished-hp-elitebook-850-g5-i5-8th-gen-15-inch-laptop-i168917602.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
+        "name": "Dell Latitude E7480 i5 6th Gen 16GB DDR4 512GB SSD Laptop",
+        "price": "Rs. 68,500",
+        "url": "https://www.daraz.lk/products/dell-latitude-e7480-i5-6th-gen-16gb-ddr4-512gb-ssd-laptop-i255933674.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
         "source": "Daraz"
     },
     {
-        "name": "Hp EliteBook 840 G6 i7 8th Gen 16GB 512GB SSD 14INCH LAPTOP",
-        "price": "Rs. 89,500",
-        "url": "https://www.daraz.lk/products/hp-elitebook-840-g6-i7-8th-gen-16gb-512gb-ssd-14inch-laptop-i201637257.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
+        "name": "[REFURBISHED] Dell Latitude E7480 , Core i5 6th Gen 8GB Ram , 256GB SSD 14inch Laptop",
+        "price": "Rs. 65,500",
+        "url": "https://www.daraz.lk/products/refurbished-dell-latitude-e7480-core-i5-6th-gen-8gb-ram-256gb-ssd-14inch-laptop-i163673002.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
         "source": "Daraz"
     },
     {
-        "name": "HP EliteBook 840 G6 i5 8th Gen 14inch Laptop",
-        "price": "Rs. 79,500",
-        "url": "https://www.daraz.lk/products/hp-elitebook-840-g6-i5-8th-gen-14inch-laptop-i140160001.html",
-        "threshold": "Rs. 300000",
-        "brand": "HP",
+        "name": "Dell Latitude 7480 Core i5 7th Gen 8gb RAM 256gb SSD Brand New Slim Laptop",
+        "price": "Rs. 118,500",
+        "url": "https://www.daraz.lk/products/dell-latitude-7480-core-i5-7th-gen-8gb-ram-256gb-ssd-brand-new-slim-laptop-i201889699.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
+        "source": "Daraz"
+    },
+    {
+        "name": "Dell Latitude E6430 i5 3rd Gen 8GB Ram 500GB HDD Laptop",
+        "price": "Rs. 84,500",
+        "url": "https://www.daraz.lk/products/dell-latitude-e6430-i5-3rd-gen-8gb-ram-500gb-hdd-laptop-i253069264.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
+        "source": "Daraz"
+    },
+    {
+        "name": "DELL Latitude 5490 i5 8th Gen 8GB 256GB SSD Laptop",
+        "price": "Rs. 78,500",
+        "url": "https://www.daraz.lk/products/dell-latitude-5490-i5-8th-gen-8gb-256gb-ssd-laptop-i139239777.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
+        "source": "Daraz"
+    },
+    {
+        "name": "Dell Latitude 5510 i5 10th Gen Laptop 16GB 256GB/512GB NVME SSD 15.6inch Laptop",
+        "price": "Rs. 98,500",
+        "url": "https://www.daraz.lk/products/dell-latitude-5510-i5-10th-gen-laptop-16gb-256gb512gb-nvme-ssd-156inch-laptop-i305319158.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
+        "source": "Daraz"
+    },
+    {
+        "name": "[REFURBISHED] - Dell Latitude E5250 Core i5 5th Gen laptop 8GB Ram 256GB SSD Drive",
+        "price": "Rs. 58,500",
+        "url": "https://www.daraz.lk/products/dell-latitude-e5250-core-i5-5th-gen-8gb-ram-256gb-ssd-drive-i180594593.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
+        "source": "Daraz"
+    },
+    {
+        "name": "Dell Latitude 5490 , Core i5 8th Gen 16GB Ram , 256GB SSD 14inch Laptop",
+        "price": "Rs. 135,000",
+        "url": "https://www.daraz.lk/products/dell-latitude-5490-core-i5-8th-gen-16gb-ram-256gb-ssd-14inch-laptop-i196081369.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
+        "source": "Daraz"
+    },
+    {
+        "name": "Dell Precision 3570 – Intel Core i5-1235U | 16GB RAM | 512GB SSD | 15.6\" Display | NVIDIA RTX A500 4GB | USED LAPTOP",
+        "price": "Rs. 299,900",
+        "url": "https://www.daraz.lk/products/dell-precision-3570-intel-core-i5-1235u-16gb-ram-512gb-ssd-156-display-nvidia-rtx-a500-4gb-used-laptop-i607528072.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
+        "source": "Daraz"
+    },
+    {
+        "name": "Dell E5270 i5 6th Gen 8GB / 16GB Ram 256GB / 512GB SSD Laptop",
+        "price": "Rs. 59,500",
+        "url": "https://www.daraz.lk/products/dell-e5270-i5-6th-gen-8gb-16gb-ram-256gb-512gb-ssd-laptop-i204369723.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
+        "source": "Daraz"
+    },
+    {
+        "name": "【ThinkWay】65W AC Adapter For Dell Latitude 5300 2-In-1 / 5400 Chrome Laptop Power Charger",
+        "price": "Rs. 16,799",
+        "url": "https://www.daraz.lk/products/65w-5300-2-1-5400-i316983068.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
+        "source": "Daraz"
+    },
+    {
+        "name": "Dell Latitude 7300 i5 8th Gen 16GB Ram 512GB NVME SSD Laptop",
+        "price": "Rs. 78,500",
+        "url": "https://www.daraz.lk/products/dell-latitude-7300-i5-8th-gen-16gb-ram-512gb-nvme-ssd-laptop-i374009000.html",
+        "threshold": "Rs. 400000",
+        "brand": "Dell",
         "source": "Daraz"
     }
 ]
