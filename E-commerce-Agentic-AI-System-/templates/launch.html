@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Launch • Daraz Agentic AI{% endblock %}
+{% block content %}
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Choose Your Category</h1>
+      <p class="hero-subtitle">Start with Laptops or Mobile Phones to explore tracking, recommendations, reviews, and comparisons</p>
+    </div>
+  </div>
+
+  <div class="grid" style="align-items:stretch;">
+    <a href="{{ url_for('category_hub', category='laptops') }}" class="card" style="grid-column: span 6; display:block; text-decoration:none; border:1px solid #e2e8f0; transition:transform .2s, box-shadow .2s;">
+      <div style="display:flex; gap:16px; align-items:center;">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #0ea5e9, #22d3ee);">💻</div>
+        <div>
+          <h2 style="margin:0 0 6px;">Laptops</h2>
+          <div class="card-subtitle">Track prices, get recommendations, read reviews, and compare laptops</div>
+        </div>
+      </div>
+      <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="tag">Price Tracker</span>
+        <span class="tag">Recommendations</span>
+        <span class="tag">Reviews</span>
+        <span class="tag">Compare</span>
+      </div>
+    </a>
+
+    <a href="{{ url_for('category_hub', category='phones') }}" class="card" style="grid-column: span 6; display:block; text-decoration:none; border:1px solid #e2e8f0; transition:transform .2s, box-shadow .2s;">
+      <div style="display:flex; gap:16px; align-items:center;">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #f97316, #fb7185);">📱</div>
+        <div>
+          <h2 style="margin:0 0 6px;">Mobile Phones</h2>
+          <div class="card-subtitle">Track prices, get recommendations, read reviews, and compare phones</div>
+        </div>
+      </div>
+      <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="tag">Price Tracker</span>
+        <span class="tag">Recommendations</span>
+        <span class="tag">Reviews</span>
+        <span class="tag">Compare</span>
+      </div>
+    </a>
+  </div>
+{% endblock %}
+
+

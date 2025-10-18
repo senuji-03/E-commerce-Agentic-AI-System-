@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Price Tracker • Daraz Agentic AI{% endblock %}
+{% block content %}
+  <div class="grid">
+    <div class="card" style="grid-column: span 12;">
+      <h2>AI Summary</h2>
+      <div style="white-space: pre-wrap; color: #0f172a;">{{ summary }}</div>
+    </div>
+
+    <div class="card" style="grid-column: span 12;">
+      <h2>Tracked Products (Grouped by Website)</h2>
+      {% if not products %}
+        <p class="tag">No products available. Go back and scrape first.</p>
+      {% else %}
+        {% for src, items in groups.items() %}
+          <h3 style="margin-top:20px;">{{ src }}</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Current Price</th>
+                <th>Threshold</th>
+                <th>Status</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in items %}
+              <tr>
+                <td>{{ p.name }}</td>
+                <td>{{ p.price }}</td>
+                <td>{{ p.threshold }}</td>
+                <td>
+                  {% if p.below_threshold %}
+                    <span class="tag warn">Below threshold</span>
+                  {% else %}
+                    <span class="tag ok">Above threshold</span>
+                  {% endif %}
+                </td>
+                <td><a href="{{ p.url }}" target="_blank">View</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% set below = products | selectattr('below_threshold') | list %}
+    {% if below and below|length > 0 %}
+    <div class="card" style="grid-column: span 12;">
+      <div class="card-header">
+        <h3>🎯 Recommend Alternatives for Below-Threshold Items</h3>
+        <div class="card-subtitle">Jump straight to recommendations for these deals</div>
+      </div>
+      <div class="grid" style="row-gap:10px;">
+        {% for p in below %}
+        <div style="grid-column: span 4; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+          <div style="min-width:0;">
+            <div style="font-weight:600; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ p.name }}</div>
+            <div style="font-size:0.9rem; color:#475569;">{{ p.price }}</div>
+          </div>
+          <form method="post" action="{{ url_for('recommendations', category=category) }}" style="margin:0;">
+            <input type="hidden" name="query" value="{{ p.name }}" />
+            <input type="hidden" name="category" value="{{ category or 'phones' }}" />
+            <button class="btn secondary" type="submit"><span class="btn-icon">💡</span>Recommend</button>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    {% endif %}
+    
+    <div class="card" style="grid-column: span 12;">
+      <div class="card-header">
+        <h3>⚖️ Compare Selected</h3>
+        <div class="card-subtitle">Open the comparison tool for the current category</div>
+      </div>
+      <a class="btn secondary" href="{{ url_for('compare', category=category) }}"><span class="btn-icon">⚖️</span>Open Compare</a>
+    </div>
+  </div>
+{% endblock %}
+
+

@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% block title %}Recommendations • Daraz Agentic AI{% endblock %}
+{% block content %}
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">🔍 Smart Product Recommendations</h1>
+      <p class="hero-subtitle">Discover the perfect products with AI-powered recommendations tailored to your preferences</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="grid-column: span 12;">
+      <div class="card-header">
+        <h2>🎯 Recommendation Agent</h2>
+        <p class="card-subtitle">Enter a product name to get personalized recommendations based on similarity and price preferences</p>
+      </div>
+      
+      <form method="post" action="{{ url_for('recommendations', category=category) }}" class="scraping-form">
+        <div class="grid">
+          <div style="grid-column: span 8;">
+            <div class="form-group">
+              <label class="form-label">
+                <span class="label-icon">🔍</span>
+                Product Name
+              </label>
+              <input class="input" type="text" name="query" value="{{ query }}" placeholder="e.g., Samsung Galaxy S24 Ultra, iPhone 15 Pro" />
+              <input type="hidden" name="category" value="{{ category or 'phones' }}" />
+            </div>
+          </div>
+          <div style="grid-column: span 2;">
+            <div class="form-group">
+             
+              
+            </div>
+          </div>
+          <div style="grid-column: span 2; display:flex; align-items:end;">
+            <button class="btn scrape-btn" type="submit">
+              <span class="btn-icon">🚀</span>
+              Get Recommendations
+            </button>
+          </div>
+        </div>
+      </form>
+      
+      <div class="brand-tags">
+        <div class="tags-label">⚡ Quick Search Brands:</div>
+        <div class="tags-container">
+          {% for b in ["Samsung","Xiaomi","Apple","Google","Nokia","Vivo","Redmi","Huawei","OnePlus","Realme","Oppo","Infinix"] %}
+            <a class="brand-tag" href="#" onclick="quickPick('{{ b }}'); return false;">{{ b }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if quick_picks %}
+      <div class="brand-tags">
+        <div class="tags-label">🎯 From Price Tracker (Below Threshold):</div>
+        <div class="tags-container">
+          {% for name in quick_picks %}
+            <a class="brand-tag" href="#" onclick="quickPick('{{ name }}'); return false;">{{ name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if recs %}
+      <div class="card" style="grid-column: span 12; margin-bottom: 20px;">
+        <div class="card-header">
+          <h3>🎯 Recommended Products</h3>
+          <p class="card-subtitle">Found {{ recs|length }} similar products based on your search</p>
+        </div>
+      </div>
+      
+      {% for r in recs %}
+        <div class="card recommendation-card" style="grid-column: span 6;">
+          <div class="recommendation-header">
+            <div class="product-info">
+              <h4 class="product-name">{{ r.name }}</h4>
+              <div class="product-price">💰 {{ r.price }}</div>
+            </div>
+            <div class="similarity-badge">
+              <span class="similarity-score">{{ r.similarity_score }}</span>
+              <span class="similarity-label">Match</span>
+            </div>
+          </div>
+          
+          <div class="recommendation-actions">
+            <a class="btn secondary" href="{{ r.url }}" target="_blank">
+              <span class="btn-icon">🔗</span>
+              View on {{ r.source or 'Site' }}
+            </a>
+            <form method="post" action="{{ url_for('reviews', category=category) }}" style="display:inline-block; margin-left:8px;">
+              <input type="hidden" name="query" value="{{ r.name }}" />
+              <input type="hidden" name="category" value="{{ category or 'phones' }}" />
+              <button class="btn" type="submit">
+                <span class="btn-icon">📝</span>
+                View Reviews
+              </button>
+            </form>
+          </div>
+          
+        </div>
+      {% endfor %}
+    {% elif query %}
+      <div class="card empty-state" style="grid-column: span 12;">
+        <div class="empty-state-content">
+          <div class="empty-state-icon">🔍</div>
+          <h3>No Recommendations Found</h3>
+          <p>We couldn't find any products matching "{{ query }}". Try adjusting your search terms or removing the price filter.</p>
+          <div class="empty-state-suggestions">
+            <p><strong>💡 Suggestions:</strong></p>
+            <ul>
+              <li>Try a more general product name</li>
+              <li>Remove or increase the maximum price limit</li>
+              <li>Check spelling and try different keywords</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="card empty-state" style="grid-column: span 12;">
+        <div class="empty-state-content">
+          <div class="empty-state-icon">🚀</div>
+          <h3>Ready to Discover Products?</h3>
+          <p>Enter a product name above to get personalized recommendations powered by AI similarity matching.</p>
+          <div class="empty-state-features">
+            <div class="feature-item">
+              <span class="feature-icon">🎯</span>
+              <span>Smart similarity matching</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">💰</span>
+              <span>Price-based filtering</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">⚡</span>
+              <span>Quick brand search</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  <script>
+    function quickPick(text){
+      const input = document.querySelector('input[name="query"]');
+      if (input) {
+        input.value = text;
+        input.focus();
+        // Add a subtle animation to show the input was updated
+        input.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          input.style.transform = 'scale(1)';
+        }, 200);
+      }
+    }
+    
+    // Add loading state to form submission
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('form');
+      const submitBtn = document.querySelector('.scrape-btn');
+      
+      if (form && submitBtn) {
+        form.addEventListener('submit', function() {
+          submitBtn.innerHTML = '<span class="btn-icon">⏳</span>Searching...';
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = '0.7';
+        });
+      }
+      
+      // Add smooth scroll to results when they appear
+      const resultsSection = document.querySelector('.recommendation-card');
+      if (resultsSection) {
+        resultsSection.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    });
+  </script>
+{% endblock %}
+
+
