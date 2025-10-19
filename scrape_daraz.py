@@ -575,6 +575,215 @@ def save_headphones_to_json(products, path: str = "daraz_headphones.json") -> No
         json.dump(products, f, ensure_ascii=False, indent=4)
 
 
+# ====== Cameras Category Scraper (Daraz) ======
+def build_cameras_url(brand: str | None = None) -> str:
+    if brand:
+        q = f"{brand} camera"
+        return f"https://www.daraz.lk/catalog/?{urlencode({'q': q, '_keyori': 'ss', 'from': 'input'})}"
+    # Daraz cameras and photos main category covers cameras and accessories; we'll rely on name filter
+    return "https://www.daraz.lk/cameras-photos/"
+
+
+def _cameras_brand_regex(brand: str) -> re.Pattern:
+    variants = {
+        "canon": ["canon"],
+        "nikon": ["nikon"],
+        "sony": ["sony"],
+        "fujifilm": ["fujifilm", "fuji"],
+        "panasonic": ["panasonic", "lumix"],
+        "olympus": ["olympus", "om-system", "om system"],
+        "gopro": ["gopro", "hero"],
+        "dji": ["dji"],
+        "pentax": ["pentax", "ricoh"],
+        "sigma": ["sigma"],
+    }
+    key = brand.strip().lower()
+    words = variants.get(key, [key])
+    pattern = r"(" + r"|".join([re.escape(w) for w in words]) + r")"
+    return re.compile(pattern, re.IGNORECASE)
+
+
+def scrape_daraz_cameras(brand: str | None = None, threshold_str: str = "Rs. 400000", max_items: int = 40):
+    url = build_cameras_url(brand)
+    products_list = []
+    brand_pat = _cameras_brand_regex(brand) if brand else None
+    seen_urls = set()
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
+            headless=True,
+            args=[
+                '--no-sandbox',
+                '--disable-blink-features=AutomationControlled',
+                '--disable-web-security',
+                '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            ]
+        )
+
+        context = browser.new_context(
+            viewport={'width': 1920, 'height': 1080},
+            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        )
+
+        page = context.new_page()
+
+        try:
+            print("Navigating to Daraz cameras category...")
+            page.goto(url, timeout=120000, wait_until="domcontentloaded")
+            page.wait_for_timeout(4000)
+
+            selectors_to_try = [
+                "div[data-qa-locator='product-item']",
+                ".gridItem--Yd0sa",
+                "[data-qa-locator='product-item']",
+                ".product-item",
+                ".gridItem",
+                "div.Bm3ON"
+            ]
+
+            def collect_cards():
+                for selector in selectors_to_try:
+                    cards = page.query_selector_all(selector)
+                    if cards:
+                        return cards
+                return []
+
+            # Progressive scroll to load more items
+            product_cards = collect_cards()
+            last_height = 0
+            stable_rounds = 0
+            for _ in range(20):
+                page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+                page.wait_for_timeout(1200)
+                product_cards = collect_cards()
+                height = page.evaluate("document.body.scrollHeight")
+                if height == last_height:
+                    stable_rounds += 1
+                else:
+                    stable_rounds = 0
+                last_height = height
+                if stable_rounds >= 3 or len(product_cards) >= max_items:
+                    break
+
+            if not product_cards:
+                content = page.content()
+                with open("debug_cameras_page.html", "w", encoding="utf-8") as f:
+                    f.write(content)
+                print("No cameras found. Page content saved to debug_cameras_page.html")
+                print("Page title:", page.title())
+                return []
+
+            def harvest(cards):
+                nonlocal products_list, seen_urls
+                for card in cards:
+                    if len(products_list) >= max_items:
+                        break
+                    try:
+                        name_selectors = [
+                            "a[data-qa-locator='product-name']",
+                            "[data-qa-locator='product-name']",
+                            ".title--wFj93",
+                            "h3",
+                            "a[title]"
+                        ]
+
+                        name = "No Name"
+                        link = "#"
+                        name_tag = None
+                        for name_sel in name_selectors:
+                            name_tag = card.query_selector(name_sel)
+                            if name_tag:
+                                name = name_tag.inner_text().strip()
+                                link = name_tag.get_attribute("href") or "#"
+                                break
+
+                        price_selectors = [
+                            "span[data-qa-locator='product-price']",
+                            "[data-qa-locator='product-price']",
+                            ".currency--GVKjl",
+                            ".price",
+                            "span.ooOxS"
+                        ]
+
+                        price = "No Price"
+                        for price_sel in price_selectors:
+                            price_tag = card.query_selector(price_sel)
+                            if price_tag:
+                                price = price_tag.inner_text().strip()
+                                break
+
+                        if link and link != "#":
+                            if link.startswith("//"):
+                                link = "https:" + link
+                            elif link.startswith("/"):
+                                link = "https://www.daraz.lk" + link
+
+                        # Optional brand filter
+                        if brand_pat and name and not brand_pat.search(name):
+                            continue
+                        # Camera-only filter (avoid accessories when possible)
+                        if name and not re.search(r"camera|dslr|mirrorless|point\s*and\s*shoot|instax|polaroid|lomo|gopro|hero", name, re.IGNORECASE):
+                            continue
+
+                        if link in seen_urls:
+                            continue
+
+                        product = {
+                            "name": name,
+                            "price": price,
+                            "url": link,
+                            "threshold": threshold_str,
+                            "brand": brand or "Cameras",
+                            "source": "Daraz",
+                        }
+
+                        products_list.append(product)
+                        seen_urls.add(link)
+
+                    except Exception:
+                        continue
+
+            harvest(product_cards)
+
+            # Follow pagination if available until we reach max_items
+            next_selectors = [
+                "li.ant-pagination-next:not(.ant-pagination-disabled) a",
+                "a[title='Next Page']",
+                "a[aria-label='Next']",
+            ]
+            page_num = 1
+            while len(products_list) < max_items and page_num < 8:
+                next_btn = None
+                for sel in next_selectors:
+                    el = page.query_selector(sel)
+                    if el:
+                        next_btn = el
+                        break
+                if not next_btn:
+                    break
+                next_btn.click()
+                page.wait_for_timeout(2000)
+                for _ in range(10):
+                    page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+                    page.wait_for_timeout(800)
+                product_cards = collect_cards()
+                harvest(product_cards)
+                page_num += 1
+
+        except Exception as e:
+            print(f"Error during cameras scraping: {str(e)}")
+
+        finally:
+            context.close()
+            browser.close()
+
+    return products_list
+
+
+def save_cameras_to_json(products, path: str = "daraz_cameras.json") -> None:
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(products, f, ensure_ascii=False, indent=4)
+
 if __name__ == "__main__":
     print("Starting Daraz scrapers...")
     brand = "Samsung"

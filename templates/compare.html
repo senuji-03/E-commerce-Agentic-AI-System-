@@ -1,24 +1,24 @@
 {% extends "base.html" %}
-{% block title %}Compare {{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Phones' }} • Daraz Agentic AI{% endblock %}
+{% block title %}Compare {{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Cameras' if category == 'cameras' else 'Phones' }} • Daraz Agentic AI{% endblock %}
 {% block content %}
   <div class="hero-section">
     <div class="hero-content">
-      <h1 class="hero-title">{{ '💻 Laptop Comparison' if category == 'laptops' else '🎧 Headphone Comparison' if category == 'headphones' else '📱 Phone Comparison' }}</h1>
-      <p class="hero-subtitle">Select {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'phones' }} from multiple Sri Lankan retailers and compare the features you care about</p>
+      <h1 class="hero-title">{{ '💻 Laptop Comparison' if category == 'laptops' else '🎧 Headphone Comparison' if category == 'headphones' else '📷 Camera Comparison' if category == 'cameras' else '📱 Phone Comparison' }}</h1>
+      <p class="hero-subtitle">Select {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'cameras' if category == 'cameras' else 'phones' }} from multiple Sri Lankan retailers and compare the features you care about</p>
     </div>
   </div>
 
   <div class="grid">
     <div class="card" style="grid-column: span 12;">
       <div class="card-header">
-        <h2>🔎 Select {{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Phones' }} to Compare</h2>
-        <div class="card-subtitle">Choose up to 5 {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'phones' }} and set your prioritized features (comma-separated)</div>
+        <h2>🔎 Select {{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Cameras' if category == 'cameras' else 'Phones' }} to Compare</h2>
+        <div class="card-subtitle">Choose up to 5 {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'cameras' if category == 'cameras' else 'phones' }} and set your prioritized features (comma-separated)</div>
       </div>
       <form method="post" action="{{ url_for('compare', category=category) }}" class="scraping-form">
         <div class="grid">
           <div style="grid-column: span 8;">
             <div class="form-group">
-              <label class="form-label"><span class="label-icon">🛍️</span>{{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Phones' }}</label>
+              <label class="form-label"><span class="label-icon">🛍️</span>{{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Cameras' if category == 'cameras' else 'Phones' }}</label>
               <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:8px; max-height:280px; overflow:auto; border:1px solid #e2e8f0; border-radius:10px; padding:10px;">
                 {% for p in products %}
                   <label style="display:flex; gap:10px; align-items:flex-start;">

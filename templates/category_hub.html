@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}{{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Mobile Phones' }} • Hub{% endblock %}
+{% block title %}{{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Cameras' if category == 'cameras' else 'Mobile Phones' }} • Hub{% endblock %}
 {% block content %}
   <div class="hero-section">
     <div class="hero-content">
-      <h1 class="hero-title">{{ '💻 Laptops' if category == 'laptops' else '🎧 Headphones' if category == 'headphones' else '📱 Mobile Phones' }}</h1>
+      <h1 class="hero-title">{{ '💻 Laptops' if category == 'laptops' else '🎧 Headphones' if category == 'headphones' else '📷 Cameras' if category == 'cameras' else '📱 Mobile Phones' }}</h1>
       <p class="hero-subtitle">Choose an agent to continue</p>
     </div>
   </div>
@@ -37,12 +37,12 @@
     </div>
 
     <a class="card" style="grid-column: span 6; display:block; text-decoration:none;" href="{{ url_for('tracker', category=category) }}">
-      <div class="card-header"><h2>📈 Price Tracker</h2><div class="card-subtitle">View last scraped items and alerts</div></div>
+      <div class="card-header"><h2>📈 Price Tracker</h2><div class="card-subtitle">View last scraped {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'cameras' if category == 'cameras' else 'phones' }} and alerts</div></div>
       <div class="feature-item"><span class="feature-icon">⚡</span><span>Latest scraped data</span></div>
     </a>
 
     <a class="card" style="grid-column: span 6; display:block; text-decoration:none;" href="{{ url_for('recommendations', category=category) }}">
-      <div class="card-header"><h2>🎯 Recommendations</h2><div class="card-subtitle">AI-powered similar products</div></div>
+      <div class="card-header"><h2>🎯 Recommendations</h2><div class="card-subtitle">AI-powered similar {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'cameras' if category == 'cameras' else 'phones' }}</div></div>
       <div class="feature-item"><span class="feature-icon">🤖</span><span>Smart similarity</span></div>
     </a>
 
