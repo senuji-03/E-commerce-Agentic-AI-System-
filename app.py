@@ -12,7 +12,7 @@ from price_tracker import load_products_from_json, check_prices, llm_summary_ale
 from recommendation_agent import recommend_products, load_products_from_json as load_products_for_reco, filter_below_threshold_products
 from review_agent import analyze_product_reviews
 from compare_agent import compare_selected_phones
-from scrape_daraz import scrape_daraz_laptops
+from scrape_daraz import scrape_daraz_laptops, scrape_daraz_headphones
 
 
 app = Flask(__name__)
@@ -24,6 +24,10 @@ BRANDS = [
 ]
 LAPTOP_BRANDS = [
     "Dell", "ASUS", "HP", "Lenovo", "Apple", "Acer", "MSI"
+]
+HEADPHONE_BRANDS = [
+    "Sony", "Bose", "Sennheiser", "JBL", "Audio-Technica", "Beats", "Skullcandy", 
+    "Jabra", "Philips", "Logitech", "Razer", "HyperX", "SteelSeries", "Corsair"
 ]
 
 
@@ -44,6 +48,9 @@ def dashboard():
     if category == "laptops":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
         brands = LAPTOP_BRANDS
+    elif category == "headphones":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_headphones.json")
+        brands = HEADPHONE_BRANDS
     else:
         data_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
         brands = BRANDS
@@ -71,8 +78,8 @@ def dashboard():
 @app.route("/scrape", methods=["POST"])
 def scrape():
     category = (request.form.get("category") or "phones").lower()
-    brand = request.form.get("brand") or ("Dell" if category == "laptops" else "Samsung")
-    threshold_input = request.form.get("threshold") or "Rs. 400000"
+    brand = request.form.get("brand") or ("Dell" if category == "laptops" else "Sony" if category == "headphones" else "Samsung")
+    threshold_input = request.form.get("threshold") or ("Rs. 400000" if category != "headphones" else "Rs. 50000")
     # Normalize threshold to include Rs. prefix if numeric provided
     if threshold_input.isdigit():
         threshold_input = f"Rs. {int(threshold_input):,}".replace(",", "")
@@ -81,6 +88,10 @@ def scrape():
         # Daraz laptops category with brand filter, target 40 items per brand
         products = scrape_daraz_laptops(brand, threshold_input, max_items=40)
         save_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
+    elif category == "headphones":
+        # Daraz headphones category with brand filter, target 40 items per brand
+        products = scrape_daraz_headphones(brand, threshold_input, max_items=40)
+        save_path = os.path.join(os.path.dirname(__file__), "daraz_headphones.json")
     else:
         # Scrape across multiple Sri Lankan retailers (phones)
         products = scrape_all_sites(brand, threshold_input)
@@ -93,6 +104,9 @@ def scrape():
     if category == "laptops":
         flash(f"Scraped {len(products)} laptops.", "success")
         return redirect(url_for("tracker", category="laptops"))
+    elif category == "headphones":
+        flash(f"Scraped {len(products)} headphones.", "success")
+        return redirect(url_for("tracker", category="headphones"))
     else:
         flash(f"Scraped {len(products)} products for {brand} across multiple sites.", "success")
         return redirect(url_for("tracker", category="phones"))
@@ -101,7 +115,12 @@ def scrape():
 @app.route("/tracker")
 def tracker():
     category = (request.args.get("category") or "phones").lower()
-    data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json" if category == "laptops" else "daraz_products.json")
+    if category == "laptops":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
+    elif category == "headphones":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_headphones.json")
+    else:
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
     products = load_products_from_json(data_path)
     alerts = check_prices(products) if products else []
     summary = llm_summary_alerts(alerts) if products else "🔍 No products tracked yet. Use the home page to scrape a brand first."
@@ -129,7 +148,12 @@ def tracker():
 @app.route("/recommendations", methods=["GET", "POST"])
 def recommendations():
     category = (request.args.get("category") or request.form.get("category") or "phones").lower()
-    data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json" if category == "laptops" else "daraz_products.json")
+    if category == "laptops":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
+    elif category == "headphones":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_headphones.json")
+    else:
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
     all_products = load_products_for_reco(data_path)
     products = filter_below_threshold_products(all_products)
     recs: List[Dict] = []
@@ -159,7 +183,12 @@ def recommendations():
 @app.route("/reviews", methods=["GET", "POST"])
 def reviews():
     category = (request.args.get("category") or request.form.get("category") or "phones").lower()
-    data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json" if category == "laptops" else "daraz_products.json")
+    if category == "laptops":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
+    elif category == "headphones":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_headphones.json")
+    else:
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
     products = load_products_for_reco(data_path)
     product_query = ""
     chosen = None
@@ -185,7 +214,12 @@ def reviews():
 @app.route("/compare", methods=["GET", "POST"])
 def compare():
     category = (request.args.get("category") or request.form.get("category") or "phones").lower()
-    data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json" if category == "laptops" else "daraz_products.json")
+    if category == "laptops":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
+    elif category == "headphones":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_headphones.json")
+    else:
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
     products = load_products_for_reco(data_path)
     selected_urls: List[str] = []
     selected: List[Dict] = []
@@ -207,9 +241,14 @@ def compare():
 @app.route("/category/<category>")
 def category_hub(category: str):
     cat = (category or "phones").lower()
-    if cat not in ("phones", "laptops"):
+    if cat not in ("phones", "laptops", "headphones"):
         cat = "phones"
-    brands = LAPTOP_BRANDS if cat == "laptops" else BRANDS
+    if cat == "laptops":
+        brands = LAPTOP_BRANDS
+    elif cat == "headphones":
+        brands = HEADPHONE_BRANDS
+    else:
+        brands = BRANDS
     return render_template("category_hub.html", category=cat, brands=brands)
 
 

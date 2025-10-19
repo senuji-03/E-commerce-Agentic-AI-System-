@@ -81,8 +81,9 @@
             Category
           </label>
           <select class="input" name="category" id="category-select" onchange="onCategoryChange(this.value)">
-            <option value="phones" {% if category != 'laptops' %}selected{% endif %}>Phones</option>
+            <option value="phones" {% if category not in ['laptops', 'headphones'] %}selected{% endif %}>Phones</option>
             <option value="laptops" {% if category == 'laptops' %}selected{% endif %}>Laptops</option>
+            <option value="headphones" {% if category == 'headphones' %}selected{% endif %}>Headphones</option>
           </select>
         </div>
         <div class="form-group" style="grid-column: span 4;">
