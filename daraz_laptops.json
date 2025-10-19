@@ -1,194 +1,154 @@
 [
     {
-        "name": "REFURBISHED Dell Latitude E7440 Slim Business model Laptop , Core i5 8GB Ram , 500GB Hard Drive",
-        "price": "Rs. 56,500",
-        "url": "https://www.daraz.lk/products/refurbished-dell-latitude-e7440-slim-business-model-laptop-core-i5-8gb-ram-500gb-hard-drive-i136803259.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
+        "name": "Lenovo ThinkPad T495 AMD Ryzen 5 (10th Gen) 16GB Ram 512GB SSD with 5GB graphic Laptop (REFURBISHED)",
+        "price": "Rs. 89,500",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t495-amd-ryzen-5-10th-gen-16gb-ram-512gb-ssd-with-5gb-graphic-laptop-refurbished-i373626661.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
         "source": "Daraz"
     },
     {
-        "name": "Dell Latitude 5490 i7 8th Gen 16GB DDR4 512GB SSD 14inch touch screen Laptop",
-        "price": "Rs. 73,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-5490-i7-8th-gen-16gb-ddr4-512gb-ssd-14inch-touch-screen-laptop-i260472404.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "Dell Latitude 5580 i5 7th Gen 16GB Ram 512GB NVME SSD 15.6inch Laptop",
-        "price": "Rs. 75,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-5580-i5-7th-gen-16gb-ram-512gb-nvme-ssd-156inch-laptop-i260479326.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "[REFURBISHED] Dell Latitude 5400 Core i5 8th Gen 16GB 512GB SSD laptop for School and online work",
-        "price": "Rs. 72,900",
-        "url": "https://www.daraz.lk/products/dell-latitude-5400-core-i5-8th-gen-16gb-512gb-ssd-laptop-i178695816.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "Dell Latitude 7480 Core i5 7th Gen 8gb RAM 256gb SSD Brand New Slim Laptop",
-        "price": "Rs. 118,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-7480-core-i5-7th-gen-8gb-ram-256gb-ssd-brand-new-slim-laptop-i201889699.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "DELL LATITUDE 7480 CORE I5 7TH GEN 8GB RAM 256GB SSD 14 INCH HIGH QUALITY LAPTOP",
-        "price": "Rs. 69,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-7480-core-i5-7th-gen-8gb-ram-256gb-ssd-14-inch-high-quality-laptop-i194137933.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "Dell Latitude E7480 i5 6th Gen 16GB DDR4 512GB SSD Laptop",
-        "price": "Rs. 68,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-e7480-i5-6th-gen-16gb-ddr4-512gb-ssd-laptop-i255933674.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "[REFURBISHED] Dell Latitude E7480 , Core i5 6th Gen 8GB Ram , 256GB SSD 14inch Laptop",
+        "name": "Lenovo ThinkPad X390 i5 8th Gen 8GB 256GB SSD Laptop",
         "price": "Rs. 65,500",
-        "url": "https://www.daraz.lk/products/refurbished-dell-latitude-e7480-core-i5-6th-gen-8gb-ram-256gb-ssd-14inch-laptop-i163673002.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-x390-i5-8th-gen-8gb-256gb-ssd-laptop-i260492294.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
         "source": "Daraz"
     },
     {
-        "name": "Dell Latitude E6430 i5 3rd Gen 8GB Ram 500GB HDD Laptop",
+        "name": "Lenovo ThinkPad T470 i5 7th Generation 8GB/16GB RAM 256GB/512GB SSD Laptop [REFURBISHED]",
+        "price": "Rs. 64,500",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t470-i5-7th-generation-8gb16gb-ram-256gb512gb-ssd-laptop-refurbished-i177723118.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
+        "source": "Daraz"
+    },
+    {
+        "name": "Lenovo ThinkPad T495 Ryzen 5 (9th Gen) 16GB Ram 512GB SSD with 5GB graphic Laptop for gaming and video editing (REFURBISHED)",
+        "price": "Rs. 99,500",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t495-ryzen-5-9th-gen-16gb-ram-512gb-ssd-5gb-i160033539.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
+        "source": "Daraz"
+    },
+    {
+        "name": "Lenovo ThinkPad T570 Core i5 7th Gen 16GB Ram 512GB SSD 15.6 inch Laptop Win11 Pro",
+        "price": "Rs. 69,500",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t570-core-i5-7th-gen-16gb-ram-512gb-ssd-156-inch-laptop-win11-pro-i375009190.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
+        "source": "Daraz"
+    },
+    {
+        "name": "Lenovo ThinkPad T590 i7 8th Gen 16GB 512GB SSD 15.6inch Laptop",
+        "price": "Rs. 93,500",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t590-i7-8th-gen-16gb-512gb-ssd-156inch-laptop-i135023293.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
+        "source": "Daraz"
+    },
+    {
+        "name": "[REFURBISHED] Lenovo ThinkPad T480 / T490 / T580 , Core i5 8th Gen 14inch / 15inch Laptop Win11",
+        "price": "Rs. 79,350",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t480-t490-t580-core-i5-8th-gen-14inch-15inch-win11-i177474667.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
+        "source": "Daraz"
+    },
+    {
+        "name": "[REFURBISHED] Lenovo ThinkPad T14 i7 11th Generation Laptop",
+        "price": "Rs. 144,525",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t14-i7-11th-generation-i156503886.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
+        "source": "Daraz"
+    },
+    {
+        "name": "REFURBISHED] Lenovo Thinkpad X1 Carbon , Core i5 8th Gen 8GB Ram , 256GB SSD 14inch light weight (1kg) Laptop",
+        "price": "Rs. 89,800",
+        "url": "https://www.daraz.lk/products/refurbished-lenovo-thinkpad-x1-carbon-core-i5-8th-gen-8gb-ram-256gb-ssd-14inch-light-weight-1kg-laptop-i178938504.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
+        "source": "Daraz"
+    },
+    {
+        "name": "Lenovo Thinkpad T460 i5 6th Gen 16GB Ram 256GB SSD 14inch Full HD Laptop",
+        "price": "Rs. 64,400",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t460-i5-6th-gen-16gb-ram-256gb-ssd-14inch-full-hd-laptop-i135283444.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
+        "source": "Daraz"
+    },
+    {
+        "name": "Lenovo ThinkPad T14 i7 11th Gen 16GB 512GB SSD Laptop",
+        "price": "Rs. 139,500",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t14-i7-11th-gen-16gb-512gb-ssd-laptop-i374046001.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
+        "source": "Daraz"
+    },
+    {
+        "name": "LENOVO THINKPAD P15 GEN 1 (NVIDIA Quadro T2000 4GB) | 16GB RAM | 512GB SSD | USED LAPTOP",
+        "price": "Rs. 182,500",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-p15-gen-1-nvidia-quadro-t2000-4gb-16gb-ram-512gb-ssd-used-laptop-i577023733.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
+        "source": "Daraz"
+    },
+    {
+        "name": "Lenovo ThinkPad T580 Core i5 8th Gen 15inch Laptop Win11 Pro",
         "price": "Rs. 84,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-e6430-i5-3rd-gen-8gb-ram-500gb-hdd-laptop-i253069264.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t580-core-i5-8th-gen-15inch-laptop-win11-pro-i373645301.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
         "source": "Daraz"
     },
     {
-        "name": "DELL Latitude 5490 i5 8th Gen 8GB 256GB SSD Laptop",
-        "price": "Rs. 78,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-5490-i5-8th-gen-8gb-256gb-ssd-laptop-i139239777.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
+        "name": "Lenovo ThinkPad X260 i5 6th Gen 16GB 512GB SSD portable Laptop",
+        "price": "Rs. 59,250",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-x260-i5-6th-gen-16gb-512gb-ssd-portable-laptop-i374985506.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
         "source": "Daraz"
     },
     {
-        "name": "Dell Latitude 5510 i5 10th Gen Laptop 16GB 256GB/512GB NVME SSD 15.6inch Laptop",
-        "price": "Rs. 98,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-5510-i5-10th-gen-laptop-16gb-256gb512gb-nvme-ssd-156inch-laptop-i305319158.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
+        "name": "[REFURBISHED] Lenovo ThinkPad L480 Core i5 8th Gen 14inch Laptop",
+        "price": "Rs. 72,750",
+        "url": "https://www.daraz.lk/products/refurbished-lenovo-thinkpad-l480-core-i5-8th-gen-14inch-laptop-i166216807.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
         "source": "Daraz"
     },
     {
-        "name": "[REFURBISHED] - Dell Latitude E5250 Core i5 5th Gen laptop 8GB Ram 256GB SSD Drive",
-        "price": "Rs. 58,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-e5250-core-i5-5th-gen-8gb-ram-256gb-ssd-drive-i180594593.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
+        "name": "IdeaPad 1 15igL7 12th Gen Intel N4020 Laptop 4GB | 256NVME",
+        "price": "Rs. 85,000",
+        "url": "https://www.daraz.lk/products/ideapad-1-15igl7-12th-gen-intel-n4020-laptop-4gb-256nvme-i513149119.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
         "source": "Daraz"
     },
     {
-        "name": "Dell Latitude 7480 Core i5 6th Gen 8gb RAM 256gb SSD Brand New Slim Laptop",
-        "price": "Rs. 110,000",
-        "url": "https://www.daraz.lk/products/dell-latitude-7480-core-i5-6th-gen-8gb-ram-256gb-ssd-brand-new-slim-laptop-i216023906.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
+        "name": "Lenovo Legion 5 15IRX10 i9-14900HX | RTX 5070 | 32GB RAM | 1TB SSD | 15.1\"\" OLED Gaming Laptop",
+        "price": "Rs. 662,983",
+        "url": "https://www.daraz.lk/products/lenovo-legion-5-15irx10-i9-14900hx-rtx-5070-32gb-ram-1tb-ssd-151-oled-gaming-laptop-i611602291.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
         "source": "Daraz"
     },
     {
-        "name": "Dell Latitude 5490 , Core i5 8th Gen 16GB Ram , 256GB SSD 14inch Laptop",
-        "price": "Rs. 135,000",
-        "url": "https://www.daraz.lk/products/dell-latitude-5490-core-i5-8th-gen-16gb-ram-256gb-ssd-14inch-laptop-i196081369.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
+        "name": "Lenovo IdeaPad Slim 3 i5 13420H 16GB 512GB 15.6\"\" FHD Laptop",
+        "price": "Rs. 176,728",
+        "url": "https://www.daraz.lk/products/lenovo-ideapad-slim-3-i5-13420h-16gb-512gb-156-fhd-laptop-i611322316.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
         "source": "Daraz"
     },
     {
-        "name": "Dell Latitude 5300 FHD Intel i5-8Gen 100% sRGB 8GB RAM, 256GB NVMe Imported Laptop",
-        "price": "Rs. 96,900",
-        "url": "https://www.daraz.lk/products/dell-latitude-5300-intel-i5-8th-gen-imported-laptop-with-free-laptop-bag-i226301944.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "Dell Latitude 7300 i5 8th Gen 16GB Ram 512GB NVME SSD Laptop",
-        "price": "Rs. 78,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-7300-i5-8th-gen-16gb-ram-512gb-nvme-ssd-laptop-i374009000.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "Dell Alienware M18 R2 Intel Core i9, 14th gen 4TB SSD, 64gb RAM 18 inches Gaming Laptop",
-        "price": "Rs. 380,000",
-        "url": "https://www.daraz.lk/products/dell-alienware-m18-r2-intel-core-i9-14th-gen-4tb-ssd-64gb-ram-18-inches-gaming-laptop-i607473762.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "DELL LATITUDE 5411 | 16GB RAM | 512GB SSD | USED LAPTOP",
-        "price": "Rs. 215,000",
-        "url": "https://www.daraz.lk/products/dell-latitude-5411-16gb-ram-512gb-ssd-used-laptop-i576241141.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "Dell Pricision 3551 i7 10th Gen 16GB DDR4 512GB SSD Nvidia P620 4GB Graphic 15.6 workstation Laptop",
-        "price": "Rs. 158,700",
-        "url": "https://www.daraz.lk/products/dell-pricision-3551-i7-10th-gen-16gb-ddr4-512gb-ssd-nvidia-p620-4gb-graphic-156-workstation-laptop-i260570617.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "Dell Latitude 5400 i5 8th Gen 16GB DDR4 512GB SSD Laptop",
-        "price": "Rs. 71,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-5400-i5-8th-gen-16gb-ddr4-512gb-ssd-laptop-i204370698.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "Dell Latitude 5580 quad core i7 6th Gen 16GB Ram 512GB NVME SSD 15.6inch Laptop",
-        "price": "Rs. 68,400",
-        "url": "https://www.daraz.lk/products/dell-latitude-5580-quad-core-i7-6th-gen-16gb-ram-512gb-nvme-ssd-156inch-laptop-i374969833.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "DELL LATITUDE 5450 CORE I5 5TH GEN 8GB RAM 256GB SSD 14 INCH HIGH QUALITY LAPTOP",
-        "price": "Rs. 96,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-5450-core-i5-5th-gen-8gb-ram-256gb-ssd-14-inch-high-quality-laptop-i205565131.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "Dell Latitude E5470 14 inches HD Laptop, Core i3-6100U 2.3GHz, 8GB, 500GBHard Drive , Windows 10 Pro 64Bit",
-        "price": "Rs. 56,000",
-        "url": "https://www.daraz.lk/products/dell-latitude-e5470-14-inches-hd-laptop-core-i3-6100u-23ghz-8gb-500gbhard-drive-windows-10-pro-64bit-i370861048.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
-        "source": "Daraz"
-    },
-    {
-        "name": "Dell Latitude 3310 2-in-1 Laptop, 14-inch FHD (1920 x 1080) Touchscreen, Intel Core i5-8th Gen, 8GB RAM, 256GB Class 35 SSD, Windows 11 Pro- Titan Gray",
-        "price": "Rs. 128,500",
-        "url": "https://www.daraz.lk/products/dell-latitude-3310-2-in-1-laptop-14-inch-fhd-1920-x-1080-touchscreen-intel-core-i5-8th-gen-8gb-ram-256gb-class-35-ssd-windows-11-pro-titan-gray-i301751454.html",
-        "threshold": "Rs. 400000",
-        "brand": "Dell",
+        "name": "Lenovo ThinkPad T470 14-inch Laptop - 14-inch FHD (1920x1080) IPS Display, 7th Gen Intel i5-7300U Processor, 8GB RAM, 256GB PCIe NVMe SSD",
+        "price": "Rs. 62,500",
+        "url": "https://www.daraz.lk/products/lenovo-thinkpad-t470-14-inch-laptop-14-inch-fhd-1920x1080-ips-display-7th-gen-intel-i5-7300u-processor-8gb-ram-256gb-pcie-nvme-ssd-i370015099.html",
+        "threshold": "Rs. 200000",
+        "brand": "Lenovo",
         "source": "Daraz"
     }
 ]

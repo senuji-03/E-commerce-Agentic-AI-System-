@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}{{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Cameras' if category == 'cameras' else 'Mobile Phones' }} • Hub{% endblock %}
+{% block title %}{{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Cameras' if category == 'cameras' else 'Smartwatches' if category == 'smartwatches' else 'Bluetooth Speakers' if category == 'speakers' else 'Mobile Phones' }} • Hub{% endblock %}
 {% block content %}
   <div class="hero-section">
     <div class="hero-content">
-      <h1 class="hero-title">{{ '💻 Laptops' if category == 'laptops' else '🎧 Headphones' if category == 'headphones' else '📷 Cameras' if category == 'cameras' else '📱 Mobile Phones' }}</h1>
+      <h1 class="hero-title">{{ '💻 Laptops' if category == 'laptops' else '🎧 Headphones' if category == 'headphones' else '📷 Cameras' if category == 'cameras' else '⌚ Smartwatches' if category == 'smartwatches' else '🔊 Bluetooth Speakers' if category == 'speakers' else '📱 Mobile Phones' }}</h1>
       <p class="hero-subtitle">Choose an agent to continue</p>
     </div>
   </div>

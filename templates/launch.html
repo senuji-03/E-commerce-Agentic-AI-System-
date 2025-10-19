@@ -4,7 +4,7 @@
   <div class="hero-section">
     <div class="hero-content">
       <h1 class="hero-title">Choose Your Category</h1>
-      <p class="hero-subtitle">Start with Laptops, Mobile Phones, Headphones, or Cameras to explore tracking, recommendations, reviews, and comparisons</p>
+      <p class="hero-subtitle">Start with Laptops, Mobile Phones, Headphones, Cameras, Smartwatches, or Bluetooth Speakers to explore tracking, recommendations, reviews, and comparisons</p>
     </div>
   </div>
 
@@ -63,6 +63,38 @@
         <div>
           <h2 style="margin:0 0 6px;">Cameras</h2>
           <div class="card-subtitle">Track prices, get recommendations, read reviews, and compare cameras</div>
+        </div>
+      </div>
+      <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="tag">Price Tracker</span>
+        <span class="tag">Recommendations</span>
+        <span class="tag">Reviews</span>
+        <span class="tag">Compare</span>
+      </div>
+    </a>
+
+    <a href="{{ url_for('category_hub', category='smartwatches') }}" class="card" style="grid-column: span 4; display:block; text-decoration:none; border:1px solid #e2e8f0; transition:transform .2s, box-shadow .2s;">
+      <div style="display:flex; gap:16px; align-items:center;">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #06b6d4, #0ea5e9);">⌚</div>
+        <div>
+          <h2 style="margin:0 0 6px;">Smartwatches</h2>
+          <div class="card-subtitle">Track prices, get recommendations, read reviews, and compare smartwatches</div>
+        </div>
+      </div>
+      <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="tag">Price Tracker</span>
+        <span class="tag">Recommendations</span>
+        <span class="tag">Reviews</span>
+        <span class="tag">Compare</span>
+      </div>
+    </a>
+
+    <a href="{{ url_for('category_hub', category='speakers') }}" class="card" style="grid-column: span 4; display:block; text-decoration:none; border:1px solid #e2e8f0; transition:transform .2s, box-shadow .2s;">
+      <div style="display:flex; gap:16px; align-items:center;">
+        <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">🔊</div>
+        <div>
+          <h2 style="margin:0 0 6px;">Bluetooth Speakers</h2>
+          <div class="card-subtitle">Track prices, get recommendations, read reviews, and compare speakers</div>
         </div>
       </div>
       <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">

@@ -12,7 +12,7 @@ from price_tracker import load_products_from_json, check_prices, llm_summary_ale
 from recommendation_agent import recommend_products, load_products_from_json as load_products_for_reco, filter_below_threshold_products
 from review_agent import analyze_product_reviews
 from compare_agent import compare_selected_phones
-from scrape_daraz import scrape_daraz_laptops, scrape_daraz_headphones, scrape_daraz_cameras
+from scrape_daraz import scrape_daraz_laptops, scrape_daraz_headphones, scrape_daraz_cameras, scrape_daraz_smartwatches, scrape_daraz_speakers
 
 
 app = Flask(__name__)
@@ -34,11 +34,60 @@ CAMERA_BRANDS = [
     "Canon", "Nikon", "Sony", "Fujifilm", "Panasonic", "Olympus", "GoPro", "DJI", "Pentax"
 ]
 
+SMARTWATCH_BRANDS = [
+    "Apple", "Samsung", "Huawei", "Xiaomi", "Amazfit", "Garmin", "Fitbit", "Realme", "OnePlus", "OPPO"
+]
+
+SPEAKER_BRANDS = [
+    "JBL", "Sony", "Bose", "Anker", "Marshall", "UE", "boAt", "Xiaomi", "Huawei", "Samsung", "Philips", "Logitech"
+]
+
 
 def parse_price_numeric(price_str: str) -> int | None:
     # Lazy import from price_tracker to avoid duplication
     from price_tracker import parse_price
     return parse_price(price_str)
+
+
+def normalize_category(raw: str | None) -> str:
+    cat = (raw or "phones").strip().lower()
+    aliases = {
+        "smartwatch": "smartwatches",
+        "smart-watch": "smartwatches",
+        "smart watch": "smartwatches",
+        "smart-watches": "smartwatches",
+        "smartwatches": "smartwatches",
+        "watch": "smartwatches",
+        "watches": "smartwatches",
+        "camera": "cameras",
+        "cameras": "cameras",
+        "headphone": "headphones",
+        "headphones": "headphones",
+        "laptop": "laptops",
+        "laptops": "laptops",
+        "phone": "phones",
+        "phones": "phones",
+        "speaker": "speakers",
+        "speakers": "speakers",
+        "bluetooth speaker": "speakers",
+        "bluetooth speakers": "speakers",
+    }
+    if cat in aliases:
+        return aliases[cat]
+    # Heuristic contains checks
+    if ("smart" in cat and "watch" in cat):
+        return "smartwatches"
+    if "camera" in cat:
+        return "cameras"
+    if "headphone" in cat:
+        return "headphones"
+    if "speaker" in cat:
+        return "speakers"
+    if "laptop" in cat:
+        return "laptops"
+    if "phone" in cat:
+        return "phones"
+    return cat
 
 
 @app.route("/")
@@ -48,7 +97,7 @@ def index():
 
 @app.route("/dashboard")
 def dashboard():
-    category = (request.args.get("category") or "phones").lower()
+    category = normalize_category(request.args.get("category"))
     if category == "laptops":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
         brands = LAPTOP_BRANDS
@@ -58,6 +107,12 @@ def dashboard():
     elif category == "cameras":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_cameras.json")
         brands = CAMERA_BRANDS
+    elif category == "smartwatches":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_smartwatches.json")
+        brands = SMARTWATCH_BRANDS
+    elif category == "speakers":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_speakers.json")
+        brands = SPEAKER_BRANDS
     else:
         data_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
         brands = BRANDS
@@ -84,8 +139,8 @@ def dashboard():
 
 @app.route("/scrape", methods=["POST"])
 def scrape():
-    category = (request.form.get("category") or "phones").lower()
-    brand = request.form.get("brand") or ("Dell" if category == "laptops" else "Sony" if category == "headphones" else "Canon" if category == "cameras" else "Samsung")
+    category = normalize_category(request.form.get("category"))
+    brand = request.form.get("brand") or ("Dell" if category == "laptops" else "Sony" if category == "headphones" else "Canon" if category == "cameras" else "Apple" if category == "smartwatches" else "JBL" if category == "speakers" else "Samsung")
     threshold_input = request.form.get("threshold") or ("Rs. 50000" if category == "headphones" else "Rs. 400000")
     # Normalize threshold to include Rs. prefix if numeric provided
     if threshold_input.isdigit():
@@ -103,6 +158,14 @@ def scrape():
         # Daraz cameras category with brand filter, target 40 items per brand
         products = scrape_daraz_cameras(brand, threshold_input, max_items=40)
         save_path = os.path.join(os.path.dirname(__file__), "daraz_cameras.json")
+    elif category == "smartwatches":
+        # Daraz smartwatches category with brand filter, target 40 items per brand
+        products = scrape_daraz_smartwatches(brand, threshold_input, max_items=40)
+        save_path = os.path.join(os.path.dirname(__file__), "daraz_smartwatches.json")
+    elif category == "speakers":
+        # Daraz speakers category with brand filter, target 40 items per brand
+        products = scrape_daraz_speakers(brand, threshold_input, max_items=40)
+        save_path = os.path.join(os.path.dirname(__file__), "daraz_speakers.json")
     else:
         # Scrape across multiple Sri Lankan retailers (phones)
         products = scrape_all_sites(brand, threshold_input)
@@ -121,6 +184,12 @@ def scrape():
     elif category == "cameras":
         flash(f"Scraped {len(products)} cameras.", "success")
         return redirect(url_for("tracker", category="cameras"))
+    elif category == "smartwatches":
+        flash(f"Scraped {len(products)} smartwatches.", "success")
+        return redirect(url_for("tracker", category="smartwatches"))
+    elif category == "speakers":
+        flash(f"Scraped {len(products)} speakers.", "success")
+        return redirect(url_for("tracker", category="speakers"))
     else:
         flash(f"Scraped {len(products)} products for {brand} across multiple sites.", "success")
         return redirect(url_for("tracker", category="phones"))
@@ -128,13 +197,17 @@ def scrape():
 
 @app.route("/tracker")
 def tracker():
-    category = (request.args.get("category") or "phones").lower()
+    category = normalize_category(request.args.get("category"))
     if category == "laptops":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
     elif category == "headphones":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_headphones.json")
     elif category == "cameras":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_cameras.json")
+    elif category == "smartwatches":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_smartwatches.json")
+    elif category == "speakers":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_speakers.json")
     else:
         data_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
     products = load_products_from_json(data_path)
@@ -163,13 +236,17 @@ def tracker():
 
 @app.route("/recommendations", methods=["GET", "POST"])
 def recommendations():
-    category = (request.args.get("category") or request.form.get("category") or "phones").lower()
+    category = normalize_category(request.args.get("category") or request.form.get("category"))
     if category == "laptops":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
     elif category == "headphones":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_headphones.json")
     elif category == "cameras":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_cameras.json")
+    elif category == "smartwatches":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_smartwatches.json")
+    elif category == "speakers":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_speakers.json")
     else:
         data_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
     all_products = load_products_for_reco(data_path)
@@ -200,13 +277,17 @@ def recommendations():
 
 @app.route("/reviews", methods=["GET", "POST"])
 def reviews():
-    category = (request.args.get("category") or request.form.get("category") or "phones").lower()
+    category = normalize_category(request.args.get("category") or request.form.get("category"))
     if category == "laptops":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
     elif category == "headphones":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_headphones.json")
     elif category == "cameras":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_cameras.json")
+    elif category == "smartwatches":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_smartwatches.json")
+    elif category == "speakers":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_speakers.json")
     else:
         data_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
     products = load_products_for_reco(data_path)
@@ -233,13 +314,17 @@ def reviews():
 
 @app.route("/compare", methods=["GET", "POST"])
 def compare():
-    category = (request.args.get("category") or request.form.get("category") or "phones").lower()
+    category = normalize_category(request.args.get("category") or request.form.get("category"))
     if category == "laptops":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_laptops.json")
     elif category == "headphones":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_headphones.json")
     elif category == "cameras":
         data_path = os.path.join(os.path.dirname(__file__), "daraz_cameras.json")
+    elif category == "smartwatches":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_smartwatches.json")
+    elif category == "speakers":
+        data_path = os.path.join(os.path.dirname(__file__), "daraz_speakers.json")
     else:
         data_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
     products = load_products_for_reco(data_path)
@@ -262,8 +347,8 @@ def compare():
 
 @app.route("/category/<category>")
 def category_hub(category: str):
-    cat = (category or "phones").lower()
-    if cat not in ("phones", "laptops", "headphones", "cameras"):
+    cat = normalize_category(category)
+    if cat not in ("phones", "laptops", "headphones", "cameras", "smartwatches", "speakers"):
         cat = "phones"
     if cat == "laptops":
         brands = LAPTOP_BRANDS
@@ -271,6 +356,10 @@ def category_hub(category: str):
         brands = HEADPHONE_BRANDS
     elif cat == "cameras":
         brands = CAMERA_BRANDS
+    elif cat == "smartwatches":
+        brands = SMARTWATCH_BRANDS
+    elif cat == "speakers":
+        brands = SPEAKER_BRANDS
     else:
         brands = BRANDS
     return render_template("category_hub.html", category=cat, brands=brands)
