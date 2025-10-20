@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 import os
 import json
 from typing import List, Dict
 from dotenv import load_dotenv
+from functools import wraps
 
 # Load environment variables
 load_dotenv()
@@ -13,10 +14,14 @@ from recommendation_agent import recommend_products, load_products_from_json as 
 from review_agent import analyze_product_reviews
 from compare_agent import compare_selected_phones
 from scrape_daraz import scrape_daraz_laptops, scrape_daraz_headphones, scrape_daraz_cameras, scrape_daraz_smartwatches, scrape_daraz_speakers
+from user_auth import UserAuth
 
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-secret-key")
+
+# Initialize user authentication
+user_auth = UserAuth()
 
 
 BRANDS = [
@@ -41,6 +46,24 @@ SMARTWATCH_BRANDS = [
 SPEAKER_BRANDS = [
     "JBL", "Sony", "Bose", "Anker", "Marshall", "UE", "boAt", "Xiaomi", "Huawei", "Samsung", "Philips", "Logitech"
 ]
+
+
+def login_required(f):
+    """Decorator to require login for certain routes"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session:
+            flash('Please log in to access this page.', 'error')
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+def get_current_user():
+    """Get current logged in user data"""
+    if 'user_id' in session:
+        return user_auth.get_user_by_id(session['user_id'])
+    return None
 
 
 def parse_price_numeric(price_str: str) -> int | None:
@@ -95,7 +118,58 @@ def index():
     return render_template("launch.html")
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username", "").strip()
+        password = request.form.get("password", "")
+        
+        result = user_auth.login_user(username, password)
+        
+        if result["success"]:
+            session['user_id'] = result['user_id']
+            session['username'] = result['username']
+            flash(result["message"], "success")
+            return redirect(url_for('dashboard'))
+        else:
+            flash(result["message"], "error")
+    
+    return render_template("login.html")
+
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        username = request.form.get("username", "").strip()
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password", "")
+        confirm_password = request.form.get("confirm_password", "")
+        
+        # Basic validation
+        if password != confirm_password:
+            flash("Passwords do not match.", "error")
+            return render_template("signup.html")
+        
+        result = user_auth.register_user(username, email, password)
+        
+        if result["success"]:
+            flash(result["message"], "success")
+            return redirect(url_for('login'))
+        else:
+            flash(result["message"], "error")
+    
+    return render_template("signup.html")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    flash("You have been logged out successfully.", "success")
+    return redirect(url_for('index'))
+
+
 @app.route("/dashboard")
+@login_required
 def dashboard():
     category = normalize_category(request.args.get("category"))
     if category == "laptops":
@@ -138,6 +212,7 @@ def dashboard():
 
 
 @app.route("/scrape", methods=["POST"])
+@login_required
 def scrape():
     category = normalize_category(request.form.get("category"))
     brand = request.form.get("brand") or ("Dell" if category == "laptops" else "Sony" if category == "headphones" else "Canon" if category == "cameras" else "Apple" if category == "smartwatches" else "JBL" if category == "speakers" else "Samsung")
@@ -196,6 +271,7 @@ def scrape():
 
 
 @app.route("/tracker")
+@login_required
 def tracker():
     category = normalize_category(request.args.get("category"))
     if category == "laptops":
@@ -235,6 +311,7 @@ def tracker():
 
 
 @app.route("/recommendations", methods=["GET", "POST"])
+@login_required
 def recommendations():
     category = normalize_category(request.args.get("category") or request.form.get("category"))
     if category == "laptops":
@@ -276,6 +353,7 @@ def recommendations():
 
 
 @app.route("/reviews", methods=["GET", "POST"])
+@login_required
 def reviews():
     category = normalize_category(request.args.get("category") or request.form.get("category"))
     if category == "laptops":
@@ -313,6 +391,7 @@ def reviews():
 
 
 @app.route("/compare", methods=["GET", "POST"])
+@login_required
 def compare():
     category = normalize_category(request.args.get("category") or request.form.get("category"))
     if category == "laptops":
@@ -346,6 +425,7 @@ def compare():
 
 
 @app.route("/category/<category>")
+@login_required
 def category_hub(category: str):
     cat = normalize_category(category)
     if cat not in ("phones", "laptops", "headphones", "cameras", "smartwatches", "speakers"):

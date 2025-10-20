@@ -5,6 +5,15 @@
     <div class="hero-content">
       <h1 class="hero-title">Choose Your Category</h1>
       <p class="hero-subtitle">Start with Laptops, Mobile Phones, Headphones, Cameras, Smartwatches, or Bluetooth Speakers to explore tracking, recommendations, reviews, and comparisons</p>
+      {% if not session.user_id %}
+        <div class="auth-prompt">
+          <p>🔐 <strong>Please sign up or log in</strong> to access all features including price tracking, recommendations, and product comparisons.</p>
+          <div class="auth-buttons">
+            <a href="{{ url_for('signup') }}" class="btn">Sign Up</a>
+            <a href="{{ url_for('login') }}" class="btn secondary">Login</a>
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 
@@ -105,6 +114,62 @@
       </div>
     </a>
   </div>
+
+<style>
+.auth-prompt {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 30px;
+  border: 2px solid var(--brand-lightest);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.auth-prompt p {
+  color: var(--text);
+  font-size: 1rem;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.auth-buttons .btn {
+  padding: 12px 24px;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.auth-buttons .btn:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+  .auth-prompt {
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .auth-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .auth-buttons .btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+</style>
 {% endblock %}
 
 

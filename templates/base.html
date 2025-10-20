@@ -88,6 +88,61 @@
         transform: translateY(-1px);
       }
       
+      .nav-user {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-left: 20px;
+        padding-left: 20px;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .user-greeting {
+        color: white;
+        font-weight: 500;
+        font-size: 0.875rem;
+      }
+      
+      .logout-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .logout-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-1px);
+      }
+      
+      .login-btn, .signup-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .login-btn:hover, .signup-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-1px);
+      }
+      
+      .signup-btn {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      
+      .signup-btn:hover {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+      }
+      
       .container { 
         max-width: 1100px; 
         margin: 0 auto; 
@@ -731,6 +786,21 @@
           text-align: left;
           display: inline-block;
         }
+        
+        .nav-user {
+          margin-left: 10px;
+          padding-left: 10px;
+          gap: 8px;
+        }
+        
+        .user-greeting {
+          font-size: 0.8rem;
+        }
+        
+        .logout-btn, .login-btn, .signup-btn {
+          padding: 6px 10px;
+          font-size: 0.75rem;
+        }
       }
     </style>
   </head>
@@ -740,11 +810,20 @@
         <div class="brand">Ecommerce Agentic AI</div>
         <div class="nav">
           <a href="{{ url_for('index') }}">Home</a>
-          <a href="{{ url_for('tracker') }}">Price Tracker</a>
-          <a href="{{ url_for('recommendations') }}">Recommendations</a>
-          <a href="{{ url_for('reviews') }}">Reviews</a>
-          <a href="{{ url_for('compare') }}">Compare</a>
-          <a href="{{ url_for('dashboard') }}">Dashboard</a>
+          {% if session.user_id %}
+            <a href="{{ url_for('tracker') }}">Price Tracker</a>
+            <a href="{{ url_for('recommendations') }}">Recommendations</a>
+            <a href="{{ url_for('reviews') }}">Reviews</a>
+            <a href="{{ url_for('compare') }}">Compare</a>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <div class="nav-user">
+              <span class="user-greeting">👋 {{ session.username }}</span>
+              <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+            </div>
+          {% else %}
+            <a href="{{ url_for('login') }}" class="login-btn">Login</a>
+            <a href="{{ url_for('signup') }}" class="signup-btn">Sign Up</a>
+          {% endif %}
         </div>
       </div>
     </header>
