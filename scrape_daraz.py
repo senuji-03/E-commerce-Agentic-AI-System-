@@ -3,6 +3,18 @@ import time
 from urllib.parse import urlencode
 from playwright.sync_api import sync_playwright
 import re
+import random
+
+
+# Simple responsible AI practices
+def _add_delay():
+    """Add small delay to be respectful to servers"""
+    time.sleep(random.uniform(1, 2))
+
+
+def _get_bot_user_agent():
+    """Transparent user agent that identifies our bot"""
+    return "EcomAIAgent/1.0 (Price Tracker Bot) Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 
 
 def build_search_url(brand: str) -> str:
@@ -17,21 +29,26 @@ def build_search_url(brand: str) -> str:
 def scrape_daraz_products(brand: str, threshold_str: str = "Rs. 400000"):
     url = build_search_url(brand)
     products_list = []
+    
+    # Add initial delay
+    _add_delay()
 
     with sync_playwright() as p:
+        bot_user_agent = _get_bot_user_agent()
+        
         browser = p.chromium.launch(
             headless=True,
             args=[
                 '--no-sandbox',
                 '--disable-blink-features=AutomationControlled',
                 '--disable-web-security',
-                '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                f'--user-agent={bot_user_agent}'
             ]
         )
 
         context = browser.new_context(
             viewport={'width': 1920, 'height': 1080},
-            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            user_agent=bot_user_agent
         )
 
         page = context.new_page()
@@ -40,6 +57,11 @@ def scrape_daraz_products(brand: str, threshold_str: str = "Rs. 400000"):
             print(f"Navigating to Daraz search for brand: {brand}...")
             page.goto(url, timeout=120000, wait_until="domcontentloaded")
             page.wait_for_timeout(5000)
+            
+            # Check if page loaded successfully
+            if "daraz" not in page.url.lower():
+                print("Warning: Redirected away from Daraz. This might be due to anti-bot measures.")
+                return []
 
             selectors_to_try = [
                 "div[data-qa-locator='product-item']",
@@ -76,8 +98,11 @@ def scrape_daraz_products(brand: str, threshold_str: str = "Rs. 400000"):
                 print("Page title:", page.title())
                 return []
 
-            for card in product_cards:
+            for i, card in enumerate(product_cards):
                 try:
+                    # Add small delay between products
+                    if i > 0:
+                        _add_delay()
                     name_selectors = [
                         "a[data-qa-locator='product-name']",
                         "[data-qa-locator='product-name']",
@@ -132,6 +157,10 @@ def scrape_daraz_products(brand: str, threshold_str: str = "Rs. 400000"):
 
         except Exception as e:
             print(f"Error during scraping: {str(e)}")
+            print("This might be due to:")
+            print("- Network connectivity issues")
+            print("- Daraz website changes") 
+            print("- Anti-bot protection measures")
 
         finally:
             context.close()
