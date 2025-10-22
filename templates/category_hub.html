@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block title %}{{ 'Laptops' if category == 'laptops' else 'Headphones' if category == 'headphones' else 'Cameras' if category == 'cameras' else 'Smartwatches' if category == 'smartwatches' else 'Bluetooth Speakers' if category == 'speakers' else 'Mobile Phones' }} • Hub{% endblock %}
 {% block content %}
-  <div class="hero-section">
+  <div class="hero-section" style="padding: 2rem 0; min-height: auto;">
     <div class="hero-content">
-      <h1 class="hero-title">{{ '💻 Laptops' if category == 'laptops' else '🎧 Headphones' if category == 'headphones' else '📷 Cameras' if category == 'cameras' else '⌚ Smartwatches' if category == 'smartwatches' else '🔊 Bluetooth Speakers' if category == 'speakers' else '📱 Mobile Phones' }}</h1>
-      <p class="hero-subtitle">Choose an agent to continue</p>
+      <h1 class="hero-title" style="font-size: 2.5rem; margin-bottom: 0.5rem;">{{ '💻 Laptops' if category == 'laptops' else '🎧 Headphones' if category == 'headphones' else '📷 Cameras' if category == 'cameras' else '⌚ Smartwatches' if category == 'smartwatches' else '🔊 Bluetooth Speakers' if category == 'speakers' else '📱 Mobile Phones' }}</h1>
+      <p class="hero-subtitle" style="font-size: 1.1rem; margin: 0;">Choose an agent to continue</p>
     </div>
   </div>
 
   <div class="grid">
     <div class="card" style="grid-column: span 15;">
-      <div class="card-header">
-        <h2>🔍 Brand Selection & Scraping</h2>
-        <div class="card-subtitle">Update product prices and discover new items</div>
+      <div class="card-header" style="background: transparent; border: 2px solid #3b82f6; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);">
+        <h2 style="color: #1e40af; margin: 0 0 0.5rem 0; font-size: 1.5rem; font-weight: 600;">🔍 Brand Selection & Scraping</h2>
+        <div class="card-subtitle" style="color: #475569; font-size: 1rem; margin: 0;">Update product prices and discover new items</div>
       </div>
       <form method="post" action="{{ url_for('scrape') }}" class="scraping-form">
         <input type="hidden" name="category" value="{{ category }}" />
@@ -36,23 +36,23 @@
       </form>
     </div>
 
-    <a class="card" style="grid-column: span 6; display:block; text-decoration:none;" href="{{ url_for('tracker', category=category) }}">
-      <div class="card-header"><h2>📈 Price Tracker</h2><div class="card-subtitle">View last scraped {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'cameras' if category == 'cameras' else 'phones' }} and alerts</div></div>
+    <a class="card" style="grid-column: span 6; display:block; text-decoration:none; transition: transform 0.2s ease;" href="{{ url_for('tracker', category=category) }}">
+      <div class="card-header" style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); border: 2px solid #1e40af; border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"><h2 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.3rem; font-weight: 600;">Price Tracker Agent</h2><div class="card-subtitle" style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; margin: 0;">View last scraped {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'cameras' if category == 'cameras' else 'phones' }} and alerts</div></div>
       <div class="feature-item"><span class="feature-icon">⚡</span><span>Latest scraped data</span></div>
     </a>
 
-    <a class="card" style="grid-column: span 6; display:block; text-decoration:none;" href="{{ url_for('recommendations', category=category) }}">
-      <div class="card-header"><h2>🎯 Recommendations</h2><div class="card-subtitle">AI-powered similar {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'cameras' if category == 'cameras' else 'phones' }}</div></div>
+    <a class="card" style="grid-column: span 6; display:block; text-decoration:none; transition: transform 0.2s ease;" href="{{ url_for('recommendations', category=category) }}">
+      <div class="card-header" style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); border: 2px solid #1e40af; border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"><h2 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.3rem; font-weight: 600;">Recommendations Agent</h2><div class="card-subtitle" style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; margin: 0;">AI-powered similar {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'cameras' if category == 'cameras' else 'phones' }}</div></div>
       <div class="feature-item"><span class="feature-icon">🤖</span><span>Smart similarity</span></div>
     </a>
 
-    <a class="card" style="grid-column: span 6; display:block; text-decoration:none;" href="{{ url_for('reviews', category=category) }}">
-      <div class="card-header"><h2>📝 Reviews</h2><div class="card-subtitle">Summarized pros and cons</div></div>
+    <a class="card" style="grid-column: span 6; display:block; text-decoration:none; transition: transform 0.2s ease;" href="{{ url_for('reviews', category=category) }}">
+      <div class="card-header" style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); border: 2px solid #1e40af; border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"><h2 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.3rem; font-weight: 600;">Reviews Agent</h2><div class="card-subtitle" style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; margin: 0;">Summarized pros and cons</div></div>
       <div class="feature-item"><span class="feature-icon">🧠</span><span>Concise insights</span></div>
     </a>
 
-    <a class="card" style="grid-column: span 6; display:block; text-decoration:none;" href="{{ url_for('compare', category=category) }}">
-      <div class="card-header"><h2>⚖️ Compare</h2><div class="card-subtitle">Side-by-side feature view</div></div>
+    <a class="card" style="grid-column: span 6; display:block; text-decoration:none; transition: transform 0.2s ease;" href="{{ url_for('compare', category=category) }}">
+      <div class="card-header" style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); border: 2px solid #1e40af; border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"><h2 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.3rem; font-weight: 600;">Compare Agent</h2><div class="card-subtitle" style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; margin: 0;">Side-by-side feature view</div></div>
       <div class="feature-item"><span class="feature-icon">📊</span><span>Feature matrix</span></div>
     </a>
   </div>
