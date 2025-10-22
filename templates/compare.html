@@ -33,10 +33,10 @@
             </div>
           </div>
           <div style="grid-column: span 4;">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class="form-label"><span class="label-icon">✨</span>Prioritized features</label>
               <input class="input" type="text" name="priorities" value="{{ priorities }}" placeholder="e.g., price, battery, camera" />
-            </div>
+            </div> -->
             <div class="form-group" style="display:flex; align-items:end;">
               <input type="hidden" name="category" value="{{ category or 'phones' }}" />
               <button class="btn scrape-btn" type="submit"><span class="btn-icon">🚀</span>Compare</button>
@@ -46,7 +46,113 @@
       </form>
     </div>
 
-    {% if comparison and (comparison.features or comparison.summary or comparison.highlights) %}
+    {% if enhanced_comparison %}
+      <!-- Enhanced Comparison Results -->
+      <div class="card" style="grid-column: span 12;">
+        <div class="card-header">
+          <h3>🔍 Enhanced Product Analysis</h3>
+          <div class="card-subtitle">Detailed scraping and AI analysis completed</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+          {% for product in enhanced_comparison.products %}
+          <div style="border: 1px solid #e2e8f0; border-radius: 10px; padding: 15px;">
+            <h4 style="margin: 0 0 10px 0; color: #0f172a;">{{ product.name }}</h4>
+            <div style="font-size: 14px; color: #475569;">
+              <div><strong>Price:</strong> {{ product.price }} {% if product.original_price %}<span style="text-decoration: line-through;">{{ product.original_price }}</span>{% endif %}</div>
+              <div><strong>Rating:</strong> {{ product.rating }}/5 ({{ product.review_count }} reviews)</div>
+              <div><strong>Seller:</strong> {{ product.seller }}</div>
+              <div><strong>Availability:</strong> {{ product.availability }}</div>
+              {% if product.warranty %}<div><strong>Warranty:</strong> {{ product.warranty }}</div>{% endif %}
+              {% if product.shipping %}<div><strong>Shipping:</strong> {{ product.shipping }}</div>{% endif %}
+            </div>
+            {% if product.features %}
+            <div style="margin-top: 10px;">
+              <strong>Key Features:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px;">
+                {% for feature in product.features[:3] %}
+                <li>{{ feature }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if enhanced_comparison.ai_analysis %}
+      <div class="card" style="grid-column: span 12;">
+        <div class="card-header">
+          <h3>🤖 Comprehensive AI Analysis</h3>
+          <div class="card-subtitle">Detailed insights powered by Gemini AI</div>
+        </div>
+        <div style="white-space: pre-wrap; color: #0f172a; line-height: 1.6;">{{ enhanced_comparison.ai_analysis.full_analysis }}</div>
+      </div>
+      {% endif %}
+
+      {% if enhanced_comparison.best_option %}
+      <div class="card" style="grid-column: span 12; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="card-header">
+          <h3>BEST OPTION RECOMMENDATION</h3>
+          <div class="card-subtitle">AI-powered selection with detailed reasoning</div>
+        </div>
+        <div style="padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 15px;">
+          <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #fff;">
+            {{ enhanced_comparison.best_option.product_name }}
+          </div>
+          <!-- <div style="font-size: 16px; line-height: 1.6; margin-bottom: 15px;">
+            {{ enhanced_comparison.best_option.explanation }}
+          </div> -->
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 14px;">
+            <span style="background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 5px;">
+              Confidence: {{ enhanced_comparison.best_option.confidence }}
+            </span>
+            <span style="background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 5px;">
+              🤖 Powered by Gemini AI
+            </span>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if enhanced_comparison.comparison_matrix %}
+      <div class="card" style="grid-column: span 12;">
+        <div class="card-header">
+          <h3>📊 Detailed Comparison Matrix</h3>
+        </div>
+        <div style="overflow: auto;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Reviews</th>
+                <th>Seller</th>
+                <th>Availability</th>
+                <th>Warranty</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product in enhanced_comparison.comparison_matrix %}
+              <tr>
+                <td><strong>{{ product.name }}</strong></td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.rating }}/5</td>
+                <td>{{ product.review_count }}</td>
+                <td>{{ product.seller }}</td>
+                <td>{{ product.availability }}</td>
+                <td>{{ product.warranty }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+
+    {% elif comparison and (comparison.features or comparison.summary or comparison.highlights) %}
+      <!-- Basic Comparison Results -->
       {% if comparison.highlights %}
       <div class="card" style="grid-column: span 12;">
         <div class="card-header">
@@ -99,9 +205,9 @@
       {% endif %}
 
       {% if comparison.best %}
-      <div class="card" style="grid-column: span 12;">
+      <div class="card" style="grid-column: span 12; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border: 1px solid #cbd5e1;">
         <div class="card-header">
-          <h3>🏆 Best Overall</h3>
+          <h3>Best Overall</h3>
           <div class="card-subtitle">Based on Gemini insights and your priorities</div>
         </div>
         <div style="font-weight:700; color:#0f172a;">{{ comparison.best }}</div>

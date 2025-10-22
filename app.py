@@ -13,6 +13,7 @@ from price_tracker import load_products_from_json, check_prices, llm_summary_ale
 from recommendation_agent import recommend_products, load_products_from_json as load_products_for_reco, filter_below_threshold_products
 from review_agent import analyze_product_reviews
 from compare_agent import compare_selected_phones
+from enhanced_compare_agent import enhanced_compare_products
 from scrape_daraz import scrape_daraz_products, scrape_daraz_laptops, scrape_daraz_headphones, scrape_daraz_cameras, scrape_daraz_smartwatches, scrape_daraz_speakers
 from user_auth import UserAuth
 
@@ -411,6 +412,7 @@ def compare():
     selected: List[Dict] = []
     priorities_raw = ""
     comparison = {"features": [], "summary": "", "highlights": []}
+    enhanced_comparison = None
 
     if request.method == "POST":
         selected_urls = request.form.getlist("selected")
@@ -419,9 +421,25 @@ def compare():
         # Map URLs to product dicts if present
         url_to_product = {p.get("url"): p for p in (products or [])}
         selected = [url_to_product.get(u, {"url": u, "name": u}) for u in selected_urls]
-        comparison = compare_selected_phones(selected, priorities, category=category)
+        
+        # Use enhanced comparison if products are selected
+        if selected and len(selected) > 0:
+            try:
+                enhanced_comparison = enhanced_compare_products(selected, priorities, category=category)
+                flash(f"Enhanced comparison completed with {enhanced_comparison.get('scraping_success', 0)*100:.1f}% data accuracy", "success")
+            except Exception as e:
+                flash(f"Enhanced comparison failed, using basic comparison: {str(e)}", "warning")
+                comparison = compare_selected_phones(selected, priorities, category=category)
+        else:
+            comparison = compare_selected_phones(selected, priorities, category=category)
 
-    return render_template("compare.html", products=products, selected=selected, comparison=comparison, priorities=priorities_raw, category=category)
+    return render_template("compare.html", 
+                         products=products, 
+                         selected=selected, 
+                         comparison=comparison, 
+                         enhanced_comparison=enhanced_comparison,
+                         priorities=priorities_raw, 
+                         category=category)
 
 
 @app.route("/category/<category>")
