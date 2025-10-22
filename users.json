@@ -26,12 +26,5 @@
     "password_hash": "41cd2499ba1e486480d9cfb531b47926:433026fb50cc55da5f726c02ed1fddc3186ff309f5958c58536c0437276e8528",
     "created_at": "2025-10-20T22:18:49.410023",
     "last_login": "2025-10-20T22:19:04.024824"
-  },
-  "Senuji": {
-    "user_id": "2058e484370edf4f",
-    "email": "senujiv1@gmail.com",
-    "password_hash": "706852c4677819b97800814e6905ae60:6e0dc475207dd3976d80a74dd65629f77ae051bf75a05f8144806e15563ec101",
-    "created_at": "2025-10-22T16:44:29.382727",
-    "last_login": "2025-10-22T17:01:03.823690"
   }
 }

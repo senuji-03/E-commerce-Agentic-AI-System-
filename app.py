@@ -8,12 +8,12 @@ from functools import wraps
 # Load environment variables
 load_dotenv()
 
-from multi_scraper import scrape_all_sites, save_products_to_json
+from scrape_daraz import save_products_to_json
 from price_tracker import load_products_from_json, check_prices, llm_summary_alerts
 from recommendation_agent import recommend_products, load_products_from_json as load_products_for_reco, filter_below_threshold_products
 from review_agent import analyze_product_reviews
 from compare_agent import compare_selected_phones
-from scrape_daraz import scrape_daraz_laptops, scrape_daraz_headphones, scrape_daraz_cameras, scrape_daraz_smartwatches, scrape_daraz_speakers
+from scrape_daraz import scrape_daraz_products, scrape_daraz_laptops, scrape_daraz_headphones, scrape_daraz_cameras, scrape_daraz_smartwatches, scrape_daraz_speakers
 from user_auth import UserAuth
 
 
@@ -242,8 +242,8 @@ def scrape():
         products = scrape_daraz_speakers(brand, threshold_input, max_items=40)
         save_path = os.path.join(os.path.dirname(__file__), "daraz_speakers.json")
     else:
-        # Scrape across multiple Sri Lankan retailers (phones)
-        products = scrape_all_sites(brand, threshold_input)
+        # Scrape Daraz for phones
+        products = scrape_daraz_products(brand, threshold_input)
         save_path = os.path.join(os.path.dirname(__file__), "daraz_products.json")
     if not products:
         flash("No products scraped. Try another brand or try again.", "error")
