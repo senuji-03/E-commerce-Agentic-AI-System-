@@ -130,7 +130,7 @@ def login():
             session['user_id'] = result['user_id']
             session['username'] = result['username']
             flash(result["message"], "success")
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('index'))
         else:
             flash(result["message"], "error")
     
@@ -154,7 +154,7 @@ def signup():
         
         if result["success"]:
             flash(result["message"], "success")
-            return redirect(url_for('login'))
+            return redirect(url_for('index'))
         else:
             flash(result["message"], "error")
     
