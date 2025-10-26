@@ -33,5 +33,12 @@
     "password_hash": "a587b9638494aef304eb780248290625:6d1364c53a1d5b2a4c3025717689c58a934383b66162c78372a7a0602a8cbe13",
     "created_at": "2025-10-22T17:17:42.368916",
     "last_login": "2025-10-22T17:32:21.362544"
+  },
+  "user1": {
+    "user_id": "b579a59a47aa02dd",
+    "email": "user1@gmail.com",
+    "password_hash": "a843d43f9a78c2ac069edadbb0edab2e:443c8dc052fc68c2269d39fdb5073b5e48f3b181aacb40e8e71091481816351b",
+    "created_at": "2025-10-22T17:44:46.250020",
+    "last_login": "2025-10-26T19:55:35.258816"
   }
 }

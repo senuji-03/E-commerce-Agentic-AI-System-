@@ -426,7 +426,7 @@ def compare():
         if selected and len(selected) > 0:
             try:
                 enhanced_comparison = enhanced_compare_products(selected, priorities, category=category)
-                flash(f"Enhanced comparison completed with {enhanced_comparison.get('scraping_success', 0)*100:.1f}% data accuracy", "success")
+                flash("Comparison completed", "success")
             except Exception as e:
                 flash(f"Enhanced comparison failed, using basic comparison: {str(e)}", "warning")
                 comparison = compare_selected_phones(selected, priorities, category=category)

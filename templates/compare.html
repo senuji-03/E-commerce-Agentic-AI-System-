@@ -59,9 +59,10 @@
             <h4 style="margin: 0 0 10px 0; color: #0f172a;">{{ product.name }}</h4>
             <div style="font-size: 14px; color: #475569;">
               <div><strong>Price:</strong> {{ product.price }} {% if product.original_price %}<span style="text-decoration: line-through;">{{ product.original_price }}</span>{% endif %}</div>
-              <div><strong>Rating:</strong> {{ product.rating }}/5 ({{ product.review_count }} reviews)</div>
-              <div><strong>Seller:</strong> {{ product.seller }}</div>
-              <div><strong>Availability:</strong> {{ product.availability }}</div>
+              {% if product.specifications.storage %}<div><strong>Storage:</strong> {{ product.specifications.storage }}</div>{% endif %}
+              {% if product.specifications.ram %}<div><strong>RAM:</strong> {{ product.specifications.ram }}</div>{% endif %}
+              {% if product.specifications.camera %}<div><strong>Camera:</strong> {{ product.specifications.camera }}</div>{% endif %}
+              {% if product.specifications.battery %}<div><strong>Battery:</strong> {{ product.specifications.battery }}</div>{% endif %}
               {% if product.warranty %}<div><strong>Warranty:</strong> {{ product.warranty }}</div>{% endif %}
               {% if product.shipping %}<div><strong>Shipping:</strong> {{ product.shipping }}</div>{% endif %}
             </div>
@@ -94,20 +95,32 @@
       <div class="card" style="grid-column: span 12; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
         <div class="card-header">
           <h3>BEST OPTION RECOMMENDATION</h3>
-          <div class="card-subtitle">AI-powered selection with detailed reasoning</div>
+          <div class="card-subtitle" style="color: rgba(255, 255, 255, 0.9); font-size: 16px; font-weight: 500;">AI-powered selection with detailed reasoning</div>
         </div>
         <div style="padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 15px;">
           <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #fff;">
             {{ enhanced_comparison.best_option.product_name }}
           </div>
-          <!-- <div style="font-size: 16px; line-height: 1.6; margin-bottom: 15px;">
-            {{ enhanced_comparison.best_option.explanation }}
-          </div> -->
+          {% for product in enhanced_comparison.products %}
+            {% if product.name == enhanced_comparison.best_option.product_name %}
+            <div style="margin-bottom: 15px;">
+              {% if product.url %}
+              <a href="{{ product.url }}" target="_blank" style="background: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 600; display: inline-block; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);" onmouseover="this.style.background='#2563eb'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.background='#3b82f6'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(59, 130, 246, 0.3)'">
+                🔗 View Product
+              </a>
+              {% else %}
+              <span style="background: #6b7280; color: white; padding: 10px 20px; border-radius: 8px; font-size: 16px; font-weight: 600; display: inline-block;">
+                🔗 Product Link Not Available
+              </span>
+              {% endif %}
+            </div>
+            {% endif %}
+          {% endfor %}
           <div style="display: flex; align-items: center; gap: 10px; font-size: 14px;">
-            <span style="background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 5px;">
-              Confidence: {{ enhanced_comparison.best_option.confidence }}
+            <span style="background: #10b981; color: white; padding: 6px 12px; border-radius: 6px; font-weight: 500;">
+              🎯 Confidence: {{ enhanced_comparison.best_option.confidence }}
             </span>
-            <span style="background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 5px;">
+            <span style="background: #8b5cf6; color: white; padding: 6px 12px; border-radius: 6px; font-weight: 500;">
               🤖 Powered by Gemini AI
             </span>
           </div>
@@ -115,41 +128,6 @@
       </div>
       {% endif %}
 
-      {% if enhanced_comparison.comparison_matrix %}
-      <div class="card" style="grid-column: span 12;">
-        <div class="card-header">
-          <h3>📊 Detailed Comparison Matrix</h3>
-        </div>
-        <div style="overflow: auto;">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Rating</th>
-                <th>Reviews</th>
-                <th>Seller</th>
-                <th>Availability</th>
-                <th>Warranty</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for product in enhanced_comparison.comparison_matrix %}
-              <tr>
-                <td><strong>{{ product.name }}</strong></td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.rating }}/5</td>
-                <td>{{ product.review_count }}</td>
-                <td>{{ product.seller }}</td>
-                <td>{{ product.availability }}</td>
-                <td>{{ product.warranty }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {% endif %}
 
     {% elif comparison and (comparison.features or comparison.summary or comparison.highlights) %}
       <!-- Basic Comparison Results -->

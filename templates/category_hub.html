@@ -42,7 +42,7 @@
     </a>
 
     <a class="card" style="grid-column: span 6; display:block; text-decoration:none; transition: transform 0.2s ease;" href="{{ url_for('recommendations', category=category) }}">
-      <div class="card-header" style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); border: 2px solid #1e40af; border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"><h2 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.3rem; font-weight: 600;">Recommendations Agent</h2><div class="card-subtitle" style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; margin: 0;">AI-powered similar {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'cameras' if category == 'cameras' else 'phones' }}</div></div>
+      <div class="card-header" style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); border: 2px solid #1e40af; border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);"><h2 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.3rem; font-weight: 600;">Recommendation Agent</h2><div class="card-subtitle" style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; margin: 0;">AI-powered similar {{ 'laptops' if category == 'laptops' else 'headphones' if category == 'headphones' else 'cameras' if category == 'cameras' else 'phones' }}</div></div>
       <div class="feature-item"><span class="feature-icon">🤖</span><span>Smart similarity</span></div>
     </a>
 

@@ -200,7 +200,7 @@ Reviews:\n{chr(10).join(bullets)}
 """
     if genai is not None:
         try:
-            model = genai.GenerativeModel("gemini-1.5-flash")
+            model = genai.GenerativeModel("gemini-2.0-flash")
             resp = model.generate_content(prompt)
             return resp.text.strip()
         except Exception:

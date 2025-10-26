@@ -161,7 +161,7 @@ Why: <ONE_OR_TWO_SENTENCES_WITH_FEATURE-BASED_REASON>
 
 Items:\n{chr(10).join(bullets)}
 """
-            model = genai.GenerativeModel("gemini-1.5-flash")
+            model = genai.GenerativeModel("gemini-2.0-flash")
             resp = model.generate_content(prompt)
             summary = resp.text.strip()
             # Try to extract explicit best pick from last line

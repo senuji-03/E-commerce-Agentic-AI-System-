@@ -108,11 +108,11 @@ Please:
     
     if genai is not None:
         try:
-            model = genai.GenerativeModel("gemini-1.5-flash")
+            model = genai.GenerativeModel("gemini-2.0-flash")
             response = model.generate_content(prompt)
             return response.text.strip()
         except Exception as e:
-            print(f"⚠ Error calling Gemini API: {e}")
+            print(f"Error calling Gemini API: {e}")
     
     total_savings = sum(alert['savings'] for alert in alerts)
     return f"🎯 Found {len(alerts)} great deals with potential savings of Rs. {total_savings:,}! Check the details above for specific products."

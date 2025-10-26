@@ -266,9 +266,6 @@ def generate_ai_comparison_analysis(products_details: List[Dict], user_prioritie
         summary = f"""
 Product {i}: {product.get('name', 'Unknown')}
 - Price: {product.get('price', 'N/A')} (Original: {product.get('original_price', 'N/A')})
-- Rating: {product.get('rating', 0)}/5 ({product.get('review_count', 0)} reviews)
-- Seller: {product.get('seller', 'Unknown')}
-- Availability: {product.get('availability', 'Unknown')}
 - Warranty: {product.get('warranty', 'Not specified')}
 - Shipping: {product.get('shipping', 'Not specified')}
 
@@ -304,13 +301,11 @@ Provide a detailed analysis including:
 2. DETAILED COMPARISON
    - Price analysis (value for money, discounts, price positioning)
    - Feature comparison (unique features, missing features, feature quality)
-   - Quality indicators (ratings, reviews, seller reputation)
    - Technical specifications comparison
-   - Availability and shipping considerations
 
 3. STRENGTHS & WEAKNESSES
    - For each product, list 3 key strengths and 2 main weaknesses
-   - Base this on actual specifications and reviews, not assumptions
+   - Base this on actual specifications and features, not assumptions
 
 4. USER PRIORITY ALIGNMENT
    - How well each product matches the user's stated priorities
@@ -323,7 +318,6 @@ Provide a detailed analysis including:
    - Any products to avoid and why
 
 6. BUYING ADVICE
-   - When to buy (timing, deals, availability)
    - What to consider before purchasing
    - Alternative options if none are suitable
 
@@ -336,7 +330,7 @@ Format your response clearly with headers and bullet points for easy reading.
 """
     
     try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.0-flash")
         response = model.generate_content(prompt)
         ai_analysis = response.text.strip()
         
@@ -406,9 +400,8 @@ def generate_best_option_recommendation(products_details: List[Dict], user_prior
     for i, product in enumerate(products_details, 1):
         summary = f"""
 Product {i}: {product.get('name', 'Unknown')}
-- Price: {product.get('price', 'N/A')} (Rating: {product.get('rating', 0)}/5, {product.get('review_count', 0)} reviews)
+- Price: {product.get('price', 'N/A')}
 - Key Specs: {', '.join([f"{k}: {v}" for k, v in list(product.get('specifications', {}).items())[:3]])}
-- Seller: {product.get('seller', 'Unknown')} | Availability: {product.get('availability', 'Unknown')}
 """
         product_summaries.append(summary)
     
@@ -424,17 +417,17 @@ User Priorities: {', '.join(user_priorities) if user_priorities else 'No specifi
 Your task:
 1. Select the BEST OVERALL product from the list
 2. Provide a SHORT explanation (2-3 sentences max) explaining why it's the best choice
-3. Consider: price value, ratings, specifications, seller reputation, and user priorities
+3. Consider: price value, specifications, features, and user priorities
 
 Format your response as:
 BEST OPTION: [Product Name]
 REASON: [2-3 sentence explanation focusing on the key advantages]
 
-Be specific about what makes this product better than the others. Reference actual features, prices, or ratings when possible.
+Be specific about what makes this product better than the others. Reference actual features, prices, or specifications when possible.
 """
     
     try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.0-flash")
         response = model.generate_content(prompt)
         ai_response = response.text.strip()
         
