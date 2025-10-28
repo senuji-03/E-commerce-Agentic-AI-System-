@@ -321,6 +321,12 @@
   position: relative;
   transform: scale(0.8);
   transition: transform 0.3s ease;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.pricing-popup-content::-webkit-scrollbar {
+  display: none; /* WebKit */
 }
 
 .pricing-popup.show .pricing-popup-content {

@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -19,6 +23,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            scroll-behavior: smooth;
         }
 
         .pricing-container {
@@ -313,16 +318,22 @@
             visibility: visible;
         }
 
-        .pricing-popup-content {
-            background: white;
-            border-radius: 20px;
-            max-width: 90vw;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-        }
+.pricing-popup-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.pricing-popup-content::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
 
         .pricing-popup.show .pricing-popup-content {
             transform: scale(1);
