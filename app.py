@@ -393,6 +393,12 @@ def reviews():
                     break
             # Request all available reviews by passing a large max_reviews
             reviews_list, summary = analyze_product_reviews(product_query, (chosen or {}).get("url"), max_reviews=10000)
+            
+            # Show success message if reviews were found
+            if reviews_list:
+                flash(f"Successfully scraped {len(reviews_list)} reviews for '{product_query}'", "success")
+            else:
+                flash(f"No reviews found for '{product_query}'. Try a different product.", "error")
 
     return render_template("reviews.html", products=products, query=product_query, chosen=chosen, reviews=reviews_list, summary=summary, category=category)
 

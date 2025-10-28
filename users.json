@@ -39,7 +39,7 @@
     "email": "user1@gmail.com",
     "password_hash": "a843d43f9a78c2ac069edadbb0edab2e:443c8dc052fc68c2269d39fdb5073b5e48f3b181aacb40e8e71091481816351b",
     "created_at": "2025-10-22T17:44:46.250020",
-    "last_login": "2025-10-26T19:55:35.258816"
+    "last_login": "2025-10-29T00:45:14.642397"
   },
   "Senuji_N": {
     "user_id": "773cefb8368544da",
@@ -47,5 +47,19 @@
     "password_hash": "e21027217408a1d4f03c76f1c854775d:e631231530a92be72f331c82c0e51478cd315407680ba6708168cae345bbcdc6",
     "created_at": "2025-10-28T09:17:17.425191",
     "last_login": "2025-10-28T09:48:35.823975"
+  },
+  "user2": {
+    "user_id": "52af521aec179561",
+    "email": "user2@gmail.com",
+    "password_hash": "01d0d919943b1f13a2dd57a0d4c4747d:21c20c5eea7c6103f92290f252fc13d62a41a4a316734945d139645a4a9f9778",
+    "created_at": "2025-10-28T09:56:54.408040",
+    "last_login": null
+  },
+  "user3": {
+    "user_id": "cc5245ad13649b6f",
+    "email": "user3@gmail.com",
+    "password_hash": "3766b0e9e776aa16bafb4a0cb56e4c6b:f22d27152743f9d1887ced3c5b09c15b091f2c94f0945783478e90fa89af605b",
+    "created_at": "2025-10-28T23:50:55.040745",
+    "last_login": null
   }
 }
