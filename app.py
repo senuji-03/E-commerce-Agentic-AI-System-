@@ -119,6 +119,12 @@ def index():
     return render_template("launch.html")
 
 
+@app.route("/pricing")
+def pricing():
+    """Display pricing plans page"""
+    return render_template("pricing.html")
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":

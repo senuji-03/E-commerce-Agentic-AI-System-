@@ -97,6 +97,17 @@
         border-left: 1px solid rgba(255, 255, 255, 0.2);
       }
       
+      .user-plan {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
       .user-greeting {
         color: white;
         font-weight: 500;
@@ -817,6 +828,7 @@
             <a href="{{ url_for('compare') }}">Compare</a> -->
             <div class="nav-user">
               <span class="user-greeting">👋 {{ session.username }}</span>
+              <span class="user-plan">💎 Free Plan</span>
               <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
             </div>
           {% else %}

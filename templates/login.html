@@ -50,6 +50,86 @@
     
     <div class="auth-footer">
       <p>Don't have an account? <a href="{{ url_for('signup') }}" class="auth-link">Sign up here</a></p>
+      <div style="margin-top: 15px;">
+        <button onclick="showPricingPopup()" class="pricing-link-btn">
+          <span class="btn-icon">💎</span>
+          View Pricing Plans
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing Popup -->
+<div class="pricing-popup" id="pricingPopup">
+  <div class="popup-overlay" onclick="closePricingPopup()"></div>
+  <div class="pricing-popup-content">
+    <div class="pricing-container">
+      <div class="pricing-header">
+        <button class="close-button" onclick="closePricingPopup()">&times;</button>
+        <h1>🚀 Choose Your Plan</h1>
+        <p>Unlock the power of AI-driven e-commerce assistance</p>
+        <div class="current-plan-badge">
+          📋 Currently on: <strong>FREE PLAN</strong>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Free Plan -->
+        <div class="pricing-card current">
+          <div class="plan-name">🆓 Free</div>
+          <div class="plan-price free">LKR 0</div>
+          <div class="plan-period">Forever free</div>
+          <ul class="plan-features">
+            <li>Basic comparisons (3 products)</li>
+            <li>Limited AI recommendations (5/month)</li>
+            <li>Standard price tracking</li>
+            <li>Basic review summaries</li>
+            <li>Community support</li>
+          </ul>
+          <button class="plan-button current">Current Plan</button>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="pricing-card popular">
+          <div class="plan-name">⭐ Premium</div>
+          <div class="plan-price">LKR 3,000</div>
+          <div class="plan-period">per month</div>
+          <ul class="plan-features">
+            <li>Unlimited comparisons</li>
+            <li>Advanced AI recommendations</li>
+            <li>Real-time price alerts</li>
+            <li>Export comparison reports</li>
+            <li>Mobile app access</li>
+            <li>Priority support</li>
+            <li>Advanced analytics</li>
+          </ul>
+          <button class="plan-button premium" onclick="upgradeToPremium()">Upgrade to Premium</button>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="pricing-card">
+          <div class="plan-name">💼 Pro</div>
+          <div class="plan-price">LKR 6,000</div>
+          <div class="plan-period">per month</div>
+          <ul class="plan-features">
+            <li>All Premium features</li>
+            <li>API access</li>
+            <li>Advanced analytics dashboard</li>
+            <li>Custom AI insights</li>
+            <li>White-label options</li>
+            <li>Dedicated support</li>
+            <li>Custom integrations</li>
+            <li>SLA guarantees</li>
+          </ul>
+          <button class="plan-button pro" onclick="upgradeToPro()">Upgrade to Pro</button>
+        </div>
+      </div>
+
+      <div class="feature-highlight">
+        <h3>🎯 Why Upgrade?</h3>
+        <p>Premium and Pro plans unlock advanced AI capabilities, unlimited comparisons, and powerful analytics that help you make smarter purchasing decisions and save more money. Join thousands of satisfied users who've upgraded their shopping experience!</p>
+      </div>
     </div>
   </div>
 </div>
@@ -188,6 +268,326 @@
   text-decoration: underline;
 }
 
+.pricing-link-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.pricing-link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Pricing Popup Styles */
+.pricing-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.pricing-popup.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pricing-popup-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.pricing-popup.show .pricing-popup-content {
+  transform: scale(1);
+}
+
+.popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.pricing-container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.pricing-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px;
+  text-align: center;
+  position: relative;
+}
+
+.pricing-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.pricing-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.pricing-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.current-plan-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 20px;
+  border-radius: 25px;
+  margin-top: 15px;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 40px;
+}
+
+.pricing-card {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border-color: #667eea;
+}
+
+.pricing-card.current {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  transform: scale(1.05);
+}
+
+.pricing-card.current::before {
+  content: 'CURRENT PLAN';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #667eea;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.pricing-card.popular {
+  border-color: #764ba2;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.pricing-card.popular::before {
+  content: 'MOST POPULAR';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #764ba2;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.plan-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.plan-price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #667eea;
+  margin-bottom: 5px;
+}
+
+.plan-price.free {
+  color: #10b981;
+}
+
+.plan-period {
+  color: #64748b;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.plan-features {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.plan-features li {
+  padding: 8px 0;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.plan-features li::before {
+  content: '✓';
+  color: #10b981;
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.plan-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.plan-button.free {
+  background: #10b981;
+  color: white;
+}
+
+.plan-button.free:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+
+.plan-button.premium {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.plan-button.premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.plan-button.pro {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  color: white;
+}
+
+.plan-button.pro:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(118, 75, 162, 0.3);
+}
+
+.plan-button.current {
+  background: #e2e8f0;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.feature-highlight {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 40px;
+  border-left: 4px solid #667eea;
+}
+
+.feature-highlight h3 {
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.feature-highlight p {
+  color: #475569;
+  line-height: 1.6;
+}
+
 @media (max-width: 480px) {
   .auth-container {
     padding: 20px 10px;
@@ -200,6 +600,55 @@
   .auth-header h1 {
     font-size: 1.75rem;
   }
+  
+  .pricing-header h1 {
+    font-size: 2rem;
+  }
+  
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  
+  .pricing-card {
+    padding: 20px;
+  }
+  
+  .plan-price {
+    font-size: 2rem;
+  }
 }
 </style>
+
+<script>
+function showPricingPopup() {
+  document.getElementById('pricingPopup').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePricingPopup() {
+  document.getElementById('pricingPopup').classList.remove('show');
+  document.body.style.overflow = 'auto';
+}
+
+function upgradeToPremium() {
+  alert('Premium upgrade coming soon! Contact support for early access.');
+  closePricingPopup();
+}
+
+function upgradeToPro() {
+  alert('Pro upgrade coming soon! Contact support for early access.');
+  closePricingPopup();
+}
+
+// Close popup with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closePricingPopup();
+  }
+});
+
+// Auto-show popup after 3 seconds (optional - remove in production)
+// setTimeout(showPricingPopup, 3000);
+</script>
 {% endblock %}
